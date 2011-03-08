@@ -1,1 +1,13 @@
-Myget is A downloader accelerator for GNU/Linux.
+Mytget is A downloader accelerator for GNU/Linux.
+
+It fucks from http://myget.sourceforge.net/
+
+Current Features
+
+1. Supports HTTP, HTTPS, FTP protocols
+2. Supports HTTP-GET proxy
+3. Resumes the aborted downloads
+4. Supports directory download
+5. Can accelerates downloading through using muti-connections
+6. Supports large file( > 4G )
+
