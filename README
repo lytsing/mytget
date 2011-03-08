@@ -1,6 +1,6 @@
-Mytget is A downloader accelerator for GNU/Linux.
+Mytget is A muti-thread downloader accelerator for GNU/Linux.
 
-It fucks from http://myget.sourceforge.net/
+It forks from http://myget.sourceforge.net/
 
 Current Features
 
