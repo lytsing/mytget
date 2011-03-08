@@ -1,0 +1,13 @@
+0.1.1
+1.fixbug: the wrong log output.
+2.fixbug: the ftp file timestamp error.
+3.update: remove the file: unixnet.h, more clean.
+4.change: the default permission of the file is "rw-r--r--".
+5.bump: to 0.1.1
+0.1.0
+1.Supports HTTP, HTTPS, FTP protocols
+2.Supports HTTP-GET proxy
+3.Can resume aborted downloads
+4.Supports directory download
+5.Can accelerator downloading through using muti-connections
+6.Supports large file( > 4G )
