@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -17,8 +17,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef _MACRO_H
-#define _MACRO_H
+#ifndef MACRO_H_
+#define MACRO_H_
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -56,4 +56,5 @@
 #define FILE_BUFFER_SIZE 1024*1024
 #define MIN_BUFFER_LEFT 1024
 
-#endif // _MACRO_H
+#endif // MACRO_H_
+

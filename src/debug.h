@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,11 +18,12 @@
  */
 
 
-#ifndef _DEBUG_H
-#define _DEBUG_H
+#ifndef DEBUG_H_
+#define DEBUG_H_
 
 extern bool global_debug;
 
 void debug_log(const char *fmt, ...);
 
-#endif // _DEBUG_H
+#endif // DEBUG_H_
+

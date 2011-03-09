@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -20,8 +20,8 @@
 // support ipv4 and ipv6
 /* getaddrinfo is a thread-safe function in linux system
  * so these classes are thread-safe too*/
-#ifndef _TCP_H
-#define _TCP_H
+#ifndef TCP_H_
+#define TCP_H_
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -108,4 +108,5 @@ class TcpAcceptor
 		int listen_fd;
 };
 
-#endif // _TCP_H
+#endif // TCP_H_
+

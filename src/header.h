@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _HEADER_H
-#define _HEADER_H
+#ifndef HEADER_H_
+#define HEADER_H_
 
 #include <iostream>
 
@@ -58,4 +58,5 @@ class HeadData
 		HeadDataNode *head;
 };
 
-#endif // _HEADER_H
+#endif // HEADER_H_
+

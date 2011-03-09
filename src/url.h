@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _URL_H
-#define _URL_H
+#ifndef URL_H_
+#define URL_H_
 // define some protocol type
 enum Protocol{ 
 	HTTP,
@@ -89,4 +89,5 @@ class URL
 		const char *file;
 };
 
-#endif // _URL_H
+#endif // URL_H_
+

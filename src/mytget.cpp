@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -22,7 +22,7 @@
 #include <getopt.h>
 #include <signal.h>
 
-#include "myget.h"
+#include "mytget.h"
 
 using namespace std;
 
@@ -118,7 +118,7 @@ int main(int argc, char **argv)
 				task.timeout = atoi(optarg);
 				break;
 			case 'v':
-				cout<<"Myget "VERSION<<endl;
+				cout<<"Mytget "VERSION<<endl;
 				return 0;
 			case 'x':
 				ptr = StrDup(optarg);

@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -518,7 +518,7 @@ int Downloader::file_download()
 	off_t *data;
 	data = new off_t[threadNum];
 
-	for(i = 0; i < threadNum; i ++){
+	for (i = 0; i < threadNum; i ++) {
 		data[i] = blocks[i].startPoint;
 	}
 	pb->init();

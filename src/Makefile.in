@@ -158,8 +158,7 @@ mytget_SOURCES = \
 	ftpplugin.cpp \
 	downloader.h \
 	downloader.cpp \
-	myget.h \
-	myget.cpp \
+	mytget.h \
 	mytget.cpp \
 	progressbar.h \
 	progressbar.cpp
@@ -176,7 +175,7 @@ am_mytget_OBJECTS = debug.$(OBJEXT) advio.$(OBJEXT) tcp.$(OBJEXT) \
 	url.$(OBJEXT) utils.$(OBJEXT) block.$(OBJEXT) header.$(OBJEXT) \
 	plugin.$(OBJEXT) proxy.$(OBJEXT) task.$(OBJEXT) http.$(OBJEXT) \
 	httpplugin.$(OBJEXT) ftp.$(OBJEXT) ftpparser.$(OBJEXT) \
-	ftpplugin.$(OBJEXT) downloader.$(OBJEXT) myget.$(OBJEXT) \
+	ftpplugin.$(OBJEXT) downloader.$(OBJEXT) \
 	mytget.$(OBJEXT) progressbar.$(OBJEXT)
 mytget_OBJECTS = $(am_mytget_OBJECTS)
 mytget_DEPENDENCIES =
@@ -190,7 +189,7 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@	./$(DEPDIR)/ftp.Po ./$(DEPDIR)/ftpparser.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/ftpplugin.Po ./$(DEPDIR)/header.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/http.Po ./$(DEPDIR)/httpplugin.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/myget.Po ./$(DEPDIR)/mytget.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/mytget.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/plugin.Po ./$(DEPDIR)/progressbar.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/proxy.Po ./$(DEPDIR)/task.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/tcp.Po ./$(DEPDIR)/url.Po \
@@ -261,7 +260,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/header.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/http.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/httpplugin.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/myget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mytget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/progressbar.Po@am__quote@

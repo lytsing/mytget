@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _FTPPARSER_H
-#define _FTPPARSER_H
+#ifndef FTPPARSER_H_
+#define FTPPARSER_H_
 
 #include <sys/types.h>
 
@@ -50,4 +50,5 @@ class FtpParser
 		char type;
 };
 
-#endif // _FTPPARSER_H
+#endif // FTPPARSER_H_
+

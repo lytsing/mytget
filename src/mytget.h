@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _MYGET_H
-#define _MYGET_H
+#ifndef MYTGET_H_
+#define MYTGET_H_
 
 #include "macro.h"
 #include "utils.h"
@@ -36,4 +36,5 @@
 #include "task.h"
 #include "debug.h"
 
-#endif // _MYGET_H
+#endif // MYTGET_H_
+

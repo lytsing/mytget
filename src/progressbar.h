@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _PROGRESSBAR_H
-#define _PROGRESSBAR_H
+#ifndef PROGRESSBAR_H_
+#define PROGRESSBAR_H_
 
 #include <sys/types.h>
 #include <unistd.h>
@@ -36,7 +36,7 @@ class ProgressBar
 		~ProgressBar();
 
 		void set_start_point(off_t *start_point);
-		void set_total_size(off_t size){ totalSize = size; };
+		void set_total_size(off_t size) { totalSize = size; };
 		void set_block_num(int num);
 		void update(off_t *data);
 		void init(void);
@@ -65,4 +65,5 @@ class ProgressBar
 		int direction;
 };
 
-#endif // _PROGRESSBAR_H
+#endif // PROGRESSBAR_H_
+

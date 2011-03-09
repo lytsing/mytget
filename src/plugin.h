@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _PLUGIN_H
-#define _PLUGIN_H
+#ifndef PLUGIN_H_
+#define PLUGIN_H_
 
 #include "task.h"
 #include "block.h"
@@ -37,5 +37,5 @@ class Plugin
 		virtual int get_dir_list(Task& task, const char *tempfile);
 };
 
-#endif // _PLUGIN_H
+#endif // PLUGIN_H_
 

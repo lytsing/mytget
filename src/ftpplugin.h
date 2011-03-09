@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -25,8 +25,7 @@
 #include "task.h"
 #include "ftp.h"
 
-class FtpPlugin
-	: public Plugin
+class FtpPlugin : public Plugin
 {
 	public:
 		int get_info(Task *task);
@@ -38,3 +37,4 @@ class FtpPlugin
 };
 
 #endif // _FTPPLUGIN_H
+

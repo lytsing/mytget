@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _DOWNLOADER_H
-#define _DOWNLOADER_H
+#ifndef DOWNLOADER_H_
+#define DOWNLOADER_H_
 
 #include <iostream>
 
@@ -65,5 +65,5 @@ class Downloader
 		ProgressBar *pb;
 };
 
-#endif // _DOWNLOADER_H
+#endif // DOWNLOADER_H_
 

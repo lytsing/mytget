@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _PROXY_H
-#define _PROXY_H
+#ifndef PROXY_H_
+#define PROXY_H_
 
 #include "url.h"
 
@@ -59,4 +59,5 @@ class Proxy
 		const char *password;
 };
 
-#endif // _PROXY_H
+#endif // PROXY_H_
+

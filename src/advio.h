@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -19,8 +19,8 @@
 
 /*some advance IO classes and functions*/
 
-#ifndef _ADVIO_H
-#define _ADVIO_H
+#ifndef ADVIO_H_
+#define ADVIO_H_
 
 #define MAXLONG 2147483647 // 2G
 #define BUFSIZE 1024
@@ -64,8 +64,7 @@ class IOStream
 };
 
 /* extend timeout input & output stream*/
-class BufferStream 
-	: public IOStream
+class BufferStream : public IOStream
 {
 	public:
 		BufferStream(int ifd=-1);
@@ -122,4 +121,5 @@ class BufferFile
 		int fd;
 };
 
-#endif // _ADVIO_H
+#endif // ADVIO_H_
+

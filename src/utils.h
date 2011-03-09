@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _UTILS_H
-#define _UTILS_H
+#ifndef UTILS_H_
+#define UTILS_H_
 
 #include <sys/types.h>
 
@@ -44,9 +44,9 @@ const char* base64_encode(const char *str, int length = -1);
 const char* base64_decode(const char *str, int length = -1);
 
 // try to get the screen width
-int determine_screen_width(void);
+int determine_screen_width();
 // get the current time in secondes
-double get_current_time(void);
+double get_current_time();
 // conver size to 333M, 111K, 1G
 void convert_size(char *sizeStr, off_t size);
 // convert time to 11d23 11h12 12:34
@@ -55,4 +55,5 @@ void convert_time(char *timeStr, double time);
 // file exist
 bool file_exist(const char *filename);
 
-#endif // _UTILS_H
+#endif // UTILS_H_
+

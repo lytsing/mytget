@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -48,28 +48,28 @@ ProgressBar::ProgressBar(off_t total_size, int block_num)
 
 	rateIndex = 0;
 	rateCount = 0;
-	for(i = 0; i < 12; i++ ){
+	for (i = 0; i < 12; ++i) {
 		rates[i] = 0;
 	}
 
 	startPoint = new off_t[blockNum];	
-	for(i = 0; i < blockNum; i++ ){
+	for (i = 0; i < blockNum; ++i) {
 		startPoint[i] = 0;
 	}
 	lastTime = get_current_time();
 
 	term = getenv("TERM");
-	if(strcasecmp(term, "emacs") == 0 || !isatty(fileno(stderr))){
+	if (strcasecmp(term, "emacs") == 0 || !isatty(fileno(stderr))) {
 		// can not show the progress bar in these condition
 		show = false;
-	}else{
+	} else {
 		show = true;
 	}
 
 	screenWidth = determine_screen_width();
-	if(screenWidth == 0){
+	if (screenWidth == 0) {
 		screenWidth = DEFAULT_SCREEN_WIDTH;
-	}else{
+	} else {
 		screenWidth = screenWidth < MINIMUM_SCREEN_WIDTH ?
 			MINIMUM_SCREEN_WIDTH : screenWidth;
 		screenWidth = screenWidth > MAXIMUM_SCREEN_WIDTH ?
@@ -84,15 +84,14 @@ ProgressBar::~ProgressBar()
 	delete[] startPoint;
 };
 
-void
-ProgressBar::screen_width_change(int signo)
+void ProgressBar::screen_width_change(int signo)
 {
 	int screenWidth;
 
 	screenWidth = determine_screen_width();
-	if(screenWidth == 0){
+	if (screenWidth == 0) {
 		screenWidth = DEFAULT_SCREEN_WIDTH;
-	}else{
+	} else {
 		screenWidth = screenWidth < MINIMUM_SCREEN_WIDTH ?
 			MINIMUM_SCREEN_WIDTH : screenWidth;
 		screenWidth = screenWidth > MAXIMUM_SCREEN_WIDTH ?
@@ -101,16 +100,13 @@ ProgressBar::screen_width_change(int signo)
 	graphWidth = screenWidth - DIRTY_WIDTH;
 };
 
-void
-ProgressBar::init(void)
+void ProgressBar::init()
 {
-	int i;
-
 	lastTime = get_current_time();
 	lastDownloaded = 0;
 	rateIndex = 0;
 	rateCount = 0;
-	for(i = 0; i < 12; i++ ){
+	for (int i = 0; i < 12; ++i) {
 		rates[i] = 0;
 	}
 };
@@ -118,12 +114,10 @@ ProgressBar::init(void)
 void
 ProgressBar::set_block_num(int num)
 {
-	int i;
-
 	blockNum = num;
 	delete[] startPoint;
 	startPoint = new off_t[blockNum];
-	for(i = 0; i < blockNum; i++ ){
+	for (int i = 0; i < blockNum; i++ ) {
 		startPoint[i] = 0;
 	}
 };
@@ -131,10 +125,8 @@ ProgressBar::set_block_num(int num)
 void
 ProgressBar::set_start_point(off_t *data)
 {
-	int i;
-	
 	assert(data != NULL);
-	for(i = 0; i < blockNum; i ++){
+	for (int i = 0; i < blockNum; ++i) {
 		startPoint[i] = data[i];
 	}
 };
@@ -153,18 +145,18 @@ ProgressBar::update(off_t *data)
 
 	// avoid too often update
 	curr_time = get_current_time();
-	if(curr_time - lastTime < 0.25) return;
+	if (curr_time - lastTime < 0.25) return;
 
 	curr_downloaded = 0;
-	for(i = 0; i < blockNum; i ++){
+	for (i = 0; i < blockNum; i ++) {
 		curr_downloaded += data[i];
 	}
 
-	if(totalSize > 0 && lastDownloaded >= totalSize ) return;
+	if (totalSize > 0 && lastDownloaded >= totalSize ) return;
 
 	convert_size(downloaded, curr_downloaded);
 	rate = 0;
-	if(lastDownloaded > 0){
+	if (lastDownloaded > 0) {
 		// we need more reasonable rate, how to implement
 		rates[rateIndex] = (curr_downloaded - lastDownloaded ) / (curr_time - lastTime);
 		if(rateCount < 12) rateCount ++;
@@ -257,3 +249,4 @@ ProgressBar::update(off_t *data)
 	lastTime = curr_time;
 	lastDownloaded = curr_downloaded;
 };
+

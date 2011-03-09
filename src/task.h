@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _TASK_H
-#define _TASK_H
+#ifndef TASK_H_
+#define TASK_H_
 
 #include <sys/types.h>
 #include <unistd.h>
@@ -61,4 +61,5 @@ class Task
 		char *referer;
 };
 
-#endif // _TASK_H
+#endif // TASK_H_
+

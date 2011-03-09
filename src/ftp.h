@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -17,8 +17,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef _FTP_H
-#define _FTP_H
+#ifndef FTP_H_
+#define FTP_H_
 
 #include <sys/types.h>
 #include <unistd.h>
@@ -99,4 +99,5 @@ class Ftp
 		int mode; //active or passive
 };
 
-#endif // _FTP_H
+#endif // FTP_H_
+

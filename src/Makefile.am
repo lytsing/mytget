@@ -37,8 +37,7 @@ mytget_SOURCES = \
 	ftpplugin.cpp \
 	downloader.h \
 	downloader.cpp \
-	myget.h \
-	myget.cpp \
+	mytget.h \
 	mytget.cpp \
 	progressbar.h \
 	progressbar.cpp

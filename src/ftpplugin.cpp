@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -29,58 +29,57 @@
 
 using namespace std;
 
-int
-FtpPlugin::get_info(Task *task)
+int FtpPlugin::get_info(Task *task)
 {
 	Ftp ftp;
 	int ret;
 
 	ftp.set_timeout(task->timeout);
 	ftp.set_log(&debug_log);
-	if(ftp.connect(task->url.get_host(), task->url.get_port())< 0){
+	if (ftp.connect(task->url.get_host(), task->url.get_port()) < 0) {
 		return -2;
 	}
 
 	ret = ftp.login(task->url.get_user(), task->url.get_password());
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret > 0){
+	} else if (ret > 0){
 		sleep(task->retryInterval);
 		return -2;
 	}
 
 	// test REST
 	ret = ftp.rest(100);
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret == 0){
+	} else if (ret == 0) {
 		task->resumeSupported = true;
 	}
 
 	// passive or port
 	int port;
 	ret = ftp.pasv(&port);
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret > 0){
+	} else if (ret > 0) {
 		task->ftpActive = 1;
 	}
 
 	// can access
 	ret = ftp.cwd(task->url.get_dir());
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret > 0){
+	} else if (ret > 0) {
 		return -1;
 	}
 
 	// test a directory or not
 	ret = ftp.cwd(task->url.get_file());
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret == 0){
+	} else if (ret == 0) {
 		task->isDirectory = true;
-		if(task->url.get_file() != NULL ){
+		if (task->url.get_file() != NULL ) {
 			char *ptr;
 			ptr = new char[strlen(task->url.get_file()) + 2];
 			sprintf(ptr, "%s/", task->url.get_file());
@@ -89,33 +88,32 @@ FtpPlugin::get_info(Task *task)
 		}
 	}
 
-	if(task->isDirectory) return 0;
+	if (task->isDirectory) return 0;
 
 	ret = ftp.size(task->url.get_file(), &task->fileSize);
-	if(ret < 0){
+	if (ret < 0){
 		return -2;
-	}else if(ret > 0){
+	} else if(ret > 0) {
 		return -1;
 	}
 
 	return 0;
 };
 
-int
-FtpPlugin::download(Task &task, Block *block)
+int FtpPlugin::download(Task &task, Block *block)
 {
 	Ftp ftp;
 	int ret;
 
 	block->state = STOP;
-	if(task.resumeSupported){
-		if(block->downloaded >= block->size){
+	if (task.resumeSupported) {
+		if (block->downloaded >= block->size) {
 			block->state = EXIT;
 			return 0;
-		}else{
+		} else {
 			block->bufferFile.seek(block->startPoint + block->downloaded);
 		}
-	}else{
+	} else {
 		block->downloaded = 0;
 		block->bufferFile.seek(0);
 	}
@@ -124,32 +122,32 @@ FtpPlugin::download(Task &task, Block *block)
 	ftp.set_log(&debug_log);
 	ftp.set_mode(task.ftpActive);
 
-	if(ftp.connect(task.url.get_host(), task.url.get_port()) < 0){
+	if (ftp.connect(task.url.get_host(), task.url.get_port()) < 0) {
 		return -2;
 	}
 
 	ret = ftp.login(task.url.get_user(), task.url.get_password());
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret > 0){
+	} else if (ret > 0) {
 		sleep(task.retryInterval);
 		return -2;
 	}
 
 	ret = ftp.cwd(task.url.get_dir());
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret > 0){
+	} else if (ret > 0) {
 		return -1; // may be the dir can not be accessed
 	}
 
-	if(ftp.type("I") < 0) return -2;
+	if (ftp.type("I") < 0) return -2;
 
 	ret = ftp.retr(task.url.get_file(), 
 			block->startPoint + block->downloaded);
-	if(ret < 0){
+	if (ret < 0) {
 		return -2;
-	}else if(ret > 0){
+	} else if (ret > 0) {
 		return -1; // can not access this file
 	}
 
@@ -337,3 +335,4 @@ _ftp_get_dir_list_conn:
 	delete[] absdir;
 	return 0;
 };
+

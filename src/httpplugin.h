@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _HTTPPLUGIN_H
-#define _HTTPPLUGIN_H
+#ifndef HTTPPLUGIN_H_
+#define HTTPPLUGIN_H_
 
 #include "plugin.h"
 #include "task.h"
@@ -32,5 +32,5 @@ class HttpPlugin : public Plugin
 		int get_dir_list(Task& task, const char *tempfile);
 };
 
-#endif // _HTTPPLUGIN_H
+#endif // HTTPPLUGIN_H_
 

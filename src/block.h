@@ -1,4 +1,4 @@
-/*  Myget - A download accelerator for GNU/Linux
+/*  Mytget - A download accelerator for GNU/Linux
  *  Homepage: http://myget.sf.net
  *  Copyright (C) 2005- xiaosuo
  *
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef _BLOCK_H
-#define _BLOCK_H
+#ifndef BLOCK_H_
+#define BLOCK_H_
 
 #include "advio.h"
 
@@ -47,4 +47,4 @@ class Block
 		off_t size;
 };
 
-#endif // _BLOCK_H
+#endif // BLOCK_H_
