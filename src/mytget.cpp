@@ -26,23 +26,22 @@
 
 using namespace std;
 
-void
-print_help()
+void print_help()
 {
-	cout<<"Mytget "VERSION": A download accelerator for GNU/Linux"<<endl;
-	cout<<"Usage: mytget [options]... [URL]..."<<endl;
-	cout<<"Options:"<<endl;
-	cout<<"  -b,  --debug          Show the debug message"<<endl;
-	cout<<"  -c,  --count=num      Set the retry count to [num], no limit when \"0\", the default is \"99\""<<endl;
-	cout<<"  -d,  --directory=dir  Set the local direcotry to [dir], the default is \".\""<<endl;
-	cout<<"  -f,  --file=file      Rename the file to [file]"<<endl;
-	cout<<"  -h,  --help           A brief summary of all the options"<<endl;
-	cout<<"  -i,  --interval=num   Set the ftp retry interval to [num] seconds, the default is \"5\""<<endl;
-	cout<<"  -n,  --number=num     Use [num] connections instead of the default (4)"<<endl;
-	cout<<"  -r,  --referer=URL    Include `Referer: [URL]\' header in HTTP request."<<endl;
-	cout<<"  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is \"30\""<<endl;
-	cout<<"  -v,  --version        Show the version of the myget and exit"<<endl;
-	cout<<"  -x,  --proxy=URL      Set the proxy [URL]"<<endl;
+	cout << "Mytget "VERSION": A download accelerator for GNU/Linux" << endl;
+	cout << "Usage: mytget [options]... [URL]..." << endl;
+	cout << "Options:" << endl;
+	cout << "  -b,  --debug          Show the debug message" << endl;
+	cout << "  -c,  --count=num      Set the retry count to [num], no limit when \"0\", the default is \"99\"" << endl;
+	cout << "  -d,  --directory=dir  Set the local direcotry to [dir], the default is \".\"" << endl;
+	cout << "  -f,  --file=file      Rename the file to [file]" << endl;
+	cout << "  -h,  --help           A brief summary of all the options" << endl;
+	cout << "  -i,  --interval=num   Set the ftp retry interval to [num] seconds, the default is \"5\"" << endl;
+	cout << "  -n,  --number=num     Use [num] connections instead of the default (4)" << endl;
+	cout << "  -r,  --referer=URL    Include `Referer: [URL]\' header in HTTP request." << endl;
+	cout << "  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is \"30\"" << endl;
+	cout << "  -v,  --version        Show the version of the myget and exit" << endl;
+	cout << "  -x,  --proxy=URL      Set the proxy [URL]" << endl;
 };
 
 const struct option long_options [] = {
@@ -62,8 +61,7 @@ const struct option long_options [] = {
 
 char short_options [] = "bc:d:f:hi:n:r:t:vx:";
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int ret;
 	URL url;
@@ -83,14 +81,14 @@ main(int argc, char **argv)
 	SSLeay_add_ssl_algorithms();
 #endif
 	
-	while(1){
+	while (1) {
 		int option_index = 0;
 
 		ret = getopt_long(argc, argv, short_options,
 				long_options, &option_index);
-		if(ret == -1) break;
+		if (ret == -1) break;
 
-		switch(ret){
+		switch (ret) {
 			case 'b':
 				global_debug = true;
 				break;
@@ -132,18 +130,18 @@ main(int argc, char **argv)
 		}
 	}
 	
-	if(ptr == NULL){
+	if (ptr == NULL) {
 		ptr = StrDup(getenv("proxy"));
 	}
-	if(ptr){
-		if(url.set_url(ptr) < 0){
+	if (ptr) {
+		if (url.set_url(ptr) < 0) {
 			delete[] ptr;
 			cerr<<"!!!Please check your http_proxy set"<<endl;
 			print_help();
 			return -1;
 		}
 		delete[] ptr;
-		if(url.get_protocol() != HTTP){
+		if (url.get_protocol() != HTTP) {
 			cerr<<"!!!The proxy type is not supported"<<endl;
 			return -1;
 		}
@@ -156,13 +154,13 @@ main(int argc, char **argv)
 	}
 
 	
-	if(optind >= argc){
+	if (optind >= argc) {
 		print_help();
 		return -1;
 	}
 
-	while(optind < argc){
-		if(url.set_url(argv[optind++]) < 0){
+	while (optind < argc) {
+		if (url.set_url(argv[optind++]) < 0) {
 			print_help();
 			return -1;
 		}
@@ -173,3 +171,4 @@ main(int argc, char **argv)
 
 	return 0;
 };
+

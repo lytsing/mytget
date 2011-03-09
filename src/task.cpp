@@ -43,10 +43,9 @@ Task::~Task()
 	delete[] referer;
 };
 
-Task&
-Task::operator = (Task& task)
+Task& Task::operator = (Task& task)
 {
-	if(this == &task) return *this;
+	if (this == &task) return *this;
 
 	delete[] localDir;
 	delete[] localFile;
@@ -68,41 +67,36 @@ Task::operator = (Task& task)
 	return *this;
 };
 	
-const char*
-Task::get_local_dir(void)
+const char* Task::get_local_dir(void)
 {
 	return localDir;
 };
 
-const char*
-Task::get_local_file(void)
+const char* Task::get_local_file(void)
 {
 	return localFile;
 };
 
-const char*
-Task::get_referer(void)
+const char* Task::get_referer(void)
 {
 	return referer;
 };
 
-void
-Task::set_local_dir(const char *dir)
+void Task::set_local_dir(const char *dir)
 {
 	delete[] localDir;
 	localDir = StrDup(dir);
 };
 
-void
-Task::set_local_file(const char *file)
+void Task::set_local_file(const char *file)
 {
 	delete[] localFile;
 	localFile = StrDup(file);
 };
 
-void
-Task::set_referer(const char *referer)
+void Task::set_referer(const char *referer)
 {
 	delete[] this->referer;
 	this->referer = StrDup(referer);
 };
+

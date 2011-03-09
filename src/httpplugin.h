@@ -24,8 +24,7 @@
 #include "plugin.h"
 #include "task.h"
 
-class HttpPlugin
-	: public Plugin
+class HttpPlugin : public Plugin
 {
 	public:
 		int get_info(Task *task);
@@ -34,3 +33,4 @@ class HttpPlugin
 };
 
 #endif // _HTTPPLUGIN_H
+

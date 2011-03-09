@@ -28,8 +28,8 @@
 class Plugin
 {
 	public:
-		Plugin(void);
-		virtual ~Plugin(void);
+		Plugin();
+		virtual ~Plugin();
 
 	public:
 		virtual int get_info(Task* task);
@@ -38,3 +38,4 @@ class Plugin
 };
 
 #endif // _PLUGIN_H
+

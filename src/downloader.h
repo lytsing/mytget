@@ -66,3 +66,4 @@ class Downloader
 };
 
 #endif // _DOWNLOADER_H
+

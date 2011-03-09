@@ -33,17 +33,16 @@ typedef void* (*PthreadFunction) (void*);
 bool global_sigint_received = false;
 bool global_downloading = false;
 
-void
-catch_ctrl_c(int signo)
+void catch_ctrl_c(int signo)
 {
-	if(global_downloading){
+	if (global_downloading) {
 		global_sigint_received = true;
-	}else{
+	} else {
 		pthread_exit(0);
 	}
 };
 
-Downloader::Downloader(void)
+Downloader::Downloader()
 {
 	plugin = NULL;
 	blocks = NULL;
@@ -55,7 +54,7 @@ Downloader::Downloader(void)
 	signal(SIGINT, &catch_ctrl_c);
 };
 
-Downloader::~Downloader(void)
+Downloader::~Downloader()
 {
 	delete[] blocks;
 	delete[] localPath;
@@ -67,14 +66,13 @@ Downloader::~Downloader(void)
 	signal(SIGINT, SIG_DFL);
 };
 
-int
-Downloader::init_plugin(void)
+int Downloader::init_plugin()
 {
-	if(task.proxy.get_type() == HTTP_PROXY){
+	if (task.proxy.get_type() == HTTP_PROXY) {
 		delete plugin;
 		plugin = new HttpPlugin;
-	}else{
-		switch(task.url.get_protocol()){
+	} else {
+		switch (task.url.get_protocol()) {
 			case HTTP:
 #ifdef HAVE_SSL
 			case HTTPS:
@@ -94,28 +92,27 @@ Downloader::init_plugin(void)
 	return 0;
 };
 
-int
-Downloader::init_task(void)
+int Downloader::init_task()
 {
 	int i;
 	int ret;
 
 _reinit_plugin:
-	if(init_plugin() < 0){
-		cerr<<"Unknown protocol"<<endl;
+	if (init_plugin() < 0) {
+		cerr << "Unknown protocol" << endl;
 		return -1;
 	}
 
-	for(i = 0; task.tryCount <= 0 || i < task.tryCount; i ++){
+	for (i = 0; task.tryCount <= 0 || i < task.tryCount; ++i) {
 		ret = plugin->get_info(&task);
-		if(ret == -1){
+		if (ret == -1) {
 			return -1;
-		}else if(ret == S_REDIRECT){
-			cerr<<"Redirect to: "<<task.url.get_url()<<endl;
+		} else if (ret == S_REDIRECT) {
+			cerr << "Redirect to: " << task.url.get_url() << endl;
 			goto _reinit_plugin;
-		}else if(ret == 0){
+		} else if (ret == 0){
 			return 0;
-		}else{
+		} else {
 			continue;
 		}
 	}
@@ -123,8 +120,7 @@ _reinit_plugin:
 	return E_MAX_COUNT;
 };
 
-int
-Downloader::init_local_file_name(void)
+int Downloader::init_local_file_name()
 {
 	int length;
 	char *tmpStr;
@@ -150,42 +146,42 @@ Downloader::init_local_file_name(void)
 	return 0;
 };
 
-int
-Downloader::init_threads_from_mg(void)
+int Downloader::init_threads_from_mg()
 {
 	FILE *fd;
 	int i;
 	struct stat file_stat;
 
-	if(stat(localMg, &file_stat) < 0){
+	if (stat(localMg, &file_stat) < 0){
 		perror("Can not get the info of the temp file");
 		return -1;
 	}
-	if(file_stat.st_size < task.fileSize + sizeof(threadNum)){
-		cerr<<"the temp file: \""<<localMg<<"\" is not correct"<<endl;
+
+	if (file_stat.st_size < task.fileSize + sizeof(threadNum)) {
+		cerr << "the temp file: \"" << localMg << "\" is not correct" << endl;
 		return -1;
 	}
 	fd = fopen(localMg, "r");
-	if(fd == NULL && errno == EACCES){
-		cerr<<"Can not access the temp file: "<<localMg<<endl;
+	if (fd == NULL && errno == EACCES) {
+		cerr << "Can not access the temp file: " << localMg << endl;
 		return -1;
 	}
 
 	fseeko(fd, task.fileSize, SEEK_CUR);
 	fread(&threadNum, sizeof(threadNum), 1, fd);
-	if(file_stat.st_size != task.fileSize + sizeof(threadNum) + sizeof(off_t)*threadNum*3){
-		cerr<<"the temp file: \""<<localMg<<"\" is not correct"<<endl;
+	if (file_stat.st_size != task.fileSize + sizeof(threadNum) + sizeof(off_t)*threadNum*3) {
+		cerr << "the temp file: \"" << localMg << "\" is not correct" << endl;
 		fclose(fd);
 		return -1;
 	}
 	
 	delete[] blocks;
 	blocks = new Block[threadNum];
-	for(i = 0; i < threadNum; i ++){
+	for (i = 0; i < threadNum; ++i) {
 		fread(&blocks[i].startPoint, sizeof(off_t), 1, fd);
 		fread(&blocks[i].downloaded, sizeof(off_t), 1, fd);
 		fread(&blocks[i].size, sizeof(off_t), 1, fd);
-		if(blocks[i].bufferFile.open(localMg) < 0){
+		if (blocks[i].bufferFile.open(localMg) < 0) {
 			perror("Can not open the temp file to write");
 			return -1;
 		}
@@ -195,8 +191,7 @@ Downloader::init_threads_from_mg(void)
 	return 0;
 };
 
-int
-Downloader::init_threads_from_info(void)
+int Downloader::init_threads_from_info()
 {
 	off_t block_size;
 	int i;
@@ -224,41 +219,39 @@ Downloader::init_threads_from_info(void)
 	return 0;
 };
 
-int
-Downloader::thread_create(void)
+int Downloader::thread_create()
 {
 	pthread_t pid;
 	int i;
 
-	while(1){
+	while (1) {
 		i = pthread_create(&pid, NULL, 
 				(PthreadFunction)&download_thread, (void*)this);
-		if(i == 0) break;
+		if (i == 0) break;
 		usleep(250000);
 	}
 
-	for(i = 0; i < threadNum; i ++){
-		if(blocks[i].pid == 0){ // found an empty slot
+	for (i = 0; i < threadNum; ++i){
+		if (blocks[i].pid == 0) { // found an empty slot
 			blocks[i].pid = pid;
 			break;
 		}
 	}
 
-	if(i == threadNum) return -1;
+	if (i == threadNum) return -1;
 
 	return 0;
 };
 
 // return the source'id of the current thread
-int
-Downloader::self(void)
+int Downloader::self()
 {
 	pthread_t self;
 	self = pthread_self();
 	int i;
-	while(1){
-		for(i = 0; i < threadNum; i ++){
-			if(blocks[i].pid == self) return i;
+	while (1) {
+		for (i = 0; i < threadNum; ++i){
+			if (blocks[i].pid == self) return i;
 		}
 		// the parent thread maybe slower than me
 	}
@@ -267,8 +260,7 @@ Downloader::self(void)
 // this function will be called by pthread_create, because c++
 // not allow non-static function convert to the right function,
 // so make it static, but this will be safe
-int
-Downloader::download_thread(Downloader *downloader)
+int Downloader::download_thread(Downloader *downloader)
 {
 	int self, ret, i;
 	self = downloader->self();
@@ -277,15 +269,15 @@ Downloader::download_thread(Downloader *downloader)
 	for(i = 0; downloader->task.tryCount <= 0 ||
 			i < downloader->task.tryCount; i ++){
 			*/
-	while(1){
+	while (1) {
 		ret = downloader->plugin->download(downloader->task, downloader->blocks + self);
-		if(ret == E_SYS){ // system error
+		if (ret == E_SYS) { // system error
 			downloader->blocks[self].state = EXIT;
 			return -1;
-		}else if(ret == 0){
+		} else if (ret == 0){
 			downloader->blocks[self].state = EXIT;
 			return 0;
-		}else{
+		} else {
 			continue;
 		}
 	}
@@ -469,54 +461,55 @@ _dd_error:
 	return -1;
 }; // end of directory_download
 
-int
-Downloader::file_download(void)
+int Downloader::file_download()
 {
 	int i;
 	int ret = 0;
 
 	init_local_file_name();
-	if(file_exist(localPath)){
-		cout<<"File already exist: "<<localPath<<endl;
+	if (file_exist(localPath)) {
+		cout << "File already exist: " << localPath << endl;
 		return 0;
 	}
-	cout<<"Begin to download: "
+
+	cout << "Begin to download: "
 		<<(task.get_local_file() ? task.get_local_file() : task.url.get_file())<<endl;
 	char buf[6];
 	double time = get_current_time();
 	convert_size(buf, task.fileSize);
-	cout<<"Filesize: "<<buf<<endl;
+	cout << "Filesize: " << buf << endl;
 
-	if(task.fileSize == 0){
+	if (task.fileSize == 0) {
 		int fd;
 		fd = creat(localPath, 00644);
-		if(fd < 0){
+		if (fd < 0) {
 			perror("error when creat file");
 			return -1;
-		}else{
+		} else {
 			close(fd);
 			return 0;
 		}
 	}
 
-	if(!task.resumeSupported || task.fileSize < 0){
+	if (!task.resumeSupported || task.fileSize < 0) {
 		threadNum = 1;
 		delete[] blocks;
 		blocks = new Block[1];
 		blocks[0].size = task.fileSize;
 		blocks[0].bufferFile.open(localMg);
-	}else if(file_exist(localMg)){
+	} else if (file_exist(localMg)){
 		ret = init_threads_from_mg();
-	}else{
+	} else {
 		ret = init_threads_from_info();
 	}
-	if(ret < 0){
-		cerr<<"Init threads failed"<<endl;
+
+	if (ret < 0) {
+		cerr << "Init threads failed" << endl;
 		return ret;
 	}
 
-	for(i = 0; i < threadNum; i ++){
-		if(thread_create() < 0){
+	for (i = 0; i < threadNum; ++i) {
+		if (thread_create() < 0) {
 			perror("Create thread failed");
 			return -1;
 		}
@@ -535,18 +528,18 @@ Downloader::file_download(void)
 
 	// update loop
 	global_downloading = true;
-	while(1){
-		if(global_sigint_received){
+	while (1) {
+		if (global_sigint_received) {
 			delete[] data;
 			save_temp_file_exit();
 		}
 
-		for(i = 0; i < threadNum; i ++){
+		for (i = 0; i < threadNum; ++i) {
 			data[i] = blocks[i].downloaded;
 		}
 		pb->update(data);
 
-		if(schedule() == 0){
+		if (schedule() == 0) {
 			break; // all the thread are exit
 		}
 		usleep(250000);
@@ -554,23 +547,24 @@ Downloader::file_download(void)
 
 	delete[] data;
 	// recheck the size of the file if possible
-	if(task.fileSize >= 0){
+	if (task.fileSize >= 0) {
 		off_t downloaded;
 		downloaded = 0;
-		for(i = 0; i < threadNum; i ++){
+		for (i = 0; i < threadNum; i ++) {
 			downloaded += blocks[i].downloaded;
 		}
 		// the downloaded maybe bigger than the filesize
 		// because the overlay of the data
-		if(downloaded < task.fileSize){
-			cerr<<"!!!Some error happend when downloaded"<<endl;
-			cerr<<"!!!Redownloading is recommended"<<endl;
+		if (downloaded < task.fileSize) {
+			cerr << "!!!Some error happend when downloaded" << endl;
+			cerr << "!!!Redownloading is recommended" << endl;
 			save_temp_file_exit();
 		}
+
 		truncate(localMg, task.fileSize);
 	}
 	
-	if(rename(localMg, localPath) < 0){
+	if (rename(localMg, localPath) < 0) {
 		perror("Rename failed");
 		return -1;
 	}
@@ -578,26 +572,26 @@ Downloader::file_download(void)
 
 	time = get_current_time() - time;
 	convert_time(buf, time);
-	cout<<"Download successfully in "<<buf<<endl;
+	cout << "Download successfully in " << buf << endl;
 
 	return 0;
 }; // end of file_download
 
-int
-Downloader::run(void)
+int Downloader::run()
 {
 	int ret;
 
 	ret = init_task();
-	if(ret < 0){
-		cerr<<"Can not get the info of the file "<<endl;
+	if (ret < 0) {
+		cerr << "Can not get the info of the file " << endl;
 		return ret;
 	}
 
-	if(task.isDirectory){
-		cerr<<"This is a directory: "<<task.url.get_url()<<endl;
+	if (task.isDirectory) {
+		cerr << "This is a directory: " << task.url.get_url() << endl;
 		return directory_download();
 	}
 
 	return file_download();
 }; // end of run
+
