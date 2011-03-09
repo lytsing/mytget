@@ -23,10 +23,9 @@
 
 #include <iostream>
 
-class HeadDataNode
-{
+class HeadDataNode {
     public:
-        HeadDataNode():attrName(NULL), attrValue(NULL), next(NULL){};
+        HeadDataNode():attrName(NULL), attrValue(NULL), next(NULL) {}
         HeadDataNode(const HeadDataNode &that);
         ~HeadDataNode();
         HeadDataNode& operator = (const HeadDataNode &that);
@@ -36,10 +35,9 @@ class HeadDataNode
         HeadDataNode *next;
 };
 
-class HeadData
-{
+class HeadData {
     public:
-        HeadData():head(NULL){};
+        HeadData():head(NULL) {}
         HeadData(const HeadDataNode &that);
         ~HeadData();
         HeadData& operator = (const HeadData&that);
@@ -51,7 +49,7 @@ class HeadData
         // remote the attr identified by attrName;
         int remove_attr(const char *attrName);
         // traversal the data use trav_fun
-        int traversal( int(*trav_fun)(HeadDataNode*) );
+        int traversal(int(*trav_fun)(HeadDataNode*));
         // remote all the atts
         void remove_all();
 

@@ -200,8 +200,7 @@ int Http::set_host(const char *host, int port) {
     return request.set_attr("Host", buf);
 };
 
-int Http::send_head()
-{
+int Http::send_head() {
     HeadDataNode *it;
     int ret;
 

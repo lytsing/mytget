@@ -25,17 +25,16 @@
 #include "block.h"
 
 
-class Plugin
-{
-	public:
-		Plugin();
-		virtual ~Plugin();
+class Plugin {
+    public:
+        Plugin();
+        virtual ~Plugin();
 
-	public:
-		virtual int get_info(Task* task);
-		virtual int download(Task& task, Block* block);
-		virtual int get_dir_list(Task& task, const char *tempfile);
+    public:
+        virtual int get_info(Task* task);
+        virtual int download(Task& task, Block* block);
+        virtual int get_dir_list(Task& task, const char *tempfile);
 };
 
-#endif // PLUGIN_H_
+#endif  // PLUGIN_H_
 

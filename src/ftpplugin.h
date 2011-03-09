@@ -25,8 +25,7 @@
 #include "task.h"
 #include "ftp.h"
 
-class FtpPlugin : public Plugin
-{
+class FtpPlugin : public Plugin {
     public:
         int get_info(Task *task);
         int download(Task &task, Block *block);

@@ -64,15 +64,15 @@ Task& Task::operator = (Task& task) {
     return *this;
 };
 
-const char* Task::get_local_dir(void) {
+const char* Task::get_local_dir() {
     return localDir;
 };
 
-const char* Task::get_local_file(void) {
+const char* Task::get_local_file() {
     return localFile;
 };
 
-const char* Task::get_referer(void) {
+const char* Task::get_referer() {
     return referer;
 };
 

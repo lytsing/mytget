@@ -22,7 +22,7 @@
 #ifndef ADVIO_H_
 #define ADVIO_H_
 
-#define MAXLONG 2147483647 // 2G
+#define MAXLONG 2147483647  // 2G
 #define BUFSIZE 1024
 
 #include <cassert>
@@ -75,8 +75,8 @@ class BufferStream : public IOStream {
         // the below functions have buffer supported
         int readc(char *c, long timeout=-1);
         int read(char *buffer, int maxsize, long timeout = -1);
-        int write(char *str, long timeout=-1);
-        int read_line(char *line, int maxsize,long timeout = -1);
+        int write(char *str, long timeout =- 1);
+        int read_line(char *line, int maxsize, long timeout = -1);
 
     protected:
         char buf[BUFSIZE];

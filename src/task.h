@@ -30,13 +30,13 @@
 
 class Task {
     public:
-        Task(void);
-        ~Task(void);
+        Task();
+        ~Task();
 
     public:
-        const char* get_local_dir(void);
-        const char* get_local_file(void);
-        const char* get_referer(void);
+        const char* get_local_dir();
+        const char* get_local_file();
+        const char* get_referer();
         void set_local_dir(const char *dir);
         void set_local_file(const char *file);
         void set_referer(const char *referer);

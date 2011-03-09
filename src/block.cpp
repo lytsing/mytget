@@ -20,11 +20,11 @@
 
 #include "block.h"
 
-Block::Block()
-{
+Block::Block() {
     pid = 0;
     state = STOP;
     startPoint = 0;
     downloaded = 0;
     size = -1;
 };
+

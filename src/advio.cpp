@@ -42,7 +42,7 @@ IOStream::IOStream(int infd) :fd(infd) {
 #endif
 };
 
-IOStream::~IOStream() { 
+IOStream::~IOStream() {
 #ifdef HAVE_SSL
     if (useSSL) {
         SSL_shutdown(ssl);
@@ -96,7 +96,8 @@ void IOStream::set_use_ssl(bool use) {
     } else {
         useSSL =false;
         SSL_shutdown(ssl);
-        free(ssl); ssl = NULL;
+        free(ssl);
+        ssl = NULL;
         if (sslCTX) SSL_CTX_free(sslCTX);
     }
 };
@@ -114,7 +115,7 @@ int IOStream::ssl_connect(void) {
         return 0;
     }
 };
-#endif // HAVE_SSL
+#endif  // HAVE_SSL
 
 int IOStream::read(char *buffer, int maxsize, long timeout) {
     fd_set r_fdset;
@@ -132,7 +133,7 @@ int IOStream::read(char *buffer, int maxsize, long timeout) {
     while (1) {
         FD_ZERO(&r_fdset);
         FD_SET(fd, &r_fdset);
-        switch(select(fd+1, &r_fdset, NULL, NULL, time_out)) {
+        switch (select(fd+1, &r_fdset, NULL, NULL, time_out)) {
             case 0:
                 /*timeout*/
                 return E_TIMEOUT;
@@ -149,13 +150,13 @@ int IOStream::read(char *buffer, int maxsize, long timeout) {
                             rc = SSL_read(ssl, buffer, maxsize);
                             if (rc > 0) {
                                 return rc;
-                            } else if (rc == 0) { // error or EOF
+                            } else if (rc == 0) {  // error or EOF
                                 if (SSL_get_error(ssl, rc) == SSL_ERROR_ZERO_RETURN) {
-                                    return 0; // EOF
+                                    return 0;  // EOF
                                 } else {
                                     return -1;
                                 }
-                            } else { // error
+                            } else {  // error
                                 return rc;
                             }
                         }
@@ -171,7 +172,7 @@ int IOStream::read(char *buffer, int maxsize, long timeout) {
         }
     }
 };
-    
+
 int IOStream::write(char *buffer, int maxsize, long timeout) {
     fd_set w_fdset;
     int rc;
@@ -189,7 +190,7 @@ int IOStream::write(char *buffer, int maxsize, long timeout) {
     while (1) {
         FD_ZERO(&w_fdset);
         FD_SET(fd, &w_fdset);
-        switch(select(fd+1, NULL, &w_fdset, NULL, time_out)) {
+        switch (select(fd+1, NULL, &w_fdset, NULL, time_out)) {
             case 0:
                 /*timeout*/
                 return E_TIMEOUT;
@@ -220,8 +221,7 @@ int IOStream::write(char *buffer, int maxsize, long timeout) {
                 }
         }
     }
-
-};          
+};
 
 /*****************************************************************
  * class BufferStream implement
@@ -264,8 +264,9 @@ int BufferStream::write(char *str, long timeout) {
         if ((rc=IOStream::write(str, n, timeout)) > 0) {
             n -= rc;
             pptr += rc;
-        } else
+        } else {
             return rc;
+        }
     }
 
     return slen;
@@ -287,15 +288,15 @@ int BufferStream::read(char *buffer, int maxsize, long timeout) {
 int BufferStream::readc(char *c, long timeout) {
     if (count <= 0) {
         if ((count=IOStream::read(buf, BUFSIZE, timeout)) < 0)
-            return count; //error
+            return count;  // error
         else if (count == 0)
-            return 0; //EOF
+            return 0;  // EOF
         ptr = buf;
     }
 
     *c = *ptr;
-    ptr ++;
-    count --;
+    ptr++;
+    count--;
 
     return 1;
 };
@@ -307,18 +308,18 @@ int BufferStream::read_line(char *line, int maxsize, long timeout) {
 
     pptr = line;
 
-    for(i=1; i<maxsize; i++) {
+    for (i = 1; i < maxsize; i++) {
         if ((rc=readc(&c, timeout)) < 0) {
-            return rc; //error
-        } else if (rc == 0) { //EOF
-            if (i == 1) {//read nothing but EOF
+            return rc;  // error
+        } else if (rc == 0) {  // EOF
+            if (i == 1) {  // read nothing but EOF
                 return 0;
             } else {
                 break;
             }
         }
         *pptr = c;
-        pptr ++;
+        pptr++;
         if (c == '\n')
             break;
     }
@@ -397,7 +398,7 @@ _flush_again:
     }
 
     ptr = buf;
-    if (count > 0) { // some error happend
+    if (count > 0) {  // some error happend
         memmove(buf, pptr, count);
         left += bc - count;
         return -1;
