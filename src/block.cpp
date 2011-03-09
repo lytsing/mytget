@@ -22,9 +22,9 @@
 
 Block::Block()
 {
-	pid = 0;
-	state = STOP;
-	startPoint = 0;
-	downloaded = 0;
-	size = -1;
+    pid = 0;
+    state = STOP;
+    startPoint = 0;
+    downloaded = 0;
+    size = -1;
 };

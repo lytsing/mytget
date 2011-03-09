@@ -25,5 +25,5 @@ extern bool global_debug;
 
 void debug_log(const char *fmt, ...);
 
-#endif // DEBUG_H_
+#endif  // DEBUG_H_
 

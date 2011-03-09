@@ -25,26 +25,26 @@
 
 enum ThreadState
 {
-	STOP,
-	RETR,
-	WAIT,
-	WAKEUP,
-	EXIT,
-	JOINED
+    STOP,
+    RETR,
+    WAIT,
+    WAKEUP,
+    EXIT,
+    JOINED
 };
 
 class Block
 {
-	public:
-		Block();
+    public:
+        Block();
 
-	public:
-		pthread_t pid;
-		ThreadState state;
-		BufferFile bufferFile;
-		off_t startPoint;
-		off_t downloaded;
-		off_t size;
+    public:
+        pthread_t pid;
+        ThreadState state;
+        BufferFile bufferFile;
+        off_t startPoint;
+        off_t downloaded;
+        off_t size;
 };
 
 #endif // BLOCK_H_

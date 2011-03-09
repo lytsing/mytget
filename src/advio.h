@@ -32,94 +32,90 @@
 
 /* class IOStream add timeout option support*/
 
-class IOStream
-{
-	public:
-		/* default fd == -1, it is safe */
-		IOStream(int infd=-1);
-		~IOStream();
+class IOStream {
+    public:
+        /* default fd == -1, it is safe */
+        IOStream(int infd=-1);
+        ~IOStream();
 
-		int set_fd(int infd);
-		int get_fd();
+        int set_fd(int infd);
+        int get_fd();
 
-		int open(const char *file, int flag=O_RDWR|O_CREAT, mode_t mode=00644);
-		int close();
+        int open(const char *file, int flag = O_RDWR|O_CREAT, mode_t mode = 00644);
+        int close();
 
-		/* when timeout == -1, it is blocked */
-		int read(char *buffer, int maxsize, long timeout=-1);
-		int write(char *buffer, int maxsize, long timeout=-1);
+        /* when timeout == -1, it is blocked */
+        int read(char *buffer, int maxsize, long timeout=-1);
+        int write(char *buffer, int maxsize, long timeout=-1);
 
 #ifdef HAVE_SSL
-		void set_use_ssl(bool use);
-		int ssl_connect(void);
+        void set_use_ssl(bool use);
+        int ssl_connect(void);
 #endif
 
-	protected:
-		int fd;
+    protected:
+        int fd;
 #ifdef HAVE_SSL
-		SSL *ssl;
-		SSL_CTX *sslCTX;
-		bool useSSL;
+        SSL *ssl;
+        SSL_CTX *sslCTX;
+        bool useSSL;
 #endif
 };
 
 /* extend timeout input & output stream*/
-class BufferStream : public IOStream
-{
-	public:
-		BufferStream(int ifd=-1);
-		//~BufferStream();
-		BufferStream(const BufferStream& that);
-		BufferStream& operator = (const BufferStream& that);
+class BufferStream : public IOStream {
+    public:
+        BufferStream(int ifd=-1);
+        //~BufferStream();
+        BufferStream(const BufferStream& that);
+        BufferStream& operator = (const BufferStream& that);
 
-		int set_fd(int infd);
+        int set_fd(int infd);
 
-		// the below functions have buffer supported
-		int readc(char *c, long timeout=-1);
-		int read(char *buffer, int maxsize, long timeout=-1);
-		int write(char *str, long timeout=-1);
-		int read_line(char *line, int maxsize,long timeout=-1);
+        // the below functions have buffer supported
+        int readc(char *c, long timeout=-1);
+        int read(char *buffer, int maxsize, long timeout = -1);
+        int write(char *str, long timeout=-1);
+        int read_line(char *line, int maxsize,long timeout = -1);
 
-	protected:
-		char buf[BUFSIZE];
-		char *ptr;
-		int count; // the current buffer size
+    protected:
+        char buf[BUFSIZE];
+        char *ptr;
+        int count;  // the current buffer size
 };
 
-// this class must be inherited by the base class of the 
+// this class must be inherited by the base class of the
 // plugin and the read_data function must be overloaded
-class PluginIO
-{
-	public:
-		PluginIO();
-		~PluginIO();
+class PluginIO {
+    public:
+        PluginIO();
+        ~PluginIO();
 
-		virtual int read_data(char *buffer, int maxsize);
+        virtual int read_data(char *buffer, int maxsize);
 };
 
-class BufferFile
-{
-	public:
-		BufferFile();
-		~BufferFile();
+class BufferFile {
+    public:
+        BufferFile();
+        ~BufferFile();
 
-		int open(const char *file, int flag=O_RDWR|O_CREAT, mode_t mode=00644);
-		int close();
-		int read(char *buffer, int maxsize);
-		int write(char *buffer, int maxsize);
+        int open(const char *file, int flag = O_RDWR|O_CREAT, mode_t mode = 00644);
+        int close();
+        int read(char *buffer, int maxsize);
+        int write(char *buffer, int maxsize);
 
-		int flush();
-		off_t seek(off_t off_set);
-		int truncate(off_t length);
+        int flush();
+        off_t seek(off_t off_set);
+        int truncate(off_t length);
 
-		off_t retr_data_from(PluginIO *pio, off_t *rtlength, off_t length = -1);
+        off_t retr_data_from(PluginIO *pio, off_t *rtlength, off_t length = -1);
 
-	public:
-		char buf[FILE_BUFFER_SIZE];
-		char *ptr;
-		int left;
-		int fd;
+    public:
+        char buf[FILE_BUFFER_SIZE];
+        char *ptr;
+        int left;
+        int fd;
 };
 
-#endif // ADVIO_H_
+#endif  // ADVIO_H_
 

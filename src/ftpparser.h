@@ -25,29 +25,29 @@
 
 class FtpParser
 {
-	public:
-		FtpParser();
-		~FtpParser();
+    public:
+        FtpParser();
+        ~FtpParser();
 
-		const char *get_file(void);
-		const char *get_link(void);
-		off_t get_size(void);
-		time_t get_time(void);
-		char get_type(void);
+        const char *get_file(void);
+        const char *get_link(void);
+        off_t get_size(void);
+        time_t get_time(void);
+        char get_type(void);
 
-		int parse(const char *line);
+        int parse(const char *line);
 
-	private:
-		void reset(void);
-		int process_dos(char *line);
-		int process_unix(char *line);
+    private:
+        void reset(void);
+        int process_dos(char *line);
+        int process_unix(char *line);
 
-	private:
-		const char *file;
-		const char *link;
-		off_t size;
-		time_t time;
-		char type;
+    private:
+        const char *file;
+        const char *link;
+        off_t size;
+        time_t time;
+        char type;
 };
 
 #endif // FTPPARSER_H_

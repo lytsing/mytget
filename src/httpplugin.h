@@ -24,13 +24,12 @@
 #include "plugin.h"
 #include "task.h"
 
-class HttpPlugin : public Plugin
-{
-	public:
-		int get_info(Task *task);
-		int download(Task& task, Block *block);
-		int get_dir_list(Task& task, const char *tempfile);
+class HttpPlugin : public Plugin {
+    public:
+        int get_info(Task *task);
+        int download(Task& task, Block *block);
+        int get_dir_list(Task& task, const char *tempfile);
 };
 
-#endif // HTTPPLUGIN_H_
+#endif  // HTTPPLUGIN_H_
 

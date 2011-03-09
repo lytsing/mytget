@@ -27,13 +27,13 @@
 
 class FtpPlugin : public Plugin
 {
-	public:
-		int get_info(Task *task);
-		int download(Task &task, Block *block);
-		int get_dir_list(Task &task, const char *tempfile);
-		int relogin(Ftp *ftp, Task &task);
-		int recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile,
-				const char *absdir, FILE *rfd, FILE *wfd, off_t *woff);
+    public:
+        int get_info(Task *task);
+        int download(Task &task, Block *block);
+        int get_dir_list(Task &task, const char *tempfile);
+        int relogin(Ftp *ftp, Task &task);
+        int recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile,
+                const char *absdir, FILE *rfd, FILE *wfd, off_t *woff);
 };
 
 #endif // _FTPPLUGIN_H

@@ -26,17 +26,15 @@
 
 bool global_debug = false;
 
-void
-debug_log(const char *fmt, ...)
-{
-	va_list vp;
-	const char *end;
+void debug_log(const char *fmt, ...) {
+    va_list vp;
+    const char *end;
 
-	assert(fmt != NULL);
-	if(!global_debug) return;
-	va_start(vp, fmt);
-	// if the fmt contain somesth. like %c and %d, but the varargs is empty,
-	// the output will be error, so use the function like this debug_log("%s", str);
-	vfprintf(stderr, fmt, vp);
-	va_end(vp);
+    assert(fmt != NULL);
+    if (!global_debug) return;
+    va_start(vp, fmt);
+    // if the fmt contain somesth. like %c and %d, but the varargs is empty,
+    // the output will be error, so use the function like this debug_log("%s", str);
+    vfprintf(stderr, fmt, vp);
+    va_end(vp);
 };

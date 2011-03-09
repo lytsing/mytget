@@ -24,46 +24,45 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define MINIMUM_SCREEN_WIDTH 45 // the minimum screen width 
-#define DEFAULT_SCREEN_WIDTH 80 // the default screen width when can not get the screen width
-#define MAXIMUM_SCREEN_WIDTH 256 //the maximum screen width
+#define MINIMUM_SCREEN_WIDTH 45  // the minimum screen width
+#define DEFAULT_SCREEN_WIDTH 80  // the default screen width when can not get the screen width
+#define MAXIMUM_SCREEN_WIDTH 256  // the maximum screen width
 #define DIRTY_WIDTH 35
 
-class ProgressBar
-{
-	public:
-		ProgressBar(off_t total_size = 0, int block_num = 1);
-		~ProgressBar();
+class ProgressBar {
+    public:
+        ProgressBar(off_t total_size = 0, int block_num = 1);
+        ~ProgressBar();
 
-		void set_start_point(off_t *start_point);
-		void set_total_size(off_t size) { totalSize = size; };
-		void set_block_num(int num);
-		void update(off_t *data);
-		void init(void);
+        void set_start_point(off_t *start_point);
+        void set_total_size(off_t size) { totalSize = size; }
+        void set_block_num(int num);
+        void update(off_t *data);
+        void init(void);
 
-	private:
-		static void screen_width_change(int signo);
-		
-	private:
-		double lastTime; // the last time of update
-		off_t lastDownloaded; // the total size of the already download part
-		off_t totalSize; // the total size of the file in bytes
-		off_t *startPoint; // save the start points
-		int blockNum; // blockNum
-		bool show; // can show or not
+    private:
+        static void screen_width_change(int signo);
 
-		float rates[12];
-		int rateIndex;
-		int rateCount;
+    private:
+        double lastTime;  // the last time of update
+        off_t lastDownloaded;  // the total size of the already download part
+        off_t totalSize;  // the total size of the file in bytes
+        off_t *startPoint;  // save the start points
+        int blockNum;  // blockNum
+        bool show;  // can show or not
 
-		long percent;
-		char downloaded[5];
-		char downloadRate[5];
-		char eta[6];
-		char graph[MAXIMUM_SCREEN_WIDTH - DIRTY_WIDTH + 1];
-		static int graphWidth;
-		int direction;
+        float rates[12];
+        int rateIndex;
+        int rateCount;
+
+        long percent;
+        char downloaded[5];
+        char downloadRate[5];
+        char eta[6];
+        char graph[MAXIMUM_SCREEN_WIDTH - DIRTY_WIDTH + 1];
+        static int graphWidth;
+        int direction;
 };
 
-#endif // PROGRESSBAR_H_
+#endif  // PROGRESSBAR_H_
 
