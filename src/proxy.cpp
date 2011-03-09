@@ -24,97 +24,74 @@
 #include "proxy.h"
 #include "utils.h"
 
-Proxy::Proxy()
-{
-	type = NONE_PROXY;
-	host = NULL;
-	user = NULL;
-	password = NULL;
+Proxy::Proxy() {
+    type = NONE_PROXY;
+    host = NULL;
+    user = NULL;
+    password = NULL;
 };
 
-Proxy::~Proxy()
-{
-	delete[] host;
-	delete[] user;
-	delete[] password;
+Proxy::~Proxy() {
+    delete[] host;
+    delete[] user;
+    delete[] password;
 };
 
-ProxyType
-Proxy::get_type(void)
-{
-	return type;
+const ProxyType Proxy::get_type() {
+    return type;
 };
 
-const char*
-Proxy::get_host(void)
-{
-	return host;
+const char* Proxy::get_host() {
+    return host;
 };
 
-int
-Proxy::get_port(void)
-{
-	return port;
+const int Proxy::get_port() {
+    return port;
 };
 
-const char*
-Proxy::get_user(void)
-{
-	return user;
+const char* Proxy::get_user() {
+    return user;
 };
 
-const char*
-Proxy::get_password(void)
-{
-	return password;
+const char* Proxy::get_password() {
+    return password;
 };
 
-void
-Proxy::set_host(const char *host)
-{
-	delete[] this->host;
-	this->host = StrDup(host);
+void Proxy::set_host(const char *host) {
+    delete[] this->host;
+    this->host = StrDup(host);
 };
 
-void
-Proxy::set_user(const char *user)
-{
-	delete[] this->user;
-	this->user = StrDup(user);
+void Proxy::set_user(const char *user) {
+    delete[] this->user;
+    this->user = StrDup(user);
 };
 
-void
-Proxy::set_password(const char *password)
-{
-	delete[] this->password;
-	this->password = StrDup(password);
-};
-	
-void
-Proxy::set_port(int port)
-{
-	this->port = port;
+void Proxy::set_password(const char *password) {
+    delete[] this->password;
+    this->password = StrDup(password);
 };
 
-void
-Proxy::set_type(ProxyType type)
-{
-	this->type = type;
+void Proxy::set_port(int port) {
+    this->port = port;
 };
 
-Proxy&
-Proxy::operator = (Proxy &proxy)
-{
-	if(this != &proxy){
-		delete[] host;
-		delete[] user;
-		delete[] password;
-		type = proxy.get_type();
-		port = proxy.get_port();
-		host = StrDup(proxy.get_host());
-		user = StrDup(proxy.get_user());
-		password = StrDup(proxy.get_password());
-	}
-
-	return *this;
+void Proxy::set_type(ProxyType type) {
+    this->type = type;
 };
+
+Proxy& Proxy::operator = (Proxy& proxy) {
+    if (this != &proxy) {
+        delete[] host;
+        delete[] user;
+        delete[] password;
+        type = proxy.get_type();
+        port = proxy.get_port();
+        host = StrDup(proxy.get_host());
+        user = StrDup(proxy.get_user());
+        password = StrDup(proxy.get_password());
+    }
+
+    return *this;
+};
+

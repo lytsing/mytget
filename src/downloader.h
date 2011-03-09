@@ -30,40 +30,39 @@
 
 using namespace std;
 
-class Downloader
-{
-	public:
-		Downloader(void);
-		~Downloader(void);
+class Downloader {
+    public:
+        Downloader(void);
+        ~Downloader(void);
 
-		int run(void);
+        int run(void);
 
-	public:
-		Task task;
+    public:
+        Task task;
 
-	private:
-		int init_plugin(void);
-		int init_task(void);
-		int init_local_file_name(void);
-		int init_threads_from_mg(void);
-		int init_threads_from_info(void);
+    private:
+        int init_plugin(void);
+        int init_task(void);
+        int init_local_file_name(void);
+        int init_threads_from_mg(void);
+        int init_threads_from_info(void);
 
-		int thread_create(void);
-		int self(void);
-		int schedule(void);
-		int save_temp_file_exit(void);
-		static int download_thread(Downloader *downloader);
-		int directory_download(void);
-		int file_download(void);
+        int thread_create(void);
+        int self(void);
+        int schedule(void);
+        int save_temp_file_exit(void);
+        static int download_thread(Downloader *downloader);
+        int directory_download(void);
+        int file_download(void);
 
-	private:
-		Plugin *plugin;
-		char *localPath;
-		char *localMg;
-		int threadNum;
-		Block *blocks;
-		ProgressBar *pb;
+    private:
+        Plugin *plugin;
+        char *localPath;
+        char *localMg;
+        int threadNum;
+        Block *blocks;
+        ProgressBar *pb;
 };
 
-#endif // DOWNLOADER_H_
+#endif  // DOWNLOADER_H_
 

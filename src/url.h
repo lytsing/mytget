@@ -21,73 +21,72 @@
 #ifndef URL_H_
 #define URL_H_
 // define some protocol type
-enum Protocol{ 
-	HTTP,
-	FTP,
-	SFTP,
-	HTTPS,
-	MMS,
-	RTSP,
-	NONE
+enum Protocol {
+    HTTP,
+    FTP,
+    SFTP,
+    HTTPS,
+    MMS,
+    RTSP,
+    NONE
 };
 
 // parse the URL
-class URL
-{
-	public:
-		URL();
-		URL(URL& url);
-		URL& operator = (URL& url);
-		// free the stack
-		~URL();
+class URL {
+    public:
+        URL();
+        URL(URL& url);
+        URL& operator = (URL& url);
+        // free the stack
+        ~URL();
 
-		// set the url
-		int set_url(const char *url);
-		// reset the url
-		int reset_url(const char *url);
-		// the the encoded url
-		const char* get_url(){ return url; };
-		// get the protocol
-		Protocol get_protocol(){ return protocol; };
-		// get the user
-		const char* get_user(){ return user; };
-		// get the user's password
-		const char* get_password(){ return password; };
-		// get the host
-		const char* get_host(){ return host; } ;
-		// get the port
-		int get_port(){ return port; };
-		// get the directory
-		const char* get_dir(){ return dir; };
-		// get the file
-		const char* get_file(){ return file; };
-		// get encode url and file needed by http protocol
-		const char* get_encoded_path(){ return path; };
-		// decode(), encode() and pre_encode() return the allocate memory, so need free
-		static const char* decode(const char* url);
-		static const char* encode(const char* url);
-		static const char* pre_encode(const char* pre_url);
-	private:
-	
-		int _parse_fragment(char* &url);
-		int _parse_scheme(char* &url);
-		int _parse_location(char* &url);
-		int _parse_query_info(char* &url);
-		int _parse_parameters(char* &url);
-		int _parse_path(char* &url);
-		int _parse(const char *url);
-		void free_all(void);
+        // set the url
+        int set_url(const char *url);
+        // reset the url
+        int reset_url(const char *url);
+        // the the encoded url
+        const char* get_url() { return url; }
+        // get the protocol
+        Protocol get_protocol() { return protocol; }
+        // get the user
+        const char* get_user() { return user; }
+        // get the user's password
+        const char* get_password() { return password; }
+        // get the host
+        const char* get_host() { return host; }
+        // get the port
+        int get_port() { return port; }
+        // get the directory
+        const char* get_dir() { return dir; }
+        // get the file
+        const char* get_file() { return file; }
+        // get encode url and file needed by http protocol
+        const char* get_encoded_path() { return path; }
+        // decode(), encode() and pre_encode() return the allocate memory, so need free
+        static const char* decode(const char* url);
+        static const char* encode(const char* url);
+        static const char* pre_encode(const char* pre_url);
+    private:
 
-		const char *url; // the encoded url
-		const char *path;
-		Protocol protocol;
-		const char *user;
-		const char *password;
-		const char *host;
-		int port;
-		const char *dir;
-		const char *file;
+        int _parse_fragment(char* &url);
+        int _parse_scheme(char* &url);
+        int _parse_location(char* &url);
+        int _parse_query_info(char* &url);
+        int _parse_parameters(char* &url);
+        int _parse_path(char* &url);
+        int _parse(const char *url);
+        void free_all(void);
+
+        const char *url;  // the encoded url
+        const char *path;
+        Protocol protocol;
+        const char *user;
+        const char *password;
+        const char *host;
+        int port;
+        const char *dir;
+        const char *file;
 };
 
-#endif // URL_H_
+#endif  // URL_H_
 

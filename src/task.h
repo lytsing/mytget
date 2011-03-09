@@ -28,38 +28,37 @@
 #include "url.h"
 #include "proxy.h"
 
-class Task
-{
-	public:
-		Task(void);
-		~Task(void);
+class Task {
+    public:
+        Task(void);
+        ~Task(void);
 
-	public:
-		const char* get_local_dir(void);
-		const char* get_local_file(void);
-		const char* get_referer(void);
-		void set_local_dir(const char *dir);
-		void set_local_file(const char *file);
-		void set_referer(const char *referer);
-		Task& operator = (Task& task);
+    public:
+        const char* get_local_dir(void);
+        const char* get_local_file(void);
+        const char* get_referer(void);
+        void set_local_dir(const char *dir);
+        void set_local_file(const char *file);
+        void set_referer(const char *referer);
+        Task& operator = (Task& task);
 
-	public:
-		off_t fileSize;
-		bool isDirectory;
-		bool resumeSupported;
-		int tryCount;
-		long retryInterval;
-		long timeout;
-		int ftpActive;
-		int threadNum;
-		URL url;
-		Proxy proxy;
+    public:
+        off_t fileSize;
+        bool isDirectory;
+        bool resumeSupported;
+        int tryCount;
+        long retryInterval;
+        long timeout;
+        int ftpActive;
+        int threadNum;
+        URL url;
+        Proxy proxy;
 
-	private:
-		char *localDir;
-		char *localFile;
-		char *referer;
+    private:
+        char *localDir;
+        char *localFile;
+        char *referer;
 };
 
-#endif // TASK_H_
+#endif  // TASK_H_
 

@@ -23,41 +23,39 @@
 
 #include "url.h"
 
-enum ProxyType
-{
-	HTTP_PROXY,
-	FTP_PROXY,
-	SOCKS5_PROXY,
-	NONE_PROXY
+enum ProxyType {
+    HTTP_PROXY,
+    FTP_PROXY,
+    SOCKS5_PROXY,
+    NONE_PROXY
 };
 
-class Proxy
-{	
-	public:
-		Proxy();
-		~Proxy();
+class Proxy {
+    public:
+        Proxy();
+        ~Proxy();
 
-		ProxyType get_type(void);
-		const char* get_host(void);
-		int get_port(void);
-		const char* get_user(void);
-		const char* get_password(void);
+        const ProxyType get_type();
+        const char* get_host();
+        const int get_port();
+        const char* get_user();
+        const char* get_password();
 
-		void set_host(const char *host);
-		void set_user(const char *user);
-		void set_port(int port);
-		void set_password(const char *password);
-		void set_type(ProxyType type);
+        void set_host(const char *host);
+        void set_user(const char *user);
+        void set_port(int port);
+        void set_password(const char *password);
+        void set_type(ProxyType type);
 
-		Proxy& operator = (Proxy &proxy);
+        Proxy& operator = (Proxy &proxy);
 
-	private:
-		ProxyType type;
-		const char *host;
-		int port;
-		const char *user;
-		const char *password;
+    private:
+        ProxyType type;
+        const char *host;
+        int port;
+        const char *user;
+        const char *password;
 };
 
-#endif // PROXY_H_
+#endif  // PROXY_H_
 

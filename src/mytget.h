@@ -36,5 +36,5 @@
 #include "task.h"
 #include "debug.h"
 
-#endif // MYTGET_H_
+#endif  // MYTGET_H_
 

@@ -31,12 +31,12 @@
 
 #define ISBLANK(x) ((x) == ' ' || (x) == '\t')
 
-#define RETURN_IF_FAILED( test ) \
-	{ int ret; if((ret=(test)) != SUCC) return ret; }
-#define EXIT_IF_FAILED( test ) \
-	{ int ret; if((ret=(test)) != SUCC) return ret; }
+#define RETURN_IF_FAILED(test) \
+    { int ret; if ((ret=(test)) != SUCC) return ret; }
+#define EXIT_IF_FAILED(test) \
+    { int ret; if ((ret=(test)) != SUCC) return ret; }
 
-// the same as strdup, but use new to get the memory 
+// the same as strdup, but use new to get the memory
 char* StrDup(const char *str);
 
 // the returned value must be freed
@@ -55,5 +55,5 @@ void convert_time(char *timeStr, double time);
 // file exist
 bool file_exist(const char *filename);
 
-#endif // UTILS_H_
+#endif  // UTILS_H_
 

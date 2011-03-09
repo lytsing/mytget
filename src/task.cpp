@@ -21,82 +21,73 @@
 #include "task.h"
 #include "utils.h"
 
-Task::Task()
-{
-	fileSize = -1;
-	isDirectory = false;
-	resumeSupported = false;
-	tryCount = 99;
-	retryInterval = 5;
-	timeout = 30;
-	ftpActive = PASV;
-	threadNum = 4;
-	localDir = NULL;
-	localFile = NULL;
-	referer = NULL;
+Task::Task() {
+    fileSize = -1;
+    isDirectory = false;
+    resumeSupported = false;
+    tryCount = 99;
+    retryInterval = 5;
+    timeout = 30;
+    ftpActive = PASV;
+    threadNum = 4;
+    localDir = NULL;
+    localFile = NULL;
+    referer = NULL;
 };
 
-Task::~Task()
-{
-	delete[] localDir;
-	delete[] localFile;
-	delete[] referer;
+Task::~Task() {
+    delete[] localDir;
+    delete[] localFile;
+    delete[] referer;
 };
 
-Task& Task::operator = (Task& task)
-{
-	if (this == &task) return *this;
+Task& Task::operator = (Task& task) {
+    if (this == &task) return *this;
 
-	delete[] localDir;
-	delete[] localFile;
-	delete[] referer;
-	localDir = StrDup(task.get_local_dir());
-	localFile = StrDup(task.get_local_file());
-	referer = StrDup(task.get_referer());
-	fileSize = task.fileSize;
-	isDirectory = task.isDirectory;
-	resumeSupported = task.resumeSupported;
-	tryCount = task.tryCount;
-	retryInterval = task.retryInterval;
-	timeout = task.timeout;
-	ftpActive = task.ftpActive;
-	threadNum = task.threadNum;
-	url = task.url;
-	proxy = task.proxy;
+    delete[] localDir;
+    delete[] localFile;
+    delete[] referer;
+    localDir = StrDup(task.get_local_dir());
+    localFile = StrDup(task.get_local_file());
+    referer = StrDup(task.get_referer());
+    fileSize = task.fileSize;
+    isDirectory = task.isDirectory;
+    resumeSupported = task.resumeSupported;
+    tryCount = task.tryCount;
+    retryInterval = task.retryInterval;
+    timeout = task.timeout;
+    ftpActive = task.ftpActive;
+    threadNum = task.threadNum;
+    url = task.url;
+    proxy = task.proxy;
 
-	return *this;
-};
-	
-const char* Task::get_local_dir(void)
-{
-	return localDir;
+    return *this;
 };
 
-const char* Task::get_local_file(void)
-{
-	return localFile;
+const char* Task::get_local_dir(void) {
+    return localDir;
 };
 
-const char* Task::get_referer(void)
-{
-	return referer;
+const char* Task::get_local_file(void) {
+    return localFile;
 };
 
-void Task::set_local_dir(const char *dir)
-{
-	delete[] localDir;
-	localDir = StrDup(dir);
+const char* Task::get_referer(void) {
+    return referer;
 };
 
-void Task::set_local_file(const char *file)
-{
-	delete[] localFile;
-	localFile = StrDup(file);
+void Task::set_local_dir(const char *dir) {
+    delete[] localDir;
+    localDir = StrDup(dir);
 };
 
-void Task::set_referer(const char *referer)
-{
-	delete[] this->referer;
-	this->referer = StrDup(referer);
+void Task::set_local_file(const char *file) {
+    delete[] localFile;
+    localFile = StrDup(file);
+};
+
+void Task::set_referer(const char *referer) {
+    delete[] this->referer;
+    this->referer = StrDup(referer);
 };
 

@@ -27,82 +27,80 @@
 #include "tcp.h"
 #include "header.h"
 #include "macro.h"
-		
-class Http
-	: public PluginIO
-{
-	public:
-		Http();
-		~Http(){ delete conn; };
 
-		// set timeout
-		void set_timeout(long timeout);
-		// set log function
-		void set_log(void(*log)(const char *, ...));
+class Http : public PluginIO {
+    public:
+        Http();
+        ~Http() { delete conn; }
+
+        // set timeout
+        void set_timeout(long timeout);
+        // set log function
+        void set_log(void(*log)(const char *, ...));
 #ifdef HAVE_SSL
-		// set ues ssl
-		void set_use_ssl(bool use);
+        // set ues ssl
+        void set_use_ssl(bool use);
 #endif
 
-		// connect to the http server
-		int connect(const char *host, int port);
-		int connect(const TcpSockAddr &addr);
-		int connect();
+        // connect to the http server
+        int connect(const char *host, int port);
+        int connect(const TcpSockAddr &addr);
+        int connect();
 
-		// add or mofify header info
-		int header(const char *attrName, const char *attrValue);
-		// set authorization info
-		int auth(const char *user, const char *password);
-		// set proxy authorization info
-		int proxy_auth(const char *user, const char *password);
-		// set range
-		int set_range(off_t start, off_t end = -1);
-		// set host
-		int set_host(const char *host, int port);
+        // add or mofify header info
+        int header(const char *attrName, const char *attrValue);
+        // set authorization info
+        int auth(const char *user, const char *password);
+        // set proxy authorization info
+        int proxy_auth(const char *user, const char *password);
+        // set range
+        int set_range(off_t start, off_t end = -1);
+        // set host
+        int set_host(const char *host, int port);
 
-		// send the head info
-		int send_head();
-		// Request use HEAD method
-		int head(const char *url);
-		// Request use GET method
-		int get(const char *url);
-		// Request use POST method
-		int post(const char *url);
+        // send the head info
+        int send_head();
+        // Request use HEAD method
+        int head(const char *url);
+        // Request use GET method
+        int get(const char *url);
+        // Request use POST method
+        int post(const char *url);
 
-		// get and parse header from the connection
-		int parse_header();
-		// get the user defined header content
-		const char* get_header(const char *attr_name);
-		// get the status code returned from the server
-		int get_status_code();
-		// get filesize
-		off_t get_file_size();
-		// accept range or not
-		bool accept_ranges();
-		// read maxsize data from the data section
-		int read_data(char *buffer, int maxsize);
-		// is data_ends ?, this is not very resonable
-		int data_ends();
+        // get and parse header from the connection
+        int parse_header();
+        // get the user defined header content
+        const char* get_header(const char *attr_name);
+        // get the status code returned from the server
+        int get_status_code();
+        // get filesize
+        off_t get_file_size();
+        // accept range or not
+        bool accept_ranges();
+        // read maxsize data from the data section
+        int read_data(char *buffer, int maxsize);
+        // is data_ends ?, this is not very resonable
+        int data_ends();
 
-	private:
-		void (*log)(const char *, ...);
-		static void default_log(const char *data, ...){};
+    private:
+        void (*log)(const char *, ...);
+        static void default_log(const char *data, ...) {}
 
-	protected:
-		TcpConnection *conn;
-		HeadData request;
-		HeadData response;
-		TcpSockAddr remote;
-		int statusCode;
-		long timeout;
-		char buf[1024];
-		off_t fileSize;
-		off_t chunkedSize;
-		bool isChunked;
+    protected:
+        TcpConnection *conn;
+        HeadData request;
+        HeadData response;
+        TcpSockAddr remote;
+        int statusCode;
+        long timeout;
+        char buf[1024];
+        off_t fileSize;
+        off_t chunkedSize;
+        bool isChunked;
 #ifdef HAVE_SSL
-		bool useSSL;
+        bool useSSL;
 #endif
 };
 
-#endif // HEADER_H_
+#endif  // HEADER_H_
 
