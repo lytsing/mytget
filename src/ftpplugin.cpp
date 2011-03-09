@@ -29,8 +29,7 @@
 
 using namespace std;
 
-int FtpPlugin::get_info(Task *task)
-{
+int FtpPlugin::get_info(Task *task) {
     Ftp ftp;
     int ret;
 
@@ -43,7 +42,7 @@ int FtpPlugin::get_info(Task *task)
     ret = ftp.login(task->url.get_user(), task->url.get_password());
     if (ret < 0) {
         return -2;
-    } else if (ret > 0){
+    } else if (ret > 0) {
         sleep(task->retryInterval);
         return -2;
     }
@@ -91,17 +90,16 @@ int FtpPlugin::get_info(Task *task)
     if (task->isDirectory) return 0;
 
     ret = ftp.size(task->url.get_file(), &task->fileSize);
-    if (ret < 0){
+    if (ret < 0) {
         return -2;
-    } else if(ret > 0) {
+    } else if (ret > 0) {
         return -1;
     }
 
     return 0;
 };
 
-int FtpPlugin::download(Task &task, Block *block)
-{
+int FtpPlugin::download(Task &task, Block *block) {
     Ftp ftp;
     int ret;
 
@@ -153,13 +151,13 @@ int FtpPlugin::download(Task &task, Block *block)
 
 _re_retr:
     block->state = RETR;
-    if(block->bufferFile.retr_data_from(&ftp, &block->downloaded,
-                block->size - block->downloaded) < 0){
+    if (block->bufferFile.retr_data_from(&ftp, &block->downloaded,
+                block->size - block->downloaded) < 0) {
         block->state = STOP;
         return -2;
     }
 
-    if(task.resumeSupported && block->downloaded < block->size){
+    if (task.resumeSupported && block->downloaded < block->size) {
         block->state = STOP;
         return -2;
     }
@@ -167,22 +165,20 @@ _re_retr:
     // wait the server to schedule
     block->state = WAIT;
     usleep(500000);
-    if(block->state == WAKEUP) goto _re_retr;
+    if (block->state == WAKEUP) goto _re_retr;
     block->state = EXIT;
     return 0;
 };
 
-int
-FtpPlugin::relogin(Ftp *ftp, Task &task)
-{
+int FtpPlugin::relogin(Ftp *ftp, Task &task) {
     int ret;
     ret = ftp->reconnect();
-    if(ret < 0) return ret;
+    if (ret < 0) return ret;
 
     ret = ftp->login(task.url.get_user(), task.url.get_password());
-    if(ret < 0){
+    if (ret < 0) {
         return ret;
-    }else if(ret > 0){
+    }else if (ret > 0) {
         sleep(task.retryInterval);
         return -1;
     }
@@ -190,10 +186,8 @@ FtpPlugin::relogin(Ftp *ftp, Task &task)
     return 0;
 };
 
-int
-FtpPlugin::recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile, 
-        const char *absdir, FILE *rfd, FILE *wfd, off_t *woff)
-{
+int FtpPlugin::recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile, 
+        const char *absdir, FILE *rfd, FILE *wfd, off_t *woff) {
     char currdir[1024];
     char file[1024];
     const char *ptr;
@@ -202,18 +196,18 @@ FtpPlugin::recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile,
     FtpParser fp;
     off_t filesize;
 
-    while(1){
+    while (1) {
         // get the current work directory
-        if(*woff == 0){
+        if (*woff == 0) {
             snprintf(currdir, 1024, "%s%s", 
                     task.url.get_dir() ? "/" : "",
                     task.url.get_dir() ? task.url.get_dir() : "");
-        }else{
-            while(1){
-                if(fread(&filesize, sizeof(off_t), 1, rfd) != 1) return 0;
-                if(fgets(currdir, 1024, rfd) == NULL){
+        } else {
+            while (1) {
+                if (fread(&filesize, sizeof(off_t), 1, rfd) != 1) return 0;
+                if (fgets(currdir, 1024, rfd) == NULL) {
                     return 0;
-                }else if(currdir[0] == '/'){
+                }else if (currdir[0] == '/') {
                     currdir[strlen(currdir) - 1] = '\0';
                     break;
                 }
@@ -223,40 +217,40 @@ FtpPlugin::recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile,
         fseek(wfd, *woff, SEEK_SET);
         // change work directory
         ret = ftp->cwd(absdir);
-        if(ret < 0){
+        if (ret < 0) {
             return ret;
         }
-        if(currdir[0] != '\0'){
+        if (currdir[0] != '\0') {
             ret = ftp->cwd(currdir + 1);
-            if(ret < 0){ // timeout or other system error
+            if (ret < 0) { // timeout or other system error
                 return ret;
-            }else if(ret > 0){ // the permission problem, just ignore
+            }else if (ret > 0) { // the permission problem, just ignore
                 continue;
             }
         }
         // get directory list
         ret = ftp->list();
-        if(ret < 0){
+        if (ret < 0) {
             return ret;
-        }else if(ret > 0){
+        }else if (ret > 0) {
             // list directory content is not allowed
             return E_LIST_DIR;
         }
-        while(1){
+        while (1) {
             ret = ftp->gets_data(file, 1024);
-            if(ret == 0 && ftp->data_ends() == 0) break;
-            if(ret < 0){ 
+            if (ret == 0 && ftp->data_ends() == 0) break;
+            if (ret < 0) { 
                 return -1;
             }
-            if(fp.parse(file) < 0) continue;
+            if (fp.parse(file) < 0) continue;
             ptr = fp.get_file();
-            if(ptr == NULL) continue;
-            if(strcmp(ptr, ".") == 0 || strcmp(ptr, "..") == 0) continue;
-            if(fp.get_type() == 'd'){
+            if (ptr == NULL) continue;
+            if (strcmp(ptr, ".") == 0 || strcmp(ptr, "..") == 0) continue;
+            if (fp.get_type() == 'd') {
                 filesize = 0;
                 fwrite(&filesize, sizeof(off_t), 1, wfd);
                 fprintf(wfd, "%s/%s\n", currdir, ptr);
-            }else{
+            } else {
                 filesize = fp.get_size();
                 fwrite(&filesize, sizeof(off_t), 1, wfd);
                 fprintf(wfd, "%s/%s\n", currdir + 1, ptr);
@@ -269,9 +263,7 @@ FtpPlugin::recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile,
     return 0;
 };
 
-int
-FtpPlugin::get_dir_list(Task& task, const char *tempfile)
-{
+int FtpPlugin::get_dir_list(Task& task, const char *tempfile) {
 
     assert(tempfile != NULL);
     // dir1/dir2/dir3   file
@@ -284,28 +276,28 @@ FtpPlugin::get_dir_list(Task& task, const char *tempfile)
     ftp.set_log(&debug_log);
     ftp.set_timeout(task.timeout);
     ftp.set_mode(task.ftpActive);
-    while(1){
-        if(ftp.connect(task.url.get_host(), task.url.get_port()) == 0){
+    while (1) {
+        if (ftp.connect(task.url.get_host(), task.url.get_port()) == 0) {
             break;
         }
     }
 
 _ftp_get_dir_list_conn:
 
-    if(first_conn){
+    if (first_conn) {
         first_conn = false;
-    }else{
-        if(ftp.reconnect() < 0) goto _ftp_get_dir_list_conn;
+    } else {
+        if (ftp.reconnect() < 0) goto _ftp_get_dir_list_conn;
     }
     ret = ftp.login(task.url.get_user(), task.url.get_password());
-    if(ret < 0){
+    if (ret < 0) {
         goto _ftp_get_dir_list_conn;
-    }else if(ret > 0){
+    }else if (ret > 0) {
         sleep(task.retryInterval);
         goto _ftp_get_dir_list_conn;
     }
     // get absolute directory
-    if(ftp.pwd(&absdir) != 0) goto _ftp_get_dir_list_conn;
+    if (ftp.pwd(&absdir) != 0) goto _ftp_get_dir_list_conn;
 
     FILE *rfd;
     FILE *wfd;
@@ -315,19 +307,19 @@ _ftp_get_dir_list_conn:
     wfd = fopen(tempfile, "r+");
     woff = 0;
 
-    while(1){
+    while (1) {
         ret = recursive_get_dir_list(task, &ftp, tempfile, absdir, rfd, wfd, &woff);
-        if(ret != 0){
-            if(ret == E_LIST_DIR){
+        if (ret != 0) {
+            if (ret == E_LIST_DIR) {
                 fclose(wfd);
                 fclose(rfd);
                 delete[] absdir;
                 return -1;
             }
-        }else{
+        } else {
             break;
         }
-        while(relogin(&ftp, task) < 0);
+        while (relogin(&ftp, task) < 0);
     }
 
     fclose(wfd);

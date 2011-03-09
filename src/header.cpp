@@ -29,123 +29,110 @@
  * class HeadDataNode implement
  * *******************************************/
 //HeadDataNode::HeadDataNode(const HeadDataNode &that);
-HeadDataNode::~HeadDataNode()
-{
-	delete[] attrName;
-	delete[] attrValue;
+HeadDataNode::~HeadDataNode() {
+    delete[] attrName;
+    delete[] attrValue;
 };
 
-//HeadDataNode& 
+//HeadDataNode&
 //HeadDataNode::operator = (const HeadDataNode &that);
 
 /*******************************************
  * class HeadData implement 
  *******************************************/
 //HeadData::HeadData(const HeadDataNode &that);
-HeadData::~HeadData()
-{
-	HeadDataNode *it;
+HeadData::~HeadData() {
+    HeadDataNode *it;
 
-	for(it = head; it != NULL; it = it->next){
-		delete it;
-	}
+    for (it = head; it != NULL; it = it->next) {
+        delete it;
+    }
 };
 
 //HeadData& 
 //HeadData::operator = (const HeadData&that);
 
-const char* 
-HeadData::get_attr(const char *attrName)
-{
-	HeadDataNode *it;
+const char* HeadData::get_attr(const char *attrName) {
+    HeadDataNode *it;
 
-	assert(attrName != NULL);
+    assert(attrName != NULL);
 
-	for(it = head; it != NULL; it = it->next){
-		if(strcasecmp(attrName, it->attrName) == 0)
-			return it->attrValue;
-	}
+    for (it = head; it != NULL; it = it->next) {
+        if (strcasecmp(attrName, it->attrName) == 0)
+            return it->attrValue;
+    }
 
-	return NULL;
+    return NULL;
 };
 
-int 
-HeadData::set_attr(const char *attrName, const char *attrValue)
-{
-	HeadDataNode *it;
+int HeadData::set_attr(const char *attrName, const char *attrValue) {
+    HeadDataNode *it;
 
-	assert(attrName != NULL && attrValue != NULL);
+    assert(attrName != NULL && attrValue != NULL);
 
-	for(it = head; it != NULL; it = it->next){
-		if(strcasecmp(attrName, it->attrName) == 0)
-			break;
-	}
+    for (it = head; it != NULL; it = it->next) {
+        if (strcasecmp(attrName, it->attrName) == 0)
+            break;
+    }
 
-	if(it != NULL){
-		delete[] it->attrValue;
-		it->attrValue = StrDup(attrValue);
-		return 0;
-	}else{
-		it = new HeadDataNode;
-		it->attrName = StrDup(attrName);
-		it->attrValue = StrDup(attrValue);
-		it->next = head;
-		head = it;
-		return 1;
-	}
+    if (it != NULL) {
+        delete[] it->attrValue;
+        it->attrValue = StrDup(attrValue);
+        return 0;
+    } else {
+        it = new HeadDataNode;
+        it->attrName = StrDup(attrName);
+        it->attrValue = StrDup(attrValue);
+        it->next = head;
+        head = it;
+        return 1;
+    }
 };
 
-int
-HeadData::remove_attr(const char *attrName)
-{
-	HeadDataNode *it;
+int HeadData::remove_attr(const char *attrName) {
+    HeadDataNode *it;
 
-	assert(attrName != NULL);
+    assert(attrName != NULL);
 
-	for(it = head; it != NULL; it = it->next){
-		if(strcasecmp(attrName, it->attrName) == 0)
-			break;
-	}
+    for (it = head; it != NULL; it = it->next) {
+        if (strcasecmp(attrName, it->attrName) == 0)
+            break;
+    }
 
-	if(it != NULL){
-		if(it == head){
-			head = it->next;
-			delete it;
-		}else{
-			HeadDataNode *pre;
-			for(pre = head; pre->next != it; it = it->next) ;
-			pre->next = it->next;
-			delete it;
-		}
-		return 0;
-	}else{
-		return 1;
-	}
-
+    if (it != NULL) {
+        if (it == head) {
+            head = it->next;
+            delete it;
+        } else {
+            HeadDataNode *pre;
+            for (pre = head; pre->next != it; it = it->next) ;
+            pre->next = it->next;
+            delete it;
+        }
+        return 0;
+    } else {
+        return 1;
+    }
 };
 
-void
-HeadData::remove_all()
-{
-	HeadDataNode *it;
+void HeadData::remove_all() {
+    HeadDataNode *it;
 
-	for(it = head; it != NULL; it = it->next){
-		delete it;
-	}
+    for (it = head; it != NULL; it = it->next) {
+        delete it;
+    }
 
-	head = NULL;
+    head = NULL;
 };
 
-int
-HeadData::traversal( int(*trav_fun)(HeadDataNode*) )
-{
-	HeadDataNode *it;
-	int ret;
+int HeadData::traversal(int(*trav_fun)(HeadDataNode*)) {
+    HeadDataNode *it;
+    int ret;
 
-	for(it = head; it != NULL; it = it->next){
-		if((ret=trav_fun(it)) != 0) return ret;
-	}
+    for (it = head; it != NULL; it = it->next) {
+        if ((ret=trav_fun(it)) != 0) return ret;
+    }
 
-	return 0;
+    return 0;
 };
 

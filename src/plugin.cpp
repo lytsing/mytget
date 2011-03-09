@@ -20,28 +20,23 @@
 
 #include "plugin.h"
 
-Plugin::Plugin()
-{
-	// do nothing
+Plugin::Plugin() {
+    // do nothing
 };
 
-Plugin::~Plugin()
-{
-	// do nothing
+Plugin::~Plugin() {
+    // do nothing
 };
 
-int Plugin::get_info(Task *task)
-{
-	// do nothing
+int Plugin::get_info(Task *task) {
+    // do nothing
 };
 
-int Plugin::download(Task& task, Block *block)
-{
-	// do nothing
+int Plugin::download(Task& task, Block *block) {
+    // do nothing
 };
 
-int Plugin::get_dir_list(Task& task, const char *tempfile)
-{
-	// do nothing
+int Plugin::get_dir_list(Task& task, const char *tempfile) {
+    // do nothing
 };
 
