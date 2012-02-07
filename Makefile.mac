@@ -16,7 +16,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(LD) $(LDFLAGS) -o $@ $^
 
-%o: %c
+%o: %cpp
 	$(CC) $(CFLAGS) -o $@ $<
 clean:
 	@rm -f *.o src/*.o $(TARGET)
