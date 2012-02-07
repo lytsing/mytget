@@ -11,3 +11,7 @@ Current Features
 5. Can accelerates downloading through using muti-connections
 6. Supports large file( > 4G )
 
+
+Install in Mac OS
+
+$ make -f Makefile.mac

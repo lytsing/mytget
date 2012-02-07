@@ -21,6 +21,7 @@
 #ifndef BLOCK_H_
 #define BLOCK_H_
 
+#include <pthread.h>
 #include "advio.h"
 
 enum ThreadState

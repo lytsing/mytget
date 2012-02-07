@@ -1,0 +1,23 @@
+CC = g++
+LD = g++
+CFLAGS = -Wall -g -O3 -c 
+LDFLAGS = -lpthread -lssl
+
+VERSION=1.12
+
+SRCS = $(wildcard *.cpp src/*.cpp)
+OBJS = $(patsubst %cpp,%o,$(SRCS))
+TARGET = mytget
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(LD) $(LDFLAGS) -o $@ $^
+
+%o: %c
+	$(CC) $(CFLAGS) -o $@ $<
+clean:
+	@rm -f *.o src/*.o $(TARGET)
+

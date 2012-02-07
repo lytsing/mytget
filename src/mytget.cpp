@@ -26,6 +26,10 @@
 
 using namespace std;
 
+#ifndef VERSION
+#define VERSION "1.12"
+#endif
+
 void print_help() {
     cout << "Mytget "VERSION": A download accelerator for GNU/Linux" << endl;
     cout << "Usage: mytget [options]... [URL]..." << endl;
