@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <cstdlib>
 #include <cassert>
 
 #include "ftpparser.h"

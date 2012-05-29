@@ -17,6 +17,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <signal.h>
@@ -29,6 +32,8 @@
 #include "httpplugin.h"
 #include "progressbar.h"
 #include "debug.h"
+
+using namespace std;
 
 typedef void* (*PthreadFunction) (void*);
 

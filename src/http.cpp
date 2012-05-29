@@ -20,6 +20,8 @@
 
 #include <iostream>
 #include <cstring>
+#include <cstdio>
+#include <cstdlib>
 #include <cassert>
 
 #include "http.h"

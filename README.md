@@ -16,13 +16,16 @@ Current Features
 * Supports large file( > 4G )
 
 
+Install in Linux
+------------
+
+	$ automake --add-missing
+	$ ./configure && make && make install
+
+
 Install in Mac OS
 ------------
 
 	$ make -f Makefile.mac
-
-License
--------
-
-This project is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+	$ sudo cp mytget /usr/local/bin
 
