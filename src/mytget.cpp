@@ -1,6 +1,7 @@
 /*  Mytget - A download accelerator for GNU/Linux
- *  Homepage: http://myget.sf.net
+ *  Homepage: https://github.com/lytsing/Mytget
  *  Copyright (C) 2005- xiaosuo
+ *  Copyright (C) 2013 Lytsing Huang
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -172,5 +173,5 @@ int main(int argc, char **argv) {
     }
 
     return 0;
-};
+}
 
