@@ -16,16 +16,9 @@ Current Features
 * Supports large file( > 4G )
 
 
-Install in Linux
+Install in Linux/Mac OS
 ------------
 
 	$ automake --add-missing
 	$ ./configure && make && make install
-
-
-Install in Mac OS
-------------
-
-	$ make -f Makefile.mac
-	$ sudo cp mytget /usr/local/bin
 
