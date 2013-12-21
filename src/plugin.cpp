@@ -22,21 +22,24 @@
 
 Plugin::Plugin() {
     // do nothing
-};
+}
 
 Plugin::~Plugin() {
     // do nothing
-};
+}
 
 int Plugin::get_info(Task *task) {
     // do nothing
-};
+	return 0;
+}
 
 int Plugin::download(Task& task, Block *block) {
     // do nothing
-};
+	return 0;
+}
 
 int Plugin::get_dir_list(Task& task, const char *tempfile) {
-    // do nothing
-};
+	// do nothing
+	return 0;
+}
 

@@ -41,7 +41,7 @@ TcpSockAddr::TcpSockAddr(int family) {
     } else {
         ai_addrlen = sizeof(struct sockaddr);
     }
-};
+}
 
 void TcpSockAddr::set_family(int family) {
     ai_family = family;
@@ -54,21 +54,21 @@ void TcpSockAddr::set_family(int family) {
     } else {
         ai_addrlen = sizeof(struct sockaddr);
     }
-};
+}
 
 void TcpSockAddr::set_port(int port) {
     if (ai_family == AF_INET)
         ((struct sockaddr_in*)&ai_addr)->sin_port = htons(port);
     else
         ((struct sockaddr_in6*)&ai_addr)->sin6_port = htons(port);
-};
+}
 
 int TcpSockAddr::get_port() {
     if (ai_family == AF_INET)
         return ntohs(((struct sockaddr_in*)&ai_addr)->sin_port);
     else
         return ntohs(((struct sockaddr_in6*)&ai_addr)->sin6_port);
-};
+}
 
 int TcpSockAddr::set_addr(const char *addr) {
     if (addr == NULL) return -1;
@@ -85,7 +85,7 @@ int TcpSockAddr::set_addr(const char *addr) {
     }
 
     return 0;
-};
+}
 
 int TcpSockAddr::get_addr(char *addr, int size) {
     if (addr == NULL) return -1;
@@ -103,7 +103,7 @@ int TcpSockAddr::get_addr(char *addr, int size) {
         return -1;
     }
     return 0;
-};
+}
 
 /**********************************
  * class Address implement
@@ -127,7 +127,7 @@ int Address::resolve(const char *dns_name, int port, int family) {
     }
 
     return 0;
-};
+}
 
 /********************************
  * class TcpConnection implement
@@ -136,7 +136,8 @@ int Address::resolve(const char *dns_name, int port, int family) {
 int TcpConnection::set_tos(void) {
     int tos = IPTOS_THROUGHPUT;
     setsockopt(fd, IPPROTO_IP, IP_TOS, (char *) &tos, sizeof(tos));
-};
+	return 0;
+}
 
 bool TcpConnection::is_connected() {
     int error;
@@ -152,7 +153,7 @@ bool TcpConnection::is_connected() {
     }
     if (error == 0) return true;
     return false;
-};
+}
 
 int TcpConnection::get_remote_addr(TcpSockAddr& sockaddr)const {
     if (getpeername(fd,
@@ -164,7 +165,7 @@ int TcpConnection::get_remote_addr(TcpSockAddr& sockaddr)const {
     else  // if addrlen == 24bytes ipv6
         sockaddr.set_family(AF_INET6);
     return 0;
-};
+}
 
 int TcpConnection::get_local_addr(TcpSockAddr& sockaddr)const {
     if (getsockname(fd,
@@ -176,7 +177,7 @@ int TcpConnection::get_local_addr(TcpSockAddr& sockaddr)const {
     else  // if addrlen == 24bytes ipv6
         sockaddr.set_family(AF_INET6);
     return 0;
-};
+}
 
 /*************************************
  * class TcpConnector implement
@@ -240,7 +241,7 @@ int timeout_connect(int sock_fd, struct sockaddr* serv_addr, int addrlen, long t
     };
 
     return ret;
-};
+}
 
 TcpConnection* TcpConnector::connect(const Address& addr, int& ret, long timeout) {
     int sockfd;
@@ -276,7 +277,7 @@ TcpConnection* TcpConnector::connect(const Address& addr, int& ret, long timeout
     } else {
         return 0L;
     }
-};
+}
 
 TcpConnection* TcpConnector::connect(const TcpSockAddr& addr, int &ret, long timeout) {
     int sockfd;
@@ -303,7 +304,7 @@ TcpConnection* TcpConnector::connect(const TcpSockAddr& addr, int &ret, long tim
             return tcon;
         }
     }
-};
+}
 
 /**************************************
  * class TcpAcceptor implement
@@ -323,7 +324,7 @@ int TcpAcceptor::get_bind_port() {
         return ntohs(((struct sockaddr_in6*)&buf)->sin6_port);
     else
         return 0;
-};
+}
 
 int TcpAcceptor::listen(const TcpSockAddr& local, int backlog) {
     int reuse = 1;
@@ -339,7 +340,7 @@ int TcpAcceptor::listen(const TcpSockAddr& local, int backlog) {
         return -1;
 
     return 0;
-};
+}
 
 TcpConnection* TcpAcceptor::accept(int &ret, long timeout) {
     struct timeval *ptimeout;
@@ -387,7 +388,7 @@ TcpConnection* TcpAcceptor::accept(int &ret, long timeout) {
     } else {
         return conn;
     }
-};
+}
 
 TcpConnection* TcpAcceptor::accept(const TcpSockAddr& expect, int &ret, long timeout) {
     TcpConnection* conn;
@@ -403,13 +404,13 @@ TcpConnection* TcpAcceptor::accept(const TcpSockAddr& expect, int &ret, long tim
             // so dirty ~_~
             if (!memcmp(&(((struct sockaddr_in*)&(peer_sock.ai_addr))->sin_addr),
                     &(((struct sockaddr_in*)&(expect.ai_addr))->sin_addr),
-                    sizeof(struct in_addr)));
+                    sizeof(struct in_addr)))
                 return conn;
         } else if (peer_sock.ai_family == AF_INET6) {
             // so dirty ~_~
             if (!memcmp(&(((struct sockaddr_in6*)&(peer_sock.ai_addr))->sin6_addr),
                     &(((struct sockaddr_in6*)&(expect.ai_addr))->sin6_addr),
-                    sizeof(struct in6_addr)));
+                    sizeof(struct in6_addr)))
                 return conn;
         }
     }
@@ -417,5 +418,5 @@ TcpConnection* TcpAcceptor::accept(const TcpSockAddr& expect, int &ret, long tim
     delete conn;
 
     return 0L;
-};
+}
 
