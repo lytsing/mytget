@@ -72,25 +72,25 @@ message("Rel CFLAGS: ${CMAKE_C_FLAGS_RELEASE}")
 FIND_PACKAGE (Threads REQUIRED)
 find_package(OpenSSL)
 
+include_directories(
+	${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+set(MYTGET_EXTERNAL_LIBS
+	${CMAKE_THREAD_LIBS_INIT}
+)
+
 if (NOT OPENSSL_FOUND)
 	message("Diabling SSL")
 	set (HAVE_SSL OFF)
-	set (OPENSSL_CRYPTO_LIBRARY "")
 	set (OPENSSL_INCLUDE_DIR "")
 	set (OPENSSL_LIBRARIES "")
 else()
 	add_definitions(-DHAVE_SSL)
+	include_directories( ${OPENSSL_INCLUDE_DIR})
+	list(APPEND MYTGET_EXTERNAL_LIBS ${OPENSSL_LIBRARIES})
 endif()
 
-include_directories(
-	${CMAKE_CURRENT_SOURCE_DIR}
-	${OPENSSL_INCLUDE_DIR}
-)
-
-set(MYTGET_EXTERNAL_LIBS
-	${OPENSSL_LIBRARIES}
-	${CMAKE_THREAD_LIBS_INIT}
-)
 
 if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNDEBUG")
