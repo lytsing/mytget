@@ -19,6 +19,6 @@ Current Features
 Install in Linux/Mac OS
 ------------
 
-	$ automake --add-missing
-	$ ./configure && make && make install
+	$ cmake .
+	$ make && make install
 
