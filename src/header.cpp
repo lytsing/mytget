@@ -43,10 +43,13 @@ HeadDataNode::~HeadDataNode() {
 //HeadData::HeadData(const HeadDataNode &that);
 HeadData::~HeadData() {
     HeadDataNode *it;
-
-    for (it = head; it != NULL; it = it->next) {
+    HeadDataNode *tmp;
+    for (it = head; it != NULL;) {
+        tmp = it->next;
         delete it;
+        it = tmp;
     }
+    head = NULL;
 };
 
 //HeadData& 
@@ -117,11 +120,12 @@ int HeadData::remove_attr(const char *attrName) {
 
 void HeadData::remove_all() {
     HeadDataNode *it;
-
-    for (it = head; it != NULL; it = it->next) {
+    HeadDataNode *tmp;
+    for (it = head; it != NULL;) {
+        tmp = it->next;
         delete it;
+        it = tmp;
     }
-
     head = NULL;
 };
 
