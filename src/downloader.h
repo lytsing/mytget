@@ -22,6 +22,9 @@
 #define DOWNLOADER_H_
 
 #include <iostream>
+#include <sys/types.h>
+#include <sys/stat.h>
+
 
 #include "plugin.h"
 #include "task.h"
