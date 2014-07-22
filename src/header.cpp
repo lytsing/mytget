@@ -38,7 +38,7 @@ HeadDataNode::~HeadDataNode() {
 //HeadDataNode::operator = (const HeadDataNode &that);
 
 /*******************************************
- * class HeadData implement 
+ * class HeadData implement
  *******************************************/
 //HeadData::HeadData(const HeadDataNode &that);
 HeadData::~HeadData() {
@@ -52,7 +52,7 @@ HeadData::~HeadData() {
     head = NULL;
 };
 
-//HeadData& 
+//HeadData&
 //HeadData::operator = (const HeadData&that);
 
 const char* HeadData::get_attr(const char *attrName) {

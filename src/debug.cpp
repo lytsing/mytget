@@ -37,4 +37,5 @@ void debug_log(const char *fmt, ...) {
     // the output will be error, so use the function like this debug_log("%s", str);
     vfprintf(stderr, fmt, vp);
     va_end(vp);
-};
+}
+

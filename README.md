@@ -18,7 +18,7 @@ Current Features
 
 Install in Linux/Mac OS
 ------------
-Make sure your cmake version >= 2.8
+Make sure your cmake version >= 2.6
 
 	$ cmake .
 	$ make && make install
