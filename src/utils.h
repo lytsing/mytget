@@ -22,6 +22,7 @@
 #define UTILS_H_
 
 #include <sys/types.h>
+#include <cstdio>
 
 #define MIN(a, b) ((a) < (b)) ? (a) : (b)
 // for international
