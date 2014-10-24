@@ -139,7 +139,7 @@ void convert_size(char *sizeStr, off_t size) {
     double dsize = size;
 
     if (dsize < 0) {
-        sprintf(sizeStr, "%3ldB", 0);
+        sprintf(sizeStr, "%3ldB", 0L);
         return;
     }
 
@@ -184,7 +184,7 @@ void convert_time(char *timeStr, double time) {
     sec = (long)time % 60;  // sec
 
     if (min < 60) {
-        sprintf(timeStr, "%02d:%02d", min, sec);
+        sprintf(timeStr, "%02lu:%02lu", min, sec);
         return;
     }
 
@@ -192,7 +192,7 @@ void convert_time(char *timeStr, double time) {
     min %= 60;
 
     if (hour < 24) {
-        sprintf(timeStr, "%2dh%2d", hour, min);
+        sprintf(timeStr, "%2luh%2lu", hour, min);
         return;
     }
 
@@ -200,7 +200,7 @@ void convert_time(char *timeStr, double time) {
     hour %= 24;
 
     if (day < 100) {
-        sprintf(timeStr, "%2dd%2d", day, hour);
+        sprintf(timeStr, "%2lud%2lu", day, hour);
         return;
     }
 

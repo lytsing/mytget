@@ -167,9 +167,9 @@ int Http::proxy_auth(const char *user, const char *password) {
 
 int Http::set_range(off_t start, off_t end) {
     if (end < 0) {
-        snprintf(buf, sizeof(buf), "bytes=%lld-", start);
+        snprintf(buf, sizeof(buf), "bytes=%lu-", start);
     } else {
-        snprintf(buf, sizeof(buf), "bytes=%lld-%lld", start, end);
+        snprintf(buf, sizeof(buf), "bytes=%lu-%lu", start, end);
     }
 
     return request.set_attr("Range", buf);

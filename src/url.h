@@ -66,8 +66,8 @@ class URL {
         static const char* decode(const char* url);
         static const char* encode(const char* url);
         static const char* pre_encode(const char* pre_url);
-    private:
 
+    private:
         int _parse_fragment(char* &url);
         int _parse_scheme(char* &url);
         int _parse_location(char* &url);
