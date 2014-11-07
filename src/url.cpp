@@ -46,7 +46,7 @@ using namespace std;
     ((x) - '0') : (toupper(x) - 'A' + 10))
 
 struct proto_struct {
-    char *protocolStr;
+    const char *protocolStr;
     Protocol protocol;
     int defaultPort;
     bool supported;
@@ -467,7 +467,7 @@ int URL::reset_url(const char *url_orig) {
     assert(url_orig);
 
     char buf[1024];
-    char *pro_str = NULL;
+    const char *pro_str = NULL;
     const char *url_new;
     const proto_struct *ps;
 
