@@ -48,6 +48,12 @@ int HttpPlugin::get_info(Task *task) {
         http.header("Referer", task->url.get_url());
     }
 
+    if (task->get_host() != NULL) {
+        http.header("Host", task->get_host());
+    } else {
+        http.set_host(task->url.get_host(), task->url.get_port());
+    }
+
     if (task->fileSize > 0) {
         // test the Range
         http.set_range(1);
@@ -60,7 +66,9 @@ int HttpPlugin::get_info(Task *task) {
         if (http.connect(task->proxy.get_host(), task->proxy.get_port()) < 0) {
             return -2;
         }
-        http.set_host(task->url.get_host(), task->url.get_port());
+        if (task->get_host() == NULL) {
+            http.set_host(task->url.get_host(), task->url.get_port());
+        }
         if (task->proxy.get_user() != NULL) {
             http.proxy_auth(task->proxy.get_user(),
                     task->proxy.get_password() ? task->proxy.get_password() : "");
@@ -197,11 +205,19 @@ int HttpPlugin::download(Task& task, Block *block) {
         http.header("Referer", task.url.get_url());
     }
 
+    if (task.get_host() != NULL) {
+        http.header("Host", task.get_host());
+    } else {
+        http.set_host(task.url.get_host(), task.url.get_port());
+    }
+
     if (task.proxy.get_type() == HTTP_PROXY) {
         if (http.connect(task.proxy.get_host(), task.proxy.get_port()) < 0) {
             return -2;
         }
-        http.set_host(task.url.get_host(), task.url.get_port());
+        if (task.get_host() == NULL) {
+            http.set_host(task.url.get_host(), task.url.get_port());
+        }
         if (task.proxy.get_user() != NULL) {
             http.proxy_auth(task.proxy.get_user(),
                     task.proxy.get_password() ? task.proxy.get_password() : "");
