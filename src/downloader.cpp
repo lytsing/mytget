@@ -261,11 +261,8 @@ int Downloader::download_thread(Downloader *downloader) {
     int self, ret, i;
     self = downloader->self();
 
-    /*
     for(i = 0; downloader->task.tryCount <= 0 ||
             i < downloader->task.tryCount; i ++){
-            */
-    while (1) {
         ret = downloader->plugin->download(downloader->task, downloader->blocks + self);
         if (ret == E_SYS) {  // system error
             downloader->blocks[self].state = EXIT;
