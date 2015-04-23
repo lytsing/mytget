@@ -42,3 +42,4 @@ Usage
 	  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is "30"
 	  -v,  --version        Show the version of the myget and exit
 	  -x,  --proxy=URL      Set the proxy [URL]
+	  -H,  --host=host      Modify `Host: [host]' header in HTTP request.

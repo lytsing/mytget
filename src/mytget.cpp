@@ -47,6 +47,7 @@ void print_help() {
     cout << "  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is \"30\"" << endl;
     cout << "  -v,  --version        Show the version of the myget and exit" << endl;
     cout << "  -x,  --proxy=URL      Set the proxy [URL]" << endl;
+    cout << "  -H,  --host=host      Modify `Host: [host]\' header in HTTP request." << endl;
 };
 
 const struct option long_options[] = {
@@ -61,10 +62,11 @@ const struct option long_options[] = {
     {"timeout", 1, NULL, 't'},
     {"version", 0, NULL, 'v'},
     {"proxy", 1, NULL, 'x'},
+    {"host", 1, NULL, 'H'},
     {NULL, 0, NULL, 0}
 };
 
-char short_options[] = "bc:d:f:hi:n:r:t:vx:";
+char short_options[] = "bc:d:f:hi:n:r:t:vx:H:";
 
 int main(int argc, char **argv) {
     int ret;
@@ -126,6 +128,9 @@ int main(int argc, char **argv) {
                 return 0;
             case 'x':
                 ptr = StrDup(optarg);
+                break;
+            case 'H':
+                task.set_host(optarg);
                 break;
             case '?':
             default:

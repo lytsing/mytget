@@ -33,12 +33,14 @@ Task::Task() {
     localDir = NULL;
     localFile = NULL;
     referer = NULL;
+    host = NULL;
 };
 
 Task::~Task() {
     delete[] localDir;
     delete[] localFile;
     delete[] referer;
+    delete[] host;
 };
 
 Task& Task::operator = (Task& task) {
@@ -47,9 +49,11 @@ Task& Task::operator = (Task& task) {
     delete[] localDir;
     delete[] localFile;
     delete[] referer;
+    delete[] host;
     localDir = StrDup(task.get_local_dir());
     localFile = StrDup(task.get_local_file());
     referer = StrDup(task.get_referer());
+    host = StrDup(task.get_host());
     fileSize = task.fileSize;
     isDirectory = task.isDirectory;
     resumeSupported = task.resumeSupported;
@@ -76,6 +80,10 @@ const char* Task::get_referer() {
     return referer;
 };
 
+const char* Task::get_host() {
+    return host;
+};
+
 void Task::set_local_dir(const char *dir) {
     delete[] localDir;
     localDir = StrDup(dir);
@@ -91,3 +99,7 @@ void Task::set_referer(const char *referer) {
     this->referer = StrDup(referer);
 };
 
+void Task::set_host(const char *host) {
+    delete[] this->host;
+    this->host= StrDup(host);
+};
