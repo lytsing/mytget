@@ -1,5 +1,5 @@
 /*  Mytget - A download accelerator for GNU/Linux
- *  Homepage: http://myget.sf.net
+ *  Homepage: https://github.com/lytsing/Mytget
  *  Copyright (C) 2005- xiaosuo
  *
  *  This program is free software; you can redistribute it and/or modify

@@ -1,5 +1,5 @@
 /*  Mytget - A download accelerator for GNU/Linux
- *  Homepage: http://myget.sf.net
+ *  Homepage: https://github.com/lytsing/Mytget
  *  Copyright (C) 2005- xiaosuo
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -136,7 +136,7 @@ int Address::resolve(const char *dns_name, int port, int family) {
 int TcpConnection::set_tos(void) {
     int tos = IPTOS_THROUGHPUT;
     setsockopt(fd, IPPROTO_IP, IP_TOS, (char *) &tos, sizeof(tos));
-	return 0;
+    return 0;
 }
 
 bool TcpConnection::is_connected() {

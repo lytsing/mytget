@@ -1,5 +1,5 @@
 /*  Mytget - A download accelerator for GNU/Linux
- *  Homepage: http://myget.sf.net
+ *  Homepage: https://github.com/lytsing/Mytget
  *  Copyright (C) 2005- xiaosuo
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -261,8 +261,8 @@ int Downloader::download_thread(Downloader *downloader) {
     int self, ret, i;
     self = downloader->self();
 
-    for(i = 0; downloader->task.tryCount <= 0 ||
-            i < downloader->task.tryCount; i ++){
+    for (i = 0; downloader->task.tryCount <= 0 ||
+            i < downloader->task.tryCount; i ++) {
         ret = downloader->plugin->download(downloader->task, downloader->blocks + self);
         if (ret == E_SYS) {  // system error
             downloader->blocks[self].state = EXIT;
