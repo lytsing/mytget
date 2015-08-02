@@ -24,8 +24,7 @@
 #include <pthread.h>
 #include "advio.h"
 
-enum ThreadState
-{
+enum ThreadState {
     STOP,
     RETR,
     WAIT,
@@ -34,8 +33,7 @@ enum ThreadState
     JOINED
 };
 
-class Block
-{
+class Block {
     public:
         Block();
 
@@ -48,4 +46,5 @@ class Block
         off_t size;
 };
 
-#endif // BLOCK_H_
+#endif  // BLOCK_H_
+

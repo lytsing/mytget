@@ -1,4 +1,4 @@
-Mytget 
+Mytget
 ======================
 
 Mytget is a muti-thread downloader accelerator for GNU/Linux.

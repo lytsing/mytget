@@ -25,7 +25,7 @@
 #endif
 
 #ifdef HAVE_SSL
-#	include <openssl/ssl.h>
+#include <openssl/ssl.h>
 #endif
 
 // #define DEBUG
@@ -56,5 +56,5 @@
 #define FILE_BUFFER_SIZE 1024*1024
 #define MIN_BUFFER_LEFT 1024
 
-#endif // MACRO_H_
+#endif  // MACRO_H_
 
