@@ -18,10 +18,23 @@ Current Features
 
 Install in Linux/Mac OS
 ------------
-Make sure your cmake version >= 2.6
 
+Install the necessary compile dependencies:
+
+CentOS:
+
+	$ sudo yum install git cmake gcc-c++ openssl-devel
+	
+Ubuntu:
+
+	$ sudo apt-get install git cmake g++ libssl-dev
+
+Make sure your cmake version >= 2.6
+	
+	$ git clone https://github.com/lytsing/Mytget.git
+	$ cd Mytget/
 	$ cmake .
-	$ make && make install
+	$ make && sudo make install
 
 
 Usage
