@@ -17,20 +17,19 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <cstdio>
-#include <iostream>
+#include "utils.h"
+
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <cstdio>
+#include <iostream>
 #include <cassert>
 #include <cstring>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-
-#include "utils.h"
-
 
 using namespace std;
 
@@ -131,7 +130,7 @@ double get_current_time() {
 
     if (gettimeofday(time, 0) < 0) return -1;
 
-    return (double)time->tv_sec + (double)time->tv_usec / 1000000 ;
+    return (double)time->tv_sec + (double)time->tv_usec / 1000000;
 }
 
 // conver size to 333M, 111K, 1G

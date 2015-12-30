@@ -247,8 +247,7 @@ int Http::get(const char *url) {
 // not implement
 #if 0
 int
-Http::post(const char *url)
-{
+Http::post(const char *url) {
 };
 #endif
 
@@ -363,7 +362,7 @@ int Http::read_data(char *buffer, int maxsize) {
         } else {  // get chunked size in hex
             int size;
             char *ptr;
-_read_data_again:
+  _read_data_again:
             ret = conn->read_line(buf, 1024, timeout);
             if (ret < 0) return ret;
             if (ret == 0) return -1;

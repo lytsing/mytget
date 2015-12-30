@@ -17,13 +17,13 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <cstring>
-#include <cstdio>
-#include <cstdlib>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <signal.h>
 #include <errno.h>
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
 
 #include "downloader.h"
 #include "macro.h"
@@ -99,7 +99,7 @@ int Downloader::init_task() {
     int i;
     int ret;
 
-_reinit_plugin:
+  _reinit_plugin:
     if (init_plugin() < 0) {
         cerr << "Unknown protocol" << endl;
         return -1;

@@ -386,7 +386,7 @@ int BufferFile::flush() {
     bc = count;
     pptr = buf;
     while (count > 0) {
-_flush_again:
+  _flush_again:
         wc = ::write(fd, pptr, count);
         if (wc < 0) {
             if (errno == EINTR) goto _flush_again;

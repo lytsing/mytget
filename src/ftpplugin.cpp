@@ -151,7 +151,7 @@ int FtpPlugin::download(Task &task, Block *block) {
         return -1;  // can not access this file
     }
 
-_re_retr:
+  _re_retr:
     block->state = RETR;
     if (block->bufferFile.retr_data_from(&ftp, &block->downloaded,
                 block->size - block->downloaded) < 0) {
@@ -283,7 +283,7 @@ int FtpPlugin::get_dir_list(Task& task, const char *tempfile) {
         }
     }
 
-_ftp_get_dir_list_conn:
+  _ftp_get_dir_list_conn:
 
     if (first_conn) {
         first_conn = false;
