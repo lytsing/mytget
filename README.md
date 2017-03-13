@@ -34,6 +34,7 @@ Ubuntu:
 	$ sudo apt-get install git cmake g++ libssl-dev
 
 TODO: Archlinux does not need to do this step
+
 Make sure your cmake version >= 2.6
 	
 	$ git clone https://github.com/lytsing/Mytget.git
