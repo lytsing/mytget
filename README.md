@@ -33,7 +33,13 @@ Ubuntu:
 
 	$ sudo apt-get install git cmake g++ libssl-dev
 
-TODO: Archlinux does not need to do this step
+macOS:
+
+	brew install openssl
+
+fixed it on macOS when cmake：
+
+	cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
 
 Make sure your cmake version >= 2.6
 	
@@ -41,6 +47,8 @@ Make sure your cmake version >= 2.6
 	$ cd Mytget/
 	$ cmake .
 	$ make && sudo make install
+
+
 
 
 Usage
