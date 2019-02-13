@@ -33,7 +33,7 @@ using namespace std;
 #endif
 
 void print_help() {
-    cout << "Mytget "VERSION": A download accelerator for GNU/Linux" << endl;
+    cout << "Mytget " VERSION ": A download accelerator for GNU/Linux" << endl;
     cout << "Usage: mytget [options]... [URL]..." << endl;
     cout << "Options:" << endl;
     cout << "  -b,  --debug          Show the debug message" << endl;
