@@ -263,7 +263,7 @@ TcpConnection* TcpConnector::connect(const Address& addr, int& ret, long timeout
                 break;
         }
         close(sockfd);
-    }while ((res = res->ai_next) != NULL);
+    } while ((res = res->ai_next) != NULL);
 
     if (res) {
         TcpConnection *tcon;

@@ -52,20 +52,20 @@ void print_help() {
 };
 
 const struct option long_options[] = {
-    {"user-agent", 1, NULL, 'A'},
-    {"debug", 0, NULL, 'b'},
-    {"count", 1, NULL, 'c'},
-    {"direcotry", 1, NULL, 'd'},
-    {"file", 1, NULL, 'f'},
-    {"host", 1, NULL, 'H'},
-    {"help", 0, NULL, 'h'},
-    {"interval", 1, NULL, 'i'},
-    {"number", 1, NULL, 'n'},
-    {"referer", 1, NULL, 'r'},
-    {"timeout", 1, NULL, 't'},
-    {"version", 0, NULL, 'v'},
-    {"proxy", 1, NULL, 'x'},
-    {NULL, 0, NULL, 0}
+    {"user-agent", 1,  NULL,  'A'},
+    {"debug"     , 0 , NULL , 'b'} ,
+    {"count"     , 1 , NULL , 'c'} ,
+    {"direcotry" , 1 , NULL , 'd'} ,
+    {"file"      , 1 , NULL , 'f'} ,
+    {"help"      , 0 , NULL , 'h'} ,
+    {"interval"  , 1 , NULL , 'i'} ,
+    {"number"    , 1 , NULL , 'n'} ,
+    {"referer"   , 1 , NULL , 'r'} ,
+    {"timeout"   , 1 , NULL , 't'} ,
+    {"version"   , 0 , NULL , 'v'} ,
+    {"proxy"     , 1 , NULL , 'x'} ,
+    {"host"      , 1 , NULL , 'H'} ,
+    {NULL        , 0 , NULL , 0}
 };
 
 char short_options[] = "bc:d:f:hi:n:r:t:vx:H:";
