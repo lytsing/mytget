@@ -21,7 +21,6 @@
 #ifndef DOWNLOADER_H_
 #define DOWNLOADER_H_
 
-#include <iostream>
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -30,8 +29,6 @@
 #include "task.h"
 #include "block.h"
 #include "progressbar.h"
-
-using namespace std;
 
 class Downloader {
     public:

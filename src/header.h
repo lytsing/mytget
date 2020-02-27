@@ -21,8 +21,6 @@
 #ifndef HEADER_H_
 #define HEADER_H_
 
-#include <iostream>
-
 class HeadDataNode {
     public:
         HeadDataNode():attrName(NULL), attrValue(NULL), next(NULL) {}
