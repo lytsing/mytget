@@ -36,10 +36,12 @@ void print_help() {
     cout << "Mytget " VERSION ": A download accelerator for GNU/Linux" << endl;
     cout << "Usage: mytget [options]... [URL]..." << endl;
     cout << "Options:" << endl;
+    cout << "  -A,  --user-agent=UA  Set the user agent [UA]" << endl;
     cout << "  -b,  --debug          Show the debug message" << endl;
     cout << "  -c,  --count=num      Set the retry count to [num], no limit when \"0\", the default is \"99\"" << endl;
     cout << "  -d,  --directory=dir  Set the local direcotry to [dir], the default is \".\"" << endl;
     cout << "  -f,  --file=file      Rename the file to [file]" << endl;
+    cout << "  -H,  --host=host      Modify `Host: [host]\' header in HTTP request." << endl;
     cout << "  -h,  --help           A brief summary of all the options" << endl;
     cout << "  -i,  --interval=num   Set the ftp retry interval to [num] seconds, the default is \"5\"" << endl;
     cout << "  -n,  --number=num     Use [num] connections instead of the default (4)" << endl;
@@ -47,10 +49,10 @@ void print_help() {
     cout << "  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is \"30\"" << endl;
     cout << "  -v,  --version        Show the version of the myget and exit" << endl;
     cout << "  -x,  --proxy=URL      Set the proxy [URL]" << endl;
-    cout << "  -H,  --host=host      Modify `Host: [host]\' header in HTTP request." << endl;
 };
 
 const struct option long_options[] = {
+    {"user-agent", 1,  NULL,  'A'},
     {"debug"     , 0 , NULL , 'b'} ,
     {"count"     , 1 , NULL , 'c'} ,
     {"direcotry" , 1 , NULL , 'd'} ,
@@ -95,6 +97,9 @@ int main(int argc, char **argv) {
         if (ret == -1) break;
 
         switch (ret) {
+            case 'A':
+                task.set_ua(optarg);
+                break;
             case 'b':
                 global_debug = true;
                 break;
@@ -106,6 +111,9 @@ int main(int argc, char **argv) {
                 break;
             case 'f':
                 task.set_local_file(optarg);
+                break;
+            case 'H':
+                task.set_host(optarg);
                 break;
             case 'h':
                 print_help();
@@ -128,9 +136,6 @@ int main(int argc, char **argv) {
                 return 0;
             case 'x':
                 ptr = StrDup(optarg);
-                break;
-            case 'H':
-                task.set_host(optarg);
                 break;
             case '?':
             default:

@@ -26,6 +26,8 @@
 #include "httpplugin.h"
 #include "debug.h"
 
+#define USER_AGENT "Mytget"
+
 int HttpPlugin::get_info(Task *task) {
     Http http;
 
@@ -52,6 +54,12 @@ int HttpPlugin::get_info(Task *task) {
         http.header("Host", task->get_host());
     } else {
         http.set_host(task->url.get_host(), task->url.get_port());
+    }
+
+    if (task->get_ua() != NULL) {
+        http.header("User-Agent", task->get_ua());
+    } else {
+        http.header("User-Agent", USER_AGENT);
     }
 
     if (task->fileSize > 0) {
@@ -209,6 +217,12 @@ int HttpPlugin::download(Task& task, Block *block) {
         http.header("Host", task.get_host());
     } else {
         http.set_host(task.url.get_host(), task.url.get_port());
+    }
+
+    if (task.get_ua() != NULL) {
+        http.header("User-Agent", task.get_ua());
+    } else {
+        http.header("User-Agent", USER_AGENT);
     }
 
     if (task.proxy.get_type() == HTTP_PROXY) {

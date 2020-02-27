@@ -38,10 +38,12 @@ class Task {
         const char* get_local_file();
         const char* get_referer();
         const char* get_host();
+        const char* get_ua();
         void set_local_dir(const char *dir);
         void set_local_file(const char *file);
         void set_referer(const char *referer);
         void set_host(const char *host);
+        void set_ua(const char *ua);
         Task& operator = (Task& task);
 
     public:
@@ -61,6 +63,7 @@ class Task {
         char *localFile;
         char *referer;
         char *host;
+        char *ua;
 };
 
 #endif  // TASK_H_

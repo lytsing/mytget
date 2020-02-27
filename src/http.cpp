@@ -34,7 +34,7 @@
  * the relative RFCS can be found at
  * http://www.w3.org/Protocols/
  ***************************************************/
-#define USER_AGENT "Mytget"
+
 #define HTTP_VERSION "1.1"
 
 
@@ -46,7 +46,6 @@ Http::Http() {
 #endif
     log = &default_log;
     request.set_attr("Connection", "close");
-    request.set_attr("User-Agent", USER_AGENT);
     //request.set_attr("Range", "bytes=0-"); error when the fiesize is zero
     request.set_attr("Accept", "*/*");
 };
