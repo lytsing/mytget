@@ -25,22 +25,12 @@
 #include "header.h"
 #include "utils.h"
 
-/*********************************************
- * class HeadDataNode implement
- * *******************************************/
-//HeadDataNode::HeadDataNode(const HeadDataNode &that);
 HeadDataNode::~HeadDataNode() {
     delete[] attrName;
     delete[] attrValue;
 };
 
-//HeadDataNode&
-//HeadDataNode::operator = (const HeadDataNode &that);
 
-/*******************************************
- * class HeadData implement
- *******************************************/
-//HeadData::HeadData(const HeadDataNode &that);
 HeadData::~HeadData() {
     HeadDataNode *it;
     HeadDataNode *tmp;
@@ -51,9 +41,6 @@ HeadData::~HeadData() {
     }
     head = NULL;
 };
-
-//HeadData&
-//HeadData::operator = (const HeadData&that);
 
 const char* HeadData::get_attr(const char *attrName) {
     HeadDataNode *it;

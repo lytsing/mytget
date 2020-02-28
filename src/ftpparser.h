@@ -23,8 +23,7 @@
 
 #include <sys/types.h>
 
-class FtpParser
-{
+class FtpParser {
     public:
         FtpParser();
         ~FtpParser();

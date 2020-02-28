@@ -23,15 +23,15 @@ Install the necessary compile dependencies:
 
 Archlinux:
 
-    sudo yaourt -Syu myget
-    
+	sudo yaourt -Syu myget
+
 CentOS:
 
-	sudo yum install git cmake gcc-c++ openssl-devel -y	
+	sudo yum install -y git cmake gcc-c++ openssl-devel
 
 Ubuntu:
 
-	sudo apt-get install git cmake g++ libssl-dev -y
+	sudo apt-get install -y git cmake g++ libssl-dev
 
 macOS:
 
@@ -42,7 +42,7 @@ fixed it on macOS when cmake：
 	cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
 
 Make sure your cmake version >= 2.6
-	
+
 	git clone https://github.com/lytsing/Mytget.git
 	cd Mytget/
 	cmake .
