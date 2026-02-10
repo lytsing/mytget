@@ -1,5 +1,9 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 4.2)
 project(mytget)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(PROJECT_MAJOR_VERSION 1)
 set(PROJECT_MINOR_VERSION 1)
