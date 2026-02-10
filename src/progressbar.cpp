@@ -58,7 +58,7 @@ ProgressBar::ProgressBar(off_t total_size, int block_num)
     lastTime = get_current_time();
 
     term = getenv("TERM");
-    if (strcasecmp(term, "emacs") == 0 || !isatty(fileno(stderr))) {
+    if (!term || strcasecmp(term, "emacs") == 0 || !isatty(fileno(stderr))) {
         // can not show the progress bar in these condition
         show = false;
     } else {
