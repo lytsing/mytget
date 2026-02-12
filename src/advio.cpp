@@ -47,7 +47,7 @@ IOStream::~IOStream() {
 #ifdef HAVE_SSL
     if (useSSL) {
         SSL_shutdown(ssl);
-        free(ssl);
+        SSL_free(ssl);
         if (sslCTX) SSL_CTX_free(sslCTX);
     }
     delete[] sslHostname;
@@ -89,7 +89,7 @@ void IOStream::set_use_ssl(bool use) {
     if (use) {
         if (!useSSL) {
             useSSL = true;
-            free(ssl);
+            SSL_free(ssl);
             if (sslCTX != NULL) SSL_CTX_free(sslCTX);
             sslCTX = SSL_CTX_new(SSLv23_client_method());
             ssl = SSL_new(sslCTX);
@@ -98,7 +98,7 @@ void IOStream::set_use_ssl(bool use) {
     } else {
         useSSL =false;
         SSL_shutdown(ssl);
-        free(ssl);
+        SSL_free(ssl);
         ssl = NULL;
         if (sslCTX) SSL_CTX_free(sslCTX);
     }
