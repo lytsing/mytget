@@ -32,7 +32,7 @@ using namespace std;
 /* the relative RFC documents are RFC1738, RFC1808, RFC2396, RFC2732 */
 
 /* the pre_encode() and encode() functions don't always give the right
- * encoded url, when the url contians some request string like:
+ * encoded url, when the url contains some request string like:
  * http://www.myget.org/example?work=yes no
  * it give a wrong encoded string:
  * http://www.myget.org/example?work=yes%20no
@@ -254,7 +254,7 @@ const char* URL::decode(const char* url) {
             pptr[0] = (XCHAR_TO_XDIGIT(ptr[1]) << 4) + (XCHAR_TO_XDIGIT(ptr[2]));
             pptr++;
             ptr += 2;
-        /* if the filename contian '+' but not the request this is wrong 
+        /* if the filename contains '+' but not the request this is wrong 
         }else if(*ptr == '+'){
             *pptr = ' ';
             pptr ++;

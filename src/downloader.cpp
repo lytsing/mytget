@@ -415,7 +415,11 @@ int Downloader::directory_download(void) {
     while (1) {
         if (fread(&task.fileSize, sizeof(off_t), 1, fd) != 1) break;
         if (fgets(buf, sizeof(buf), fd) == NULL) break;
-        buf[strlen(buf) - 1] = '\0';
+        {
+            size_t len = strlen(buf);
+            if (len > 0 && buf[len - 1] == '\n')
+                buf[len - 1] = '\0';
+        }
         if (buf[0] == '/') {  // a directory
             snprintf(buf2, sizeof(buf2), "%s%s",
                     local_dir ? local_dir : ".",
@@ -470,7 +474,7 @@ int Downloader::file_download() {
         int fd;
         fd = creat(localPath, 00644);
         if (fd < 0) {
-            perror("error when creat file");
+            perror("error when creating file");
             return -1;
         } else {
             close(fd);
@@ -543,7 +547,7 @@ int Downloader::file_download() {
         // the downloaded maybe bigger than the filesize
         // because the overlay of the data
         if (downloaded < task.fileSize) {
-            cerr << "!!!Some error happend when downloaded" << endl;
+            cerr << "!!!Some error happened when downloaded" << endl;
             cerr << "!!!Redownloading is recommended" << endl;
             save_temp_file_exit();
         }

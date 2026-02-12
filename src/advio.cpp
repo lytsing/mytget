@@ -414,7 +414,7 @@ int BufferFile::flush() {
     }
 
     ptr = buf;
-    if (count > 0) {  // some error happend
+    if (count > 0) {  // some error happened
         memmove(buf, pptr, count);
         left += bc - count;
         return -1;

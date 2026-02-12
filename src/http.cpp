@@ -46,7 +46,7 @@ Http::Http() {
 #endif
     log = &default_log;
     request.set_attr("Connection", "close");
-    //request.set_attr("Range", "bytes=0-"); error when the fiesize is zero
+    //request.set_attr("Range", "bytes=0-"); error when the filesize is zero
     request.set_attr("Accept", "*/*");
 };
 

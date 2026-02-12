@@ -40,15 +40,15 @@ class HeadData {
         ~HeadData();
         HeadData& operator = (const HeadData&that);
 
-        // set a attrib property if not exist, add one
+        // set an attribute property if not exist, add one
         int set_attr(const char *attrName, const char *attrValue);
-        // get the attribValue identified by attrName;
+        // get the attribute value identified by attrName;
         const char* get_attr(const char *attrName);
         // remove the attr identified by attrName;
         int remove_attr(const char *attrName);
-        // traversal the data use trav_fun
+        // traverse the data using trav_fun
         int traversal(int(*trav_fun)(HeadDataNode*));
-        // remote all the atts
+        // remove all the attrs
         void remove_all();
 
         HeadDataNode *head;

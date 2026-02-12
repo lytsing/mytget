@@ -47,7 +47,7 @@ class Http : public PluginIO {
         int connect(const TcpSockAddr &addr);
         int connect();
 
-        // add or mofify header info
+        // add or modify header info
         int header(const char *attrName, const char *attrValue);
         // set authorization info
         int auth(const char *user, const char *password);
