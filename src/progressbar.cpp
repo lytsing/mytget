@@ -144,7 +144,7 @@ void ProgressBar::update(off_t *data) {
 
     if (totalSize > 0 && lastDownloaded >= totalSize ) return;
 
-    convert_size(downloaded, curr_downloaded);
+    convert_size(downloaded, sizeof(downloaded), curr_downloaded);
     rate = 0;
     if (lastDownloaded > 0) {
         // we need more reasonable rate, how to implement
@@ -157,11 +157,11 @@ void ProgressBar::update(off_t *data) {
         }
         rate /= rateCount;
     }
-    convert_size(downloadRate, (off_t)rate);
+    convert_size(downloadRate, sizeof(downloadRate), (off_t)rate);
     graph_step = totalSize / graphWidth;
     if (graph_step <= 0) {
         percent = 100;
-        sprintf(eta, "--:--");
+        snprintf(eta, sizeof(eta), "--:--");
         int pos = 0;
         // if can not get the filesize , show user something else
         // [            <==>                  ]
@@ -190,9 +190,9 @@ void ProgressBar::update(off_t *data) {
     } else {
         // [=============>          =============>          ===>        ]
         if (rate >= 1) {
-            convert_time(eta, (totalSize - curr_downloaded) / rate);
+            convert_time(eta, sizeof(eta), (totalSize - curr_downloaded) / rate);
         } else {
-            sprintf(eta, "--:--");
+            snprintf(eta, sizeof(eta), "--:--");
         }
         percent = (int)(curr_downloaded * 100 / totalSize);
         percent = MIN(percent, 100);

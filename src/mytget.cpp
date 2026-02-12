@@ -39,7 +39,7 @@ void print_help() {
     cout << "  -A,  --user-agent=UA  Set the user agent [UA]" << endl;
     cout << "  -b,  --debug          Show the debug message" << endl;
     cout << "  -c,  --count=num      Set the retry count to [num], no limit when \"0\", the default is \"99\"" << endl;
-    cout << "  -d,  --directory=dir  Set the local direcotry to [dir], the default is \".\"" << endl;
+    cout << "  -d,  --directory=dir  Set the local directory to [dir], the default is \".\"" << endl;
     cout << "  -f,  --file=file      Rename the file to [file]" << endl;
     cout << "  -H,  --host=host      Modify `Host: [host]\' header in HTTP request." << endl;
     cout << "  -h,  --help           A brief summary of all the options" << endl;
@@ -47,7 +47,7 @@ void print_help() {
     cout << "  -n,  --number=num     Use [num] connections instead of the default (4)" << endl;
     cout << "  -r,  --referer=URL    Include `Referer: [URL]\' header in HTTP request." << endl;
     cout << "  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is \"30\"" << endl;
-    cout << "  -v,  --version        Show the version of the myget and exit" << endl;
+    cout << "  -v,  --version        Show the version of the mytget and exit" << endl;
     cout << "  -x,  --proxy=URL      Set the proxy [URL]" << endl;
 };
 
@@ -55,7 +55,7 @@ const struct option long_options[] = {
     {"user-agent", 1,  NULL,  'A'},
     {"debug"     , 0 , NULL , 'b'} ,
     {"count"     , 1 , NULL , 'c'} ,
-    {"direcotry" , 1 , NULL , 'd'} ,
+    {"directory" , 1 , NULL , 'd'} ,
     {"file"      , 1 , NULL , 'f'} ,
     {"help"      , 0 , NULL , 'h'} ,
     {"interval"  , 1 , NULL , 'i'} ,

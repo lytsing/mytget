@@ -428,7 +428,7 @@ int URL::_parse(const char *url_orig) {
 
     // download;type=a?version=0.1
     path = new char[strlen(url_parsed) + 2];
-    sprintf((char*)path, "/%s", url_parsed);
+    snprintf((char*)path, strlen(url_parsed) + 2, "/%s", url_parsed);
     _parse_query_info(url_parsed);
 
     // download;type=a

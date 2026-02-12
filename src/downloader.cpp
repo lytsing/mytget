@@ -463,7 +463,7 @@ int Downloader::file_download() {
         << (task.get_local_file() ? task.get_local_file() : task.url.get_file()) << endl;
     char buf[6];
     double time = get_current_time();
-    convert_size(buf, task.fileSize);
+    convert_size(buf, sizeof(buf), task.fileSize);
     cout << "Filesize: " << buf << endl;
 
     if (task.fileSize == 0) {
@@ -558,7 +558,7 @@ int Downloader::file_download() {
     global_downloading = false;
 
     time = get_current_time() - time;
-    convert_time(buf, time);
+    convert_time(buf, sizeof(buf), time);
     cout << "Download successfully in " << buf << endl;
 
     return 0;

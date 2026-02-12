@@ -134,24 +134,25 @@ double get_current_time() {
 }
 
 // conver size to 333M, 111K, 1G
-void convert_size(char *sizeStr, off_t size) {
+void convert_size(char *sizeStr, size_t sizeStrLen, off_t size) {
     double dsize = size;
 
+    if (sizeStrLen == 0) return;
     if (dsize < 0) {
-        sprintf(sizeStr, "%3ldB", 0L);
+        snprintf(sizeStr, sizeStrLen, "%3ldB", 0L);
         return;
     }
 
     if (dsize < 1000) {
-        sprintf(sizeStr, "%3ldB", (long)dsize);
+        snprintf(sizeStr, sizeStrLen, "%3ldB", (long)dsize);
         return;
     }
     dsize /= 1024;
     if (dsize < 1000) {
         if (dsize <= 9.9) {
-            sprintf(sizeStr, "%.1fK", dsize);
+            snprintf(sizeStr, sizeStrLen, "%.1fK", dsize);
         } else {
-            sprintf(sizeStr, "%3ldK", (long)dsize);
+            snprintf(sizeStr, sizeStrLen, "%3ldK", (long)dsize);
         }
         return;
     }
@@ -159,31 +160,32 @@ void convert_size(char *sizeStr, off_t size) {
     dsize /= 1024;
     if (dsize < 1000) {
         if (dsize <= 9.9) {
-            sprintf(sizeStr, "%.1fM", dsize);
+            snprintf(sizeStr, sizeStrLen, "%.1fM", dsize);
         } else {
-            sprintf(sizeStr, "%3ldM", (long)dsize);
+            snprintf(sizeStr, sizeStrLen, "%3ldM", (long)dsize);
         }
         return;
     }
     dsize /= 1024;
     if (dsize < 1000) {
         if (dsize <= 9.9) {
-            sprintf(sizeStr, "%.1fG", dsize);
+            snprintf(sizeStr, sizeStrLen, "%.1fG", dsize);
         } else {
-            sprintf(sizeStr, "%3ldG", (long)dsize);
+            snprintf(sizeStr, sizeStrLen, "%3ldG", (long)dsize);
         }
         return;
     }
 };
 // convert time to 11d23 11h12 12:34
-void convert_time(char *timeStr, double time) {
+void convert_time(char *timeStr, size_t timeStrLen, double time) {
     long sec, min, hour, day;
 
+    if (timeStrLen == 0) return;
     min = (long)time / 60;  // min
     sec = (long)time % 60;  // sec
 
     if (min < 60) {
-        sprintf(timeStr, "%02lu:%02lu", min, sec);
+        snprintf(timeStr, timeStrLen, "%02lu:%02lu", (unsigned long)min, (unsigned long)sec);
         return;
     }
 
@@ -191,7 +193,7 @@ void convert_time(char *timeStr, double time) {
     min %= 60;
 
     if (hour < 24) {
-        sprintf(timeStr, "%2luh%2lu", hour, min);
+        snprintf(timeStr, timeStrLen, "%2luh%2lu", (unsigned long)hour, (unsigned long)min);
         return;
     }
 
@@ -199,11 +201,11 @@ void convert_time(char *timeStr, double time) {
     hour %= 24;
 
     if (day < 100) {
-        sprintf(timeStr, "%2lud%2lu", day, hour);
+        snprintf(timeStr, timeStrLen, "%2lud%2lu", (unsigned long)day, (unsigned long)hour);
         return;
     }
 
-    sprintf(timeStr, "--:--");
+    snprintf(timeStr, timeStrLen, "--:--");
 };
 
 bool file_exist(const char *file) {

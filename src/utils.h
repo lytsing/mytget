@@ -22,6 +22,7 @@
 #define UTILS_H_
 
 #include <sys/types.h>
+#include <cstddef>
 #include <cstdio>
 
 #define MIN(a, b) ((a) < (b)) ? (a) : (b)
@@ -49,9 +50,9 @@ int determine_screen_width();
 // get the current time in secondes
 double get_current_time();
 // conver size to 333M, 111K, 1G
-void convert_size(char *sizeStr, off_t size);
+void convert_size(char *sizeStr, size_t sizeStrLen, off_t size);
 // convert time to 11d23 11h12 12:34
-void convert_time(char *timeStr, double time);
+void convert_time(char *timeStr, size_t timeStrLen, double time);
 
 // file exist
 bool file_exist(const char *filename);

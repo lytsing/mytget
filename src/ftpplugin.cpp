@@ -83,7 +83,7 @@ int FtpPlugin::get_info(Task *task) {
         if (task->url.get_file() != NULL) {
             char *ptr;
             ptr = new char[strlen(task->url.get_file()) + 2];
-            sprintf(ptr, "%s/", task->url.get_file());
+            snprintf(ptr, strlen(task->url.get_file()) + 2, "%s/", task->url.get_file());
             task->url.reset_url(ptr);
             delete[] ptr;
         }
