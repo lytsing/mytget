@@ -185,7 +185,6 @@ int Http::set_host(const char *host, int port) {
         } else {
             snprintf(buf, sizeof(buf), "[%s]", host);
         }
-            snprintf(buf, sizeof(buf), "[%s]:%d", host, port);
     } else {
 #ifdef HAVE_SSL
         if ((useSSL && port != 443) || (!useSSL && port != 80)) {
