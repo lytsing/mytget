@@ -218,7 +218,7 @@ int Ftp::rest(off_t offset) {
     if (offset < 0) return -1;
     char buffer[64];
 
-    snprintf(buffer, sizeof(buffer), "%lu", offset);
+    snprintf(buffer, sizeof(buffer), "%lld", (long long)offset);
     ret = ftp_cmd("REST", buffer);
     switch (ret) {
         case 350:
