@@ -29,7 +29,7 @@
 
 /***************************************************
  * class Ftp declaration
- * this class only contain basic ftp commands wraped
+ * this class only contains basic ftp commands wrapped
  * *************************************************/
 
 
@@ -42,7 +42,7 @@ class Ftp : public PluginIO {
         int connect(const TcpSockAddr& sock);
         int reconnect();
 
-        // the commands return 0 if successfully
+        // the commands return 0 on success
         // active or passive, default is passive
         int set_mode(int type);
         // set log function
