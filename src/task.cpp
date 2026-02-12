@@ -30,6 +30,7 @@ Task::Task() {
     timeout = 30;
     ftpActive = PASV;
     threadNum = 4;
+    lastHttpStatus = 0;
     localDir = NULL;
     localFile = NULL;
     referer = NULL;
@@ -66,6 +67,7 @@ Task& Task::operator = (Task& task) {
     timeout = task.timeout;
     ftpActive = task.ftpActive;
     threadNum = task.threadNum;
+    lastHttpStatus = task.lastHttpStatus;
     url = task.url;
     proxy = task.proxy;
 

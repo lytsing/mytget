@@ -573,7 +573,11 @@ int Downloader::run() {
 
     ret = init_task();
     if (ret < 0) {
-        cerr << "Can not get the info of the file " << endl;
+        cerr << "Can not get the info of the file";
+        if (task.lastHttpStatus > 0) {
+            cerr << " (HTTP " << task.lastHttpStatus << ")";
+        }
+        cerr << endl;
         return ret;
     }
 

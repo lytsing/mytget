@@ -55,6 +55,7 @@ class Task {
         long timeout;
         int ftpActive;
         int threadNum;
+        int lastHttpStatus;  // set by HTTP plugin on get_info failure, 0 if not set
         URL url;
         Proxy proxy;
 

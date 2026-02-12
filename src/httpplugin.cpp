@@ -111,7 +111,10 @@ int HttpPlugin::get_info(Task *task) {
                 if (location == NULL) {
                     // I do not know when this will happen, but no harm
                     location = http.get_header("Content-Location");
-                    if (location == NULL) return -1;
+                    if (location == NULL) {
+                        task->lastHttpStatus = http.get_status_code();
+                        return -1;
+                    }
                 }
                 if (strcmp(location, task->url.get_url()) == 0) break;
                 if (task->url.reset_url(location) < 0) return -2;
@@ -130,6 +133,7 @@ int HttpPlugin::get_info(Task *task) {
                 return -2;
             }
         default:
+            task->lastHttpStatus = http.get_status_code();
             return -1;
     }
 
