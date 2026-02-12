@@ -175,26 +175,31 @@ int Http::set_range(off_t start, off_t end) {
 };
 
 int Http::set_host(const char *host, int port) {
-    if (strchr(host, ':')) {  /* ipv6 */
 #ifdef HAVE_SSL
-        if ((useSSL && port != 443) || (!useSSL && port != 80)) {
+    int default_port = useSSL ? 443 : 80;
 #else
-        if (port != 80) {
+    int default_port = 80;
 #endif
-            snprintf(buf, sizeof(buf), "[%s]:%d", host, port);
-        } else {
-            snprintf(buf, sizeof(buf), "[%s]", host);
-        }
-    } else {
-#ifdef HAVE_SSL
-        if ((useSSL && port != 443) || (!useSSL && port != 80)) {
-#else
-        if (port != 80) {
-#endif
+    int need_port = (port != default_port);
+
+    if (host[0] == '[' && strchr(host, ']')) {
+        /* already bracketed IPv6, e.g. [::1] */
+        if (need_port)
             snprintf(buf, sizeof(buf), "%s:%d", host, port);
-        } else {
+        else
             snprintf(buf, sizeof(buf), "%s", host);
-        }
+    } else if (strchr(host, ':')) {
+        /* raw IPv6 literal, e.g. ::1 */
+        if (need_port)
+            snprintf(buf, sizeof(buf), "[%s]:%d", host, port);
+        else
+            snprintf(buf, sizeof(buf), "[%s]", host);
+    } else {
+        /* hostname or IPv4 */
+        if (need_port)
+            snprintf(buf, sizeof(buf), "%s:%d", host, port);
+        else
+            snprintf(buf, sizeof(buf), "%s", host);
     }
 
     return request.set_attr("Host", buf);
