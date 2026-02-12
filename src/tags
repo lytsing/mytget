@@ -1,0 +1,461 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ADVIO_H_	advio.h	/^#define ADVIO_H_$/;"	d
+Address	tcp.h	/^        Address() { addr = NULL; }$/;"	f	class:Address
+Address	tcp.h	/^class Address {$/;"	c
+BLOCK_H_	block.h	/^#define BLOCK_H_$/;"	d
+BUFSIZE	advio.h	/^#define BUFSIZE /;"	d
+Block	block.cpp	/^Block::Block() {$/;"	f	class:Block
+Block	block.h	/^class Block {$/;"	c
+BufferFile	advio.cpp	/^BufferFile::BufferFile() {$/;"	f	class:BufferFile
+BufferFile	advio.h	/^class BufferFile {$/;"	c
+BufferStream	advio.cpp	/^BufferStream::BufferStream(const BufferStream& that) : IOStream(-1) {$/;"	f	class:BufferStream
+BufferStream	advio.cpp	/^BufferStream::BufferStream(int ifd) : IOStream(ifd) {$/;"	f	class:BufferStream
+BufferStream	advio.h	/^class BufferStream : public IOStream {$/;"	c
+CMAKE_BINARY_DIR	Makefile	/^CMAKE_BINARY_DIR = \/Users\/lytsing\/work\/mytget$/;"	m
+CMAKE_COMMAND	Makefile	/^CMAKE_COMMAND = \/usr\/local\/Cellar\/cmake\/3.23.1\/bin\/cmake$/;"	m
+CMAKE_SOURCE_DIR	Makefile	/^CMAKE_SOURCE_DIR = \/Users\/lytsing\/work\/mytget$/;"	m
+DEBUG_H_	debug.h	/^#define DEBUG_H_$/;"	d
+DEFAULT_SCREEN_WIDTH	progressbar.h	/^#define DEFAULT_SCREEN_WIDTH /;"	d
+DEFAULT_SOCKET_READ_BUFFER_SIZE	macro.h	/^#define DEFAULT_SOCKET_READ_BUFFER_SIZE /;"	d
+DIRTY_WIDTH	progressbar.h	/^#define DIRTY_WIDTH /;"	d
+DOWNLOADER_H_	downloader.h	/^#define DOWNLOADER_H_$/;"	d
+Downloader	downloader.cpp	/^Downloader::Downloader() {$/;"	f	class:Downloader
+Downloader	downloader.h	/^class Downloader {$/;"	c
+EQUALS	Makefile	/^EQUALS = =$/;"	m
+EXIT	block.h	/^    EXIT,$/;"	e	enum:ThreadState
+EXIT_IF_FAILED	utils.h	/^#define EXIT_IF_FAILED(/;"	d
+E_BAD_HEADER	macro.h	/^#define E_BAD_HEADER /;"	d
+E_BAD_URL	macro.h	/^#define E_BAD_URL /;"	d
+E_COMMON	macro.h	/^#define E_COMMON /;"	d
+E_LIST_DIR	macro.h	/^#define E_LIST_DIR /;"	d
+E_MAX_COUNT	macro.h	/^#define E_MAX_COUNT /;"	d
+E_OPEN_LOCALE_FILE	macro.h	/^#define E_OPEN_LOCALE_FILE /;"	d
+E_PROTO_NOT_SUPPORT	macro.h	/^#define E_PROTO_NOT_SUPPORT /;"	d
+E_RESOLVE	macro.h	/^#define E_RESOLVE /;"	d
+E_SSL_CONN	macro.h	/^#define E_SSL_CONN /;"	d
+E_SYS	macro.h	/^#define E_SYS /;"	d
+E_TIMEOUT	macro.h	/^#define E_TIMEOUT /;"	d
+FILE_BUFFER_SIZE	macro.h	/^#define FILE_BUFFER_SIZE /;"	d
+FTP	url.h	/^    FTP,$/;"	e	enum:Protocol
+FTPPARSER_H_	ftpparser.h	/^#define FTPPARSER_H_$/;"	d
+FTP_H_	ftp.h	/^#define FTP_H_$/;"	d
+FTP_PROXY	proxy.h	/^    FTP_PROXY,$/;"	e	enum:ProxyType
+Ftp	ftp.cpp	/^Ftp::Ftp() {$/;"	f	class:Ftp
+Ftp	ftp.h	/^class Ftp : public PluginIO {$/;"	c
+FtpParser	ftpparser.cpp	/^FtpParser::FtpParser() {$/;"	f	class:FtpParser
+FtpParser	ftpparser.h	/^class FtpParser {$/;"	c
+FtpPlugin	ftpplugin.h	/^class FtpPlugin : public Plugin {$/;"	c
+HEADER_H_	header.h	/^#define HEADER_H_$/;"	d
+HTTP	url.h	/^    HTTP,$/;"	e	enum:Protocol
+HTTPPLUGIN_H_	httpplugin.h	/^#define HTTPPLUGIN_H_$/;"	d
+HTTPS	url.h	/^    HTTPS,$/;"	e	enum:Protocol
+HTTP_H_	http.h	/^#define HTTP_H_$/;"	d
+HTTP_PROXY	proxy.h	/^    HTTP_PROXY,$/;"	e	enum:ProxyType
+HTTP_VERSION	http.cpp	/^#define HTTP_VERSION /;"	d	file:
+HeadData	header.h	/^        HeadData():head(NULL) {}$/;"	f	class:HeadData
+HeadData	header.h	/^class HeadData {$/;"	c
+HeadDataNode	header.h	/^        HeadDataNode():attrName(NULL), attrValue(NULL), next(NULL) {}$/;"	f	class:HeadDataNode
+HeadDataNode	header.h	/^class HeadDataNode {$/;"	c
+Http	http.cpp	/^Http::Http() {$/;"	f	class:Http
+Http	http.h	/^class Http : public PluginIO {$/;"	c
+HttpPlugin	httpplugin.h	/^class HttpPlugin : public Plugin {$/;"	c
+IOStream	advio.cpp	/^IOStream::IOStream(int infd) :fd(infd) {$/;"	f	class:IOStream
+IOStream	advio.h	/^class IOStream {$/;"	c
+ISBLANK	utils.h	/^#define ISBLANK(/;"	d
+ISDIGIT	utils.h	/^#define ISDIGIT(/;"	d
+JOINED	block.h	/^    JOINED$/;"	e	enum:ThreadState
+LEFT	progressbar.cpp	/^#define LEFT /;"	d	file:
+MACRO_H_	macro.h	/^#define MACRO_H_$/;"	d
+MAXIMUM_SCREEN_WIDTH	progressbar.h	/^#define MAXIMUM_SCREEN_WIDTH /;"	d
+MAXLONG	advio.h	/^#define MAXLONG /;"	d
+MIN	utils.h	/^#define MIN(/;"	d
+MINIMUM_SCREEN_WIDTH	progressbar.h	/^#define MINIMUM_SCREEN_WIDTH /;"	d
+MIN_BUFFER_LEFT	macro.h	/^#define MIN_BUFFER_LEFT /;"	d
+MMS	url.h	/^    MMS,$/;"	e	enum:Protocol
+MYTGET_H_	mytget.h	/^#define MYTGET_H_$/;"	d
+NONE	url.h	/^    NONE$/;"	e	enum:Protocol
+NONE_PROXY	proxy.h	/^    NONE_PROXY$/;"	e	enum:ProxyType
+PASV	macro.h	/^#define PASV /;"	d
+PLUGIN_H_	plugin.h	/^#define PLUGIN_H_$/;"	d
+PORT	macro.h	/^#define PORT /;"	d
+PROGRESSBAR_H_	progressbar.h	/^#define PROGRESSBAR_H_$/;"	d
+PROXY_H_	proxy.h	/^#define PROXY_H_$/;"	d
+Plugin	plugin.cpp	/^Plugin::Plugin() {$/;"	f	class:Plugin
+Plugin	plugin.h	/^class Plugin {$/;"	c
+PluginIO	advio.cpp	/^PluginIO::PluginIO() {$/;"	f	class:PluginIO
+PluginIO	advio.h	/^class PluginIO {$/;"	c
+ProgressBar	progressbar.cpp	/^ProgressBar::ProgressBar(off_t total_size, int block_num)$/;"	f	class:ProgressBar
+ProgressBar	progressbar.h	/^class ProgressBar {$/;"	c
+Protocol	url.h	/^enum Protocol {$/;"	g
+Proxy	proxy.cpp	/^Proxy::Proxy() {$/;"	f	class:Proxy
+Proxy	proxy.h	/^class Proxy {$/;"	c
+ProxyType	proxy.h	/^enum ProxyType {$/;"	g
+PthreadFunction	downloader.cpp	/^typedef void* (*PthreadFunction) (void*);$/;"	t	file:
+R	url.cpp	/^#define R /;"	d	file:
+R	url.cpp	/^#undef R$/;"	d	file:
+RETR	block.h	/^    RETR,$/;"	e	enum:ThreadState
+RETURN_IF_FAILED	utils.h	/^#define RETURN_IF_FAILED(/;"	d
+RIGHT	progressbar.cpp	/^#define RIGHT /;"	d	file:
+RM	Makefile	/^RM = \/usr\/local\/Cellar\/cmake\/3.23.1\/bin\/cmake -E rm -f$/;"	m
+RTSP	url.h	/^    RTSP,$/;"	e	enum:Protocol
+RU	url.cpp	/^#define RU /;"	d	file:
+RU	url.cpp	/^#undef RU$/;"	d	file:
+SFTP	url.h	/^    SFTP,$/;"	e	enum:Protocol
+SHELL	Makefile	/^SHELL = \/bin\/sh$/;"	m
+SOCKS5_PROXY	proxy.h	/^    SOCKS5_PROXY,$/;"	e	enum:ProxyType
+STOP	block.h	/^    STOP,$/;"	e	enum:ThreadState
+SUCC	macro.h	/^#define SUCC /;"	d
+S_REDIRECT	macro.h	/^#define S_REDIRECT /;"	d
+S_USER_TERM	macro.h	/^#define S_USER_TERM /;"	d
+StrDup	utils.cpp	/^char* StrDup(const char *str) {$/;"	f
+TASK_H_	task.h	/^#define TASK_H_$/;"	d
+TCP_H_	tcp.h	/^#define TCP_H_$/;"	d
+Task	task.cpp	/^Task::Task() {$/;"	f	class:Task
+Task	task.h	/^class Task {$/;"	c
+TcpAcceptor	tcp.h	/^        TcpAcceptor() { listen_fd = -1; }$/;"	f	class:TcpAcceptor
+TcpAcceptor	tcp.h	/^class TcpAcceptor {$/;"	c
+TcpConnection	tcp.h	/^        TcpConnection():BufferStream(-1) {}$/;"	f	class:TcpConnection
+TcpConnection	tcp.h	/^class TcpConnection : public BufferStream {$/;"	c
+TcpConnector	tcp.h	/^class TcpConnector {$/;"	c
+TcpSockAddr	tcp.cpp	/^TcpSockAddr::TcpSockAddr(int family) {$/;"	f	class:TcpSockAddr
+TcpSockAddr	tcp.h	/^class TcpSockAddr {$/;"	c
+ThreadState	block.h	/^enum ThreadState {$/;"	g
+U	url.cpp	/^#define U /;"	d	file:
+U	url.cpp	/^#undef U$/;"	d	file:
+URL	url.cpp	/^URL::URL() {$/;"	f	class:URL
+URL	url.cpp	/^URL::URL(URL& url) {$/;"	f	class:URL
+URL	url.h	/^class URL {$/;"	c
+URL_H_	url.h	/^#define URL_H_$/;"	d
+URL_RESERVED_CHAR	url.cpp	/^#define URL_RESERVED_CHAR(/;"	d	file:
+URL_UNSAFE_CHAR	url.cpp	/^#define URL_UNSAFE_CHAR(/;"	d	file:
+USER_AGENT	httpplugin.cpp	/^#define USER_AGENT /;"	d	file:
+UTILS_H_	utils.h	/^#define UTILS_H_$/;"	d
+VERSION	mytget.cpp	/^#define VERSION /;"	d	file:
+WAIT	block.h	/^    WAIT,$/;"	e	enum:ThreadState
+WAKEUP	block.h	/^    WAKEUP,$/;"	e	enum:ThreadState
+XCHAR_TO_XDIGIT	url.cpp	/^#define XCHAR_TO_XDIGIT(/;"	d	file:
+XDIGIT_TO_XCHAR	url.cpp	/^#define XDIGIT_TO_XCHAR(/;"	d	file:
+_	utils.h	/^#define _(/;"	d
+_FTPPLUGIN_H	ftpplugin.h	/^#define _FTPPLUGIN_H$/;"	d
+_parse	url.cpp	/^int URL::_parse(const char *url_orig) {$/;"	f	class:URL
+_parse_fragment	url.cpp	/^int URL::_parse_fragment(char* &url) {$/;"	f	class:URL
+_parse_location	url.cpp	/^int URL::_parse_location(char* &url) {$/;"	f	class:URL
+_parse_parameters	url.cpp	/^int URL::_parse_parameters(char* &url) {$/;"	f	class:URL
+_parse_path	url.cpp	/^int URL::_parse_path(char* &url) {$/;"	f	class:URL
+_parse_query_info	url.cpp	/^int URL::_parse_query_info(char* &url) {$/;"	f	class:URL
+_parse_scheme	url.cpp	/^int URL::_parse_scheme(char* &url) {$/;"	f	class:URL
+accept	tcp.cpp	/^TcpConnection* TcpAcceptor::accept(const TcpSockAddr& expect, int &ret, long timeout) {$/;"	f	class:TcpAcceptor
+accept	tcp.cpp	/^TcpConnection* TcpAcceptor::accept(int &ret, long timeout) {$/;"	f	class:TcpAcceptor
+accept_ranges	http.cpp	/^bool Http::accept_ranges() {$/;"	f	class:Http
+addr	tcp.h	/^        struct addrinfo *addr;$/;"	m	class:Address	typeref:struct:Address::addrinfo
+ai_addr	tcp.h	/^        char ai_addr[24];  \/\/ ipv6's length is 24 bytes$/;"	m	class:TcpSockAddr
+ai_addrlen	tcp.h	/^        socklen_t ai_addrlen;$/;"	m	class:TcpSockAddr
+ai_family	tcp.h	/^        int ai_family;$/;"	m	class:TcpSockAddr
+attrName	header.h	/^        const char *attrName;$/;"	m	class:HeadDataNode
+attrValue	header.h	/^        const char *attrValue;$/;"	m	class:HeadDataNode
+auth	http.cpp	/^int Http::auth(const char *user, const char *password) {$/;"	f	class:Http
+base64_encode	utils.cpp	/^const char* base64_encode(const char *str, int length) {$/;"	f
+blockNum	progressbar.h	/^        int blockNum;  \/\/ blockNum$/;"	m	class:ProgressBar
+blocks	downloader.h	/^        Block *blocks;$/;"	m	class:Downloader
+buf	advio.h	/^        char buf[BUFSIZE];$/;"	m	class:BufferStream
+buf	advio.h	/^        char buf[FILE_BUFFER_SIZE];$/;"	m	class:BufferFile
+buf	http.h	/^        char buf[1024];$/;"	m	class:Http
+bufferFile	block.h	/^        BufferFile bufferFile;$/;"	m	class:Block
+catch_ctrl_c	downloader.cpp	/^void catch_ctrl_c(int signo) {$/;"	f
+chunkedSize	http.h	/^        off_t chunkedSize;$/;"	m	class:Http
+close	advio.cpp	/^int BufferFile::close() {$/;"	f	class:BufferFile
+close	advio.cpp	/^int IOStream::close() {$/;"	f	class:IOStream
+conn	http.h	/^        TcpConnection *conn;$/;"	m	class:Http
+connect	ftp.cpp	/^int Ftp::connect(const TcpSockAddr& sock) {$/;"	f	class:Ftp
+connect	ftp.cpp	/^int Ftp::connect(const char *addrstr, int port) {$/;"	f	class:Ftp
+connect	http.cpp	/^int Http::connect() {$/;"	f	class:Http
+connect	http.cpp	/^int Http::connect(const TcpSockAddr& sock) {$/;"	f	class:Http
+connect	http.cpp	/^int Http::connect(const char *host, int port) {$/;"	f	class:Http
+connect	tcp.cpp	/^TcpConnection* TcpConnector::connect(const Address& addr, int& ret, long timeout) {$/;"	f	class:TcpConnector
+connect	tcp.cpp	/^TcpConnection* TcpConnector::connect(const TcpSockAddr& addr, int &ret, long timeout) {$/;"	f	class:TcpConnector
+convert_size	utils.cpp	/^void convert_size(char *sizeStr, off_t size) {$/;"	f
+convert_time	utils.cpp	/^void convert_time(char *timeStr, double time) {$/;"	f
+count	advio.h	/^        int count;  \/\/ the current buffer size$/;"	m	class:BufferStream
+ctrlConn	ftp.h	/^        TcpConnection *ctrlConn;$/;"	m	class:Ftp
+cwd	ftp.cpp	/^int Ftp::cwd(const char* dir) {$/;"	f	class:Ftp
+dataConn	ftp.h	/^        TcpConnection *dataConn;$/;"	m	class:Ftp
+data_ends	ftp.cpp	/^int Ftp::data_ends() {$/;"	f	class:Ftp
+data_ends	http.cpp	/^int Http::data_ends() {  \/\/ not very reasonable$/;"	f	class:Http
+debug_log	debug.cpp	/^void debug_log(const char *fmt, ...) {$/;"	f
+decode	url.cpp	/^const char* URL::decode(const char* url) {$/;"	f	class:URL
+defaultPort	url.cpp	/^    int defaultPort;$/;"	m	struct:proto_struct	file:
+default_log	ftp.h	/^        static void default_log(const char *data, ...) {}$/;"	f	class:Ftp
+default_log	http.h	/^        static void default_log(const char *data, ...) {}$/;"	f	class:Http
+determine_screen_width	utils.cpp	/^int determine_screen_width() {$/;"	f
+dir	url.h	/^        const char *dir;$/;"	m	class:URL
+direction	progressbar.h	/^        int direction;$/;"	m	class:ProgressBar
+directory_download	downloader.cpp	/^int Downloader::directory_download(void) {$/;"	f	class:Downloader
+download	ftpplugin.cpp	/^int FtpPlugin::download(Task &task, Block *block) {$/;"	f	class:FtpPlugin
+download	httpplugin.cpp	/^int HttpPlugin::download(Task& task, Block *block) {$/;"	f	class:HttpPlugin
+download	plugin.cpp	/^int Plugin::download(Task& task, Block *block) {$/;"	f	class:Plugin
+downloadRate	progressbar.h	/^        char downloadRate[5];$/;"	m	class:ProgressBar
+download_thread	downloader.cpp	/^int Downloader::download_thread(Downloader *downloader) {$/;"	f	class:Downloader
+downloaded	block.h	/^        off_t downloaded;$/;"	m	class:Block
+downloaded	progressbar.h	/^        char downloaded[5];$/;"	m	class:ProgressBar
+encode	url.cpp	/^const char* URL::encode(const char* url) {$/;"	f	class:URL
+eta	progressbar.h	/^        char eta[6];$/;"	m	class:ProgressBar
+fd	advio.h	/^        int fd;$/;"	m	class:BufferFile
+fd	advio.h	/^        int fd;$/;"	m	class:IOStream
+file	ftpparser.h	/^        const char *file;$/;"	m	class:FtpParser
+file	url.h	/^        const char *file;$/;"	m	class:URL
+fileSize	http.h	/^        off_t fileSize;$/;"	m	class:Http
+fileSize	task.h	/^        off_t fileSize;$/;"	m	class:Task
+file_download	downloader.cpp	/^int Downloader::file_download() {$/;"	f	class:Downloader
+file_exist	utils.cpp	/^bool file_exist(const char *file) {$/;"	f
+flush	advio.cpp	/^int BufferFile::flush() {$/;"	f	class:BufferFile
+free_all	url.cpp	/^void URL::free_all(void) {$/;"	f	class:URL
+ftpActive	task.h	/^        int ftpActive;$/;"	m	class:Task
+ftp_cmd	ftp.cpp	/^int Ftp::ftp_cmd(const char* cmd, const char* args) {$/;"	f	class:Ftp
+ftp_data_cmd	ftp.cpp	/^int Ftp::ftp_data_cmd(const char* cmd, const char* args, off_t offset) {$/;"	f	class:Ftp
+get	http.cpp	/^int Http::get(const char *url) {$/;"	f	class:Http
+get_addr	tcp.cpp	/^int TcpSockAddr::get_addr(char *addr, int size) {$/;"	f	class:TcpSockAddr
+get_attr	header.cpp	/^const char* HeadData::get_attr(const char *attrName) {$/;"	f	class:HeadData
+get_bind_port	tcp.cpp	/^int TcpAcceptor::get_bind_port() {$/;"	f	class:TcpAcceptor
+get_current_time	utils.cpp	/^double get_current_time() {$/;"	f
+get_dir	url.h	/^        const char* get_dir() { return dir; }$/;"	f	class:URL
+get_dir_list	ftpplugin.cpp	/^int FtpPlugin::get_dir_list(Task& task, const char *tempfile) {$/;"	f	class:FtpPlugin
+get_dir_list	httpplugin.cpp	/^int HttpPlugin::get_dir_list(Task& task, const char *tempfile) {$/;"	f	class:HttpPlugin
+get_dir_list	plugin.cpp	/^int Plugin::get_dir_list(Task& task, const char *tempfile) {$/;"	f	class:Plugin
+get_encoded_path	url.h	/^        const char* get_encoded_path() { return path; }$/;"	f	class:URL
+get_fd	advio.cpp	/^int IOStream::get_fd() {$/;"	f	class:IOStream
+get_file	ftpparser.cpp	/^const char* FtpParser::get_file(void) {$/;"	f	class:FtpParser
+get_file	url.h	/^        const char* get_file() { return file; }$/;"	f	class:URL
+get_file_size	http.cpp	/^off_t Http::get_file_size() {$/;"	f	class:Http
+get_header	http.cpp	/^const char* Http::get_header(const char *attr_name) {$/;"	f	class:Http
+get_host	proxy.cpp	/^const char* Proxy::get_host() {$/;"	f	class:Proxy
+get_host	task.cpp	/^const char* Task::get_host() {$/;"	f	class:Task
+get_host	url.h	/^        const char* get_host() { return host; }$/;"	f	class:URL
+get_info	ftpplugin.cpp	/^int FtpPlugin::get_info(Task *task) {$/;"	f	class:FtpPlugin
+get_info	httpplugin.cpp	/^int HttpPlugin::get_info(Task *task) {$/;"	f	class:HttpPlugin
+get_info	plugin.cpp	/^int Plugin::get_info(Task *task) {$/;"	f	class:Plugin
+get_link	ftpparser.cpp	/^const char* FtpParser::get_link(void) {$/;"	f	class:FtpParser
+get_local_addr	tcp.cpp	/^int TcpConnection::get_local_addr(TcpSockAddr& sockaddr)const {$/;"	f	class:TcpConnection
+get_local_dir	task.cpp	/^const char* Task::get_local_dir() {$/;"	f	class:Task
+get_local_file	task.cpp	/^const char* Task::get_local_file() {$/;"	f	class:Task
+get_password	proxy.cpp	/^const char* Proxy::get_password() {$/;"	f	class:Proxy
+get_password	url.h	/^        const char* get_password() { return password; }$/;"	f	class:URL
+get_port	proxy.cpp	/^const int Proxy::get_port() {$/;"	f	class:Proxy
+get_port	tcp.cpp	/^int TcpSockAddr::get_port() {$/;"	f	class:TcpSockAddr
+get_port	url.h	/^        int get_port() { return port; }$/;"	f	class:URL
+get_protocol	url.h	/^        Protocol get_protocol() { return protocol; }$/;"	f	class:URL
+get_referer	task.cpp	/^const char* Task::get_referer() {$/;"	f	class:Task
+get_remote_addr	tcp.cpp	/^int TcpConnection::get_remote_addr(TcpSockAddr& sockaddr)const {$/;"	f	class:TcpConnection
+get_size	ftpparser.cpp	/^off_t FtpParser::get_size(void) {$/;"	f	class:FtpParser
+get_status_code	http.cpp	/^int Http::get_status_code() {$/;"	f	class:Http
+get_time	ftpparser.cpp	/^time_t FtpParser::get_time(void) {$/;"	f	class:FtpParser
+get_type	ftpparser.cpp	/^char FtpParser::get_type(void) {$/;"	f	class:FtpParser
+get_type	proxy.cpp	/^const ProxyType Proxy::get_type() {$/;"	f	class:Proxy
+get_ua	task.cpp	/^const char* Task::get_ua() {$/;"	f	class:Task
+get_url	url.h	/^        const char* get_url() { return url; }$/;"	f	class:URL
+get_user	proxy.cpp	/^const char* Proxy::get_user() {$/;"	f	class:Proxy
+get_user	url.h	/^        const char* get_user() { return user; }$/;"	f	class:URL
+gets_data	ftp.cpp	/^int Ftp::gets_data(char *buffer, int maxsize) {$/;"	f	class:Ftp
+global_debug	debug.cpp	/^bool global_debug = false;$/;"	v
+global_downloading	downloader.cpp	/^bool global_downloading = false;$/;"	v
+global_sigint_received	downloader.cpp	/^bool global_sigint_received = false;$/;"	v
+graph	progressbar.h	/^        char graph[MAXIMUM_SCREEN_WIDTH - DIRTY_WIDTH + 1];$/;"	m	class:ProgressBar
+graphWidth	progressbar.cpp	/^int ProgressBar::graphWidth = 0;$/;"	m	class:ProgressBar	file:
+graphWidth	progressbar.h	/^        static int graphWidth;$/;"	m	class:ProgressBar
+head	header.h	/^        HeadDataNode *head;$/;"	m	class:HeadData
+head	http.cpp	/^int Http::head(const char *url) {$/;"	f	class:Http
+header	http.cpp	/^int Http::header(const char *attrName, const char *attrValue) {$/;"	f	class:Http
+host	proxy.h	/^        const char *host;$/;"	m	class:Proxy
+host	task.h	/^        char *host;$/;"	m	class:Task
+host	url.h	/^        const char *host;$/;"	m	class:URL
+init	progressbar.cpp	/^void ProgressBar::init() {$/;"	f	class:ProgressBar
+init_local_file_name	downloader.cpp	/^int Downloader::init_local_file_name() {$/;"	f	class:Downloader
+init_plugin	downloader.cpp	/^int Downloader::init_plugin() {$/;"	f	class:Downloader
+init_task	downloader.cpp	/^int Downloader::init_task() {$/;"	f	class:Downloader
+init_threads_from_info	downloader.cpp	/^int Downloader::init_threads_from_info() {$/;"	f	class:Downloader
+init_threads_from_mg	downloader.cpp	/^int Downloader::init_threads_from_mg() {$/;"	f	class:Downloader
+isChunked	http.h	/^        bool isChunked;$/;"	m	class:Http
+isDirectory	task.h	/^        bool isDirectory;$/;"	m	class:Task
+is_connected	tcp.cpp	/^bool TcpConnection::is_connected() {$/;"	f	class:TcpConnection
+lastDownloaded	progressbar.h	/^        off_t lastDownloaded;  \/\/ the total size of the already download part$/;"	m	class:ProgressBar
+lastTime	progressbar.h	/^        double lastTime;  \/\/ the last time of update$/;"	m	class:ProgressBar
+left	advio.h	/^        int left;$/;"	m	class:BufferFile
+link	ftpparser.h	/^        const char *link;$/;"	m	class:FtpParser
+list	ftp.cpp	/^int Ftp::list(const char *dir) {$/;"	f	class:Ftp
+listen	tcp.cpp	/^int TcpAcceptor::listen(const TcpSockAddr& local, int backlog) {$/;"	f	class:TcpAcceptor
+listen_fd	tcp.h	/^        int listen_fd;$/;"	m	class:TcpAcceptor
+localAddr	ftp.h	/^        TcpSockAddr localAddr;$/;"	m	class:Ftp
+localDir	task.h	/^        char *localDir;$/;"	m	class:Task
+localFile	task.h	/^        char *localFile;$/;"	m	class:Task
+localMg	downloader.h	/^        char *localMg;$/;"	m	class:Downloader
+localPath	downloader.h	/^        char *localPath;$/;"	m	class:Downloader
+log	ftp.h	/^        void (*log)(const char *, ...);$/;"	m	class:Ftp
+log	http.h	/^        void (*log)(const char *, ...);$/;"	m	class:Http
+login	ftp.cpp	/^int Ftp::login(const char* user, const char* password) {$/;"	f	class:Ftp
+long_options	mytget.cpp	/^const struct option long_options[] = {$/;"	v	typeref:struct:option
+main	mytget.cpp	/^int main(int argc, char **argv) {$/;"	f
+mode	ftp.h	/^        int mode;  \/\/ active or passive$/;"	m	class:Ftp
+next	header.h	/^        HeadDataNode *next;$/;"	m	class:HeadDataNode
+open	advio.cpp	/^int BufferFile::open(const char *file, int flag, mode_t mode) {$/;"	f	class:BufferFile
+open	advio.cpp	/^int IOStream::open(const char *file, int flag, mode_t mode) {$/;"	f	class:IOStream
+operator =	advio.cpp	/^BufferStream& BufferStream::operator = (const BufferStream& that) {$/;"	f	class:BufferStream
+operator =	proxy.cpp	/^Proxy& Proxy::operator = (Proxy& proxy) {$/;"	f	class:Proxy
+operator =	task.cpp	/^Task& Task::operator = (Task& task) {$/;"	f	class:Task
+operator =	url.cpp	/^URL& URL::operator = (URL& url) {$/;"	f	class:URL
+parse	ftpparser.cpp	/^int FtpParser::parse(const char *line) {$/;"	f	class:FtpParser
+parse_header	http.cpp	/^int Http::parse_header() {$/;"	f	class:Http
+password	proxy.h	/^        const char *password;$/;"	m	class:Proxy
+password	url.h	/^        const char *password;$/;"	m	class:URL
+pasv	ftp.cpp	/^int Ftp::pasv(int *port) {$/;"	f	class:Ftp
+path	url.h	/^        const char *path;$/;"	m	class:URL
+pb	downloader.h	/^        ProgressBar *pb;$/;"	m	class:Downloader
+percent	progressbar.h	/^        long percent;$/;"	m	class:ProgressBar
+pid	block.h	/^        pthread_t pid;$/;"	m	class:Block
+plugin	downloader.h	/^        Plugin *plugin;$/;"	m	class:Downloader
+port	ftp.cpp	/^int Ftp::port(int port) {$/;"	f	class:Ftp
+port	proxy.h	/^        int port;$/;"	m	class:Proxy
+port	url.h	/^        int port;$/;"	m	class:URL
+pre_encode	url.cpp	/^const char * URL::pre_encode(const char *pre_url) {$/;"	f	class:URL
+print_help	mytget.cpp	/^void print_help() {$/;"	f
+process_dos	ftpparser.cpp	/^int FtpParser::process_dos(char *line) {$/;"	f	class:FtpParser
+process_unix	ftpparser.cpp	/^int FtpParser::process_unix(char *line) {$/;"	f	class:FtpParser
+proto_struct	url.cpp	/^struct proto_struct {$/;"	s	file:
+protocol	url.cpp	/^    Protocol protocol;$/;"	m	struct:proto_struct	file:
+protocol	url.h	/^        Protocol protocol;$/;"	m	class:URL
+protocolStr	url.cpp	/^    const char *protocolStr;$/;"	m	struct:proto_struct	file:
+protocol_table	url.cpp	/^const static proto_struct protocol_table[] = {$/;"	v	file:
+proxy	task.h	/^        Proxy proxy;$/;"	m	class:Task
+proxy_auth	http.cpp	/^int Http::proxy_auth(const char *user, const char *password) {$/;"	f	class:Http
+ptr	advio.h	/^        char *ptr;$/;"	m	class:BufferFile
+ptr	advio.h	/^        char *ptr;$/;"	m	class:BufferStream
+pwd	ftp.cpp	/^int Ftp::pwd(char** dir) {$/;"	f	class:Ftp
+quit	ftp.cpp	/^int Ftp::quit() {$/;"	f	class:Ftp
+rateCount	progressbar.h	/^        int rateCount;$/;"	m	class:ProgressBar
+rateIndex	progressbar.h	/^        int rateIndex;$/;"	m	class:ProgressBar
+rates	progressbar.h	/^        float rates[12];$/;"	m	class:ProgressBar
+read	advio.cpp	/^int BufferStream::read(char *buffer, int maxsize, long timeout) {$/;"	f	class:BufferStream
+read	advio.cpp	/^int IOStream::read(char *buffer, int maxsize, long timeout) {$/;"	f	class:IOStream
+read_data	advio.cpp	/^int PluginIO::read_data(char *buffer, int maxsize) {$/;"	f	class:PluginIO
+read_data	ftp.cpp	/^int Ftp::read_data(char *buffer, int maxsize) {$/;"	f	class:Ftp
+read_data	http.cpp	/^int Http::read_data(char *buffer, int maxsize) {$/;"	f	class:Http
+read_line	advio.cpp	/^int BufferStream::read_line(char *line, int maxsize, long timeout) {$/;"	f	class:BufferStream
+readc	advio.cpp	/^int BufferStream::readc(char *c, long timeout) {$/;"	f	class:BufferStream
+reconnect	ftp.cpp	/^int Ftp::reconnect() {$/;"	f	class:Ftp
+recursive_get_dir_list	ftpplugin.cpp	/^int FtpPlugin::recursive_get_dir_list(Task &task, Ftp *ftp, const char *tempfile,$/;"	f	class:FtpPlugin
+referer	task.h	/^        char *referer;$/;"	m	class:Task
+relogin	ftpplugin.cpp	/^int FtpPlugin::relogin(Ftp *ftp, Task &task) {$/;"	f	class:FtpPlugin
+remote	http.h	/^        TcpSockAddr remote;$/;"	m	class:Http
+remoteAddr	ftp.h	/^        TcpSockAddr remoteAddr;$/;"	m	class:Ftp
+remove_all	header.cpp	/^void HeadData::remove_all() {$/;"	f	class:HeadData
+remove_attr	header.cpp	/^int HeadData::remove_attr(const char *attrName) {$/;"	f	class:HeadData
+request	http.h	/^        HeadData request;$/;"	m	class:Http
+reset	ftpparser.cpp	/^void FtpParser::reset(void) {$/;"	f	class:FtpParser
+reset_url	url.cpp	/^int URL::reset_url(const char *url_orig) {$/;"	f	class:URL
+resolve	tcp.cpp	/^int Address::resolve(const char *dns_name, int port, int family) {$/;"	f	class:Address
+response	http.h	/^        HeadData response;$/;"	m	class:Http
+rest	ftp.cpp	/^int Ftp::rest(off_t offset) {$/;"	f	class:Ftp
+resumeSupported	task.h	/^        bool resumeSupported;$/;"	m	class:Task
+retr	ftp.cpp	/^int Ftp::retr(const char *file, off_t offset) {$/;"	f	class:Ftp
+retr_data_from	advio.cpp	/^off_t BufferFile::retr_data_from(PluginIO *pio, off_t *rtlength, off_t length) {$/;"	f	class:BufferFile
+retryInterval	task.h	/^        long retryInterval;$/;"	m	class:Task
+run	downloader.cpp	/^int Downloader::run() {$/;"	f	class:Downloader
+save_temp_file_exit	downloader.cpp	/^int Downloader::save_temp_file_exit(void) {$/;"	f	class:Downloader
+schedule	downloader.cpp	/^int Downloader::schedule(void) {$/;"	f	class:Downloader
+screen_width_change	progressbar.cpp	/^void ProgressBar::screen_width_change(int signo) {$/;"	f	class:ProgressBar
+seek	advio.cpp	/^off_t BufferFile::seek(off_t off_set) {$/;"	f	class:BufferFile
+self	downloader.cpp	/^int Downloader::self() {$/;"	f	class:Downloader
+send_head	http.cpp	/^int Http::send_head() {$/;"	f	class:Http
+set_addr	tcp.cpp	/^int TcpSockAddr::set_addr(const char *addr) {$/;"	f	class:TcpSockAddr
+set_attr	header.cpp	/^int HeadData::set_attr(const char *attrName, const char *attrValue) {$/;"	f	class:HeadData
+set_block_num	progressbar.cpp	/^void ProgressBar::set_block_num(int num) {$/;"	f	class:ProgressBar
+set_family	tcp.cpp	/^void TcpSockAddr::set_family(int family) {$/;"	f	class:TcpSockAddr
+set_fd	advio.cpp	/^int BufferStream::set_fd(int infd) {$/;"	f	class:BufferStream
+set_fd	advio.cpp	/^int IOStream::set_fd(int infd) {$/;"	f	class:IOStream
+set_host	http.cpp	/^int Http::set_host(const char *host, int port) {$/;"	f	class:Http
+set_host	proxy.cpp	/^void Proxy::set_host(const char *host) {$/;"	f	class:Proxy
+set_host	task.cpp	/^void Task::set_host(const char *host) {$/;"	f	class:Task
+set_local_dir	task.cpp	/^void Task::set_local_dir(const char *dir) {$/;"	f	class:Task
+set_local_file	task.cpp	/^void Task::set_local_file(const char *file) {$/;"	f	class:Task
+set_log	ftp.cpp	/^void Ftp::set_log(void(*f)(const char*str, ...)) {$/;"	f	class:Ftp
+set_log	http.cpp	/^void Http::set_log(void(*log)(const char *, ...)) {$/;"	f	class:Http
+set_mode	ftp.cpp	/^int Ftp::set_mode(int mode) {$/;"	f	class:Ftp
+set_password	proxy.cpp	/^void Proxy::set_password(const char *password) {$/;"	f	class:Proxy
+set_port	proxy.cpp	/^void Proxy::set_port(int port) {$/;"	f	class:Proxy
+set_port	tcp.cpp	/^void TcpSockAddr::set_port(int port) {$/;"	f	class:TcpSockAddr
+set_range	http.cpp	/^int Http::set_range(off_t start, off_t end) {$/;"	f	class:Http
+set_referer	task.cpp	/^void Task::set_referer(const char *referer) {$/;"	f	class:Task
+set_start_point	progressbar.cpp	/^void ProgressBar::set_start_point(off_t *data) {$/;"	f	class:ProgressBar
+set_timeout	ftp.cpp	/^void Ftp::set_timeout(long timeout) {$/;"	f	class:Ftp
+set_timeout	http.cpp	/^void Http::set_timeout(long timeout) {$/;"	f	class:Http
+set_tos	tcp.cpp	/^int TcpConnection::set_tos(void) {$/;"	f	class:TcpConnection
+set_total_size	progressbar.h	/^        void set_total_size(off_t size) { totalSize = size; }$/;"	f	class:ProgressBar
+set_type	proxy.cpp	/^void Proxy::set_type(ProxyType type) {$/;"	f	class:Proxy
+set_ua	task.cpp	/^void Task::set_ua(const char *ua) {$/;"	f	class:Task
+set_url	url.cpp	/^int URL::set_url(const char *url_orig) {$/;"	f	class:URL
+set_use_ssl	advio.cpp	/^void IOStream::set_use_ssl(bool use) {$/;"	f	class:IOStream
+set_use_ssl	http.cpp	/^void Http::set_use_ssl(bool use) {$/;"	f	class:Http
+set_user	proxy.cpp	/^void Proxy::set_user(const char *user) {$/;"	f	class:Proxy
+short_options	mytget.cpp	/^char short_options[] = "bc:d:f:hi:n:r:t:vx:H:";$/;"	v
+show	progressbar.h	/^        bool show;  \/\/ can show or not$/;"	m	class:ProgressBar
+size	block.h	/^        off_t size;$/;"	m	class:Block
+size	ftp.cpp	/^int Ftp::size(const char *file, off_t *size) {$/;"	f	class:Ftp
+size	ftpparser.h	/^        off_t size;$/;"	m	class:FtpParser
+ssl	advio.h	/^        SSL *ssl;$/;"	m	class:IOStream
+sslCTX	advio.h	/^        SSL_CTX *sslCTX;$/;"	m	class:IOStream
+ssl_connect	advio.cpp	/^int IOStream::ssl_connect(void) {$/;"	f	class:IOStream
+startPoint	block.h	/^        off_t startPoint;$/;"	m	class:Block
+startPoint	progressbar.h	/^        off_t *startPoint;  \/\/ save the start points$/;"	m	class:ProgressBar
+state	block.h	/^        ThreadState state;$/;"	m	class:Block
+stateLine	ftp.h	/^        char stateLine[1024];$/;"	m	class:Ftp
+statusCode	http.h	/^        int statusCode;$/;"	m	class:Http
+supported	url.cpp	/^    bool supported;$/;"	m	struct:proto_struct	file:
+task	downloader.h	/^        Task task;$/;"	m	class:Downloader
+threadNum	downloader.h	/^        int threadNum;$/;"	m	class:Downloader
+threadNum	task.h	/^        int threadNum;$/;"	m	class:Task
+thread_create	downloader.cpp	/^int Downloader::thread_create() {$/;"	f	class:Downloader
+time	ftpparser.h	/^        time_t time;$/;"	m	class:FtpParser
+timeout	ftp.h	/^        long timeout;$/;"	m	class:Ftp
+timeout	http.h	/^        long timeout;$/;"	m	class:Http
+timeout	task.h	/^        long timeout;$/;"	m	class:Task
+timeout_connect	tcp.cpp	/^int timeout_connect(int sock_fd, struct sockaddr* serv_addr, int addrlen, long tsec) {$/;"	f
+totalSize	progressbar.h	/^        off_t totalSize;  \/\/ the total size of the file in bytes$/;"	m	class:ProgressBar
+traversal	header.cpp	/^int HeadData::traversal(int(*trav_fun)(HeadDataNode*)) {$/;"	f	class:HeadData
+truncate	advio.cpp	/^int BufferFile::truncate(off_t length) {$/;"	f	class:BufferFile
+tryCount	task.h	/^        int tryCount;$/;"	m	class:Task
+type	ftp.cpp	/^int Ftp::type(const char* type) {$/;"	f	class:Ftp
+type	ftpparser.h	/^        char type;$/;"	m	class:FtpParser
+type	proxy.h	/^        ProxyType type;$/;"	m	class:Proxy
+ua	task.h	/^        char *ua;$/;"	m	class:Task
+update	progressbar.cpp	/^void ProgressBar::update(off_t *data) {$/;"	f	class:ProgressBar
+url	task.h	/^        URL url;$/;"	m	class:Task
+url	url.h	/^        const char *url;  \/\/ the encoded url$/;"	m	class:URL
+urlchr_reserved	url.cpp	/^  urlchr_reserved = 1,  \/\/ rfc1738 reserved chars$/;"	e	enum:__anon1	file:
+urlchr_table	url.cpp	/^const static unsigned char urlchr_table[256] = {$/;"	v	file:
+urlchr_test	url.cpp	/^#define urlchr_test(/;"	d	file:
+urlchr_unsafe	url.cpp	/^  urlchr_unsafe   = 2   \/\/ rfc1738 unsafe chars$/;"	e	enum:__anon1	file:
+useSSL	advio.h	/^        bool useSSL;$/;"	m	class:IOStream
+useSSL	http.h	/^        bool useSSL;$/;"	m	class:Http
+user	proxy.h	/^        const char *user;$/;"	m	class:Proxy
+user	url.h	/^        const char *user;$/;"	m	class:URL
+write	advio.cpp	/^int BufferStream::write(char *str, long timeout) {$/;"	f	class:BufferStream
+write	advio.cpp	/^int IOStream::write(char *buffer, int maxsize, long timeout) {$/;"	f	class:IOStream
+~Address	tcp.h	/^        ~Address() { freeaddrinfo(addr); }$/;"	f	class:Address
+~BufferFile	advio.cpp	/^BufferFile::~BufferFile() {$/;"	f	class:BufferFile
+~Downloader	downloader.cpp	/^Downloader::~Downloader() {$/;"	f	class:Downloader
+~Ftp	ftp.cpp	/^Ftp::~Ftp() {$/;"	f	class:Ftp
+~FtpParser	ftpparser.cpp	/^FtpParser::~FtpParser() {$/;"	f	class:FtpParser
+~HeadData	header.cpp	/^HeadData::~HeadData() {$/;"	f	class:HeadData
+~HeadDataNode	header.cpp	/^HeadDataNode::~HeadDataNode() {$/;"	f	class:HeadDataNode
+~Http	http.h	/^        ~Http() { delete conn; }$/;"	f	class:Http
+~IOStream	advio.cpp	/^IOStream::~IOStream() {$/;"	f	class:IOStream
+~Plugin	plugin.cpp	/^Plugin::~Plugin() {$/;"	f	class:Plugin
+~PluginIO	advio.cpp	/^PluginIO::~PluginIO() {$/;"	f	class:PluginIO
+~ProgressBar	progressbar.cpp	/^ProgressBar::~ProgressBar() {$/;"	f	class:ProgressBar
+~Proxy	proxy.cpp	/^Proxy::~Proxy() {$/;"	f	class:Proxy
+~Task	task.cpp	/^Task::~Task() {$/;"	f	class:Task
+~TcpAcceptor	tcp.h	/^        ~TcpAcceptor() { close(listen_fd); }$/;"	f	class:TcpAcceptor
+~URL	url.cpp	/^URL::~URL() {$/;"	f	class:URL

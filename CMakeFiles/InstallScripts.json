@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/lytsing/work/mytget/cmake_install.cmake",
+		"/Users/lytsing/work/mytget/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

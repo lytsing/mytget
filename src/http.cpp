@@ -78,6 +78,7 @@ int Http::connect(const char *host, int port) {
 #ifdef HAVE_SSL
     if (useSSL) {
         conn->set_use_ssl(useSSL);
+        conn->set_ssl_hostname(host);
         if (conn->ssl_connect() < 0) {
             delete conn;
             conn = NULL;

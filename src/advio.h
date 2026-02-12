@@ -50,6 +50,7 @@ class IOStream {
 
 #ifdef HAVE_SSL
         void set_use_ssl(bool use);
+        void set_ssl_hostname(const char *host);
         int ssl_connect(void);
 #endif
 
@@ -59,6 +60,7 @@ class IOStream {
         SSL *ssl;
         SSL_CTX *sslCTX;
         bool useSSL;
+        char *sslHostname;
 #endif
 };
 

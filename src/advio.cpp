@@ -39,6 +39,7 @@ IOStream::IOStream(int infd) :fd(infd) {
     ssl = NULL;
     sslCTX = NULL;
     useSSL = false;
+    sslHostname = NULL;
 #endif
 };
 
@@ -49,6 +50,7 @@ IOStream::~IOStream() {
         free(ssl);
         if (sslCTX) SSL_CTX_free(sslCTX);
     }
+    delete[] sslHostname;
 #endif
     ::close(fd);
 };
@@ -102,10 +104,24 @@ void IOStream::set_use_ssl(bool use) {
     }
 };
 
+void IOStream::set_ssl_hostname(const char *host) {
+    delete[] sslHostname;
+    if (host) {
+        size_t len = strlen(host) + 1;
+        sslHostname = new char[len];
+        memcpy(sslHostname, host, len);
+    } else {
+        sslHostname = NULL;
+    }
+}
+
 int IOStream::ssl_connect(void) {
     assert(fd >= 0);
     if (!useSSL || ssl == NULL) {
         return -1;
+    }
+    if (sslHostname != NULL) {
+        SSL_set_tlsext_host_name(ssl, sslHostname);
     }
     int ret;
     if ((ret=SSL_connect(ssl)) <= 0) {
