@@ -1,3 +1,6 @@
+V1.13
+1.fixbug: add TLS SNI (Server Name Indication) support for HTTPS connections. Fixes "Can not get the info of the file" error when downloading from shared hosting servers that return HTTP 421 Misdirected Request.
+
 V0.1.1
 1.fixbug: the wrong log output.
 2.fixbug: the ftp file timestamp error.

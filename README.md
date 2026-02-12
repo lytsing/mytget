@@ -1,7 +1,7 @@
 Mytget
 ======================
 
-Mytget is a muti-thread downloader accelerator for GNU/Linux.
+Mytget is a multi-thread downloader accelerator for GNU/Linux.
 
 It forks from http://myget.sourceforge.net/
 
@@ -12,7 +12,7 @@ Current Features
 * Supports HTTP-GET proxy
 * Resumes the aborted downloads
 * Supports directory download
-* Can accelerates downloading through using muti-connections
+* Can accelerates downloading through using multi-connections
 * Supports large file( > 4G )
 
 
@@ -37,9 +37,13 @@ macOS:
 
 	brew install openssl
 
-fixed it on macOS when cmake：
+Fixed it on macOS when cmake cannot find OpenSSL:
 
-	cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+	# Intel Mac
+	cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib .
+
+	# Apple Silicon (M1/M2/M3)
+	cmake -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl -DOPENSSL_LIBRARIES=/opt/homebrew/opt/openssl/lib .
 
 Make sure your cmake version >= 2.6
 
@@ -53,13 +57,13 @@ Usage
 ------------
 
 	$ mytget -h
-	Mytget 1.12: A download accelerator for GNU/Linux
+	Mytget 1.13: A download accelerator for GNU/Linux
 	Usage: mytget [options]... [URL]...
 	Options:
 	  -A,  --user-agent=UA  Set the user agent [UA]
 	  -b,  --debug          Show the debug message
 	  -c,  --count=num      Set the retry count to [num], no limit when "0", the default is "99"
-	  -d,  --directory=dir  Set the local direcotry to [dir], the default is "."
+	  -d,  --directory=dir  Set the local directory to [dir], the default is "."
 	  -f,  --file=file      Rename the file to [file]
 	  -H,  --host=host      Modify `Host: [host]' header in HTTP request.
 	  -h,  --help           A brief summary of all the options

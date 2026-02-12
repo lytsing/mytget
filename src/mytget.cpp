@@ -29,7 +29,7 @@
 using namespace std;
 
 #ifndef VERSION
-#define VERSION "1.12"
+#define VERSION "1.13"
 #endif
 
 void print_help() {
