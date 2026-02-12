@@ -44,7 +44,7 @@ class HeadData {
         int set_attr(const char *attrName, const char *attrValue);
         // get the attribValue identified by attrName;
         const char* get_attr(const char *attrName);
-        // remote the attr identified by attrName;
+        // remove the attr identified by attrName;
         int remove_attr(const char *attrName);
         // traversal the data use trav_fun
         int traversal(int(*trav_fun)(HeadDataNode*));

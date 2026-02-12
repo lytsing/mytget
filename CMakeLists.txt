@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 3.10)  # 或 3.16、3.22 等更高版本
 project(mytget)
 
 set(CMAKE_CXX_STANDARD 17)

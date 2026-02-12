@@ -38,7 +38,7 @@ class Http : public PluginIO {
         // set log function
         void set_log(void(*log)(const char *, ...));
 #ifdef HAVE_SSL
-        // set ues ssl
+        // set use ssl
         void set_use_ssl(bool use);
 #endif
 

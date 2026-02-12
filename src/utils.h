@@ -47,7 +47,7 @@ const char* base64_decode(const char *str, int length = -1);
 
 // try to get the screen width
 int determine_screen_width();
-// get the current time in secondes
+// get the current time in seconds
 double get_current_time();
 // conver size to 333M, 111K, 1G
 void convert_size(char *sizeStr, size_t sizeStrLen, off_t size);

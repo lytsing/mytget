@@ -45,7 +45,7 @@ Fixed it on macOS when cmake cannot find OpenSSL:
 	# Apple Silicon (M1/M2/M3)
 	cmake -DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl -DOPENSSL_LIBRARIES=/opt/homebrew/opt/openssl/lib .
 
-Make sure your cmake version >= 2.6
+Make sure your cmake version >= 3.10
 
 	git clone https://github.com/lytsing/Mytget.git
 	cd Mytget/
