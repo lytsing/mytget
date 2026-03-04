@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <errno.h>
+#include <libgen.h>
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
@@ -37,6 +38,36 @@
 using namespace std;
 
 typedef void* (*PthreadFunction) (void*);
+
+// Create parent directory of filepath (and any missing ancestors). Return 0 on success, -1 on error.
+static int ensure_parent_dir(const char *filepath) {
+    char *path = StrDup(filepath);
+    if (!path) return -1;
+    char *dir = dirname(path);
+    if (!dir || dir[0] == '\0') {
+        delete[] path;
+        return 0;
+    }
+    if (strcmp(dir, ".") == 0) {
+        delete[] path;
+        return 0;
+    }
+    size_t len = strlen(dir);
+    for (size_t i = 1; i <= len; i++) {
+        if (dir[i] == '/' || dir[i] == '\0') {
+            char saved = dir[i];
+            ((char *)dir)[i] = '\0';
+            if (mkdir(dir, 00755) < 0 && errno != EEXIST) {
+                ((char *)dir)[i] = saved;
+                delete[] path;
+                return -1;
+            }
+            ((char *)dir)[i] = saved;
+        }
+    }
+    delete[] path;
+    return 0;
+}
 
 bool global_sigint_received = false;
 bool global_downloading = false;
@@ -482,6 +513,10 @@ int Downloader::file_download() {
     int ret = 0;
 
     init_local_file_name();
+    if (ensure_parent_dir(localPath) < 0) {
+        perror("Cannot create directory for output file");
+        return -1;
+    }
     if (file_exist(localPath)) {
         cout << "File already exist: " << localPath << endl;
         return 0;

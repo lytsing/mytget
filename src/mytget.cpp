@@ -21,8 +21,10 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 #include <getopt.h>
 #include <signal.h>
+#include <libgen.h>
 
 #include "mytget.h"
 
@@ -130,9 +132,20 @@ int main(int argc, char **argv) {
             case 'd':
                 task.set_local_dir(optarg);
                 break;
-            case 'o':
-                task.set_local_file(optarg);
+            case 'o': {
+                char *path_copy = StrDup(optarg);
+                char *base_copy = StrDup(optarg);
+                if (path_copy && base_copy) {
+                    const char *dir = dirname(path_copy);
+                    const char *base = basename(base_copy);
+                    task.set_local_file(base);
+                    if (strcmp(dir, ".") != 0)
+                        task.set_local_dir(dir);
+                }
+                delete[] path_copy;
+                delete[] base_copy;
                 break;
+            }
             case 'H':
                 task.set_host(optarg);
                 break;
