@@ -71,5 +71,5 @@ Usage
 	  -n,  --number=num     Use [num] connections instead of the default (4)
 	  -r,  --referer=URL    Include `Referer: [URL]' header in HTTP request.
 	  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is "30"
-	  -v,  --version        Show the version of the myget and exit
+	  -v,  --version        Show the version of the mytget and exit
 	  -x,  --proxy=URL      Set the proxy [URL]

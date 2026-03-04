@@ -140,9 +140,18 @@ int main(int argc, char **argv) {
                 print_help();
                 return 0;
                 break;
-            case 'i':
-                task.retryInterval = atoi(optarg);
+            case 'i': {
+                char *endptr = NULL;
+                long v = strtol(optarg, &endptr, 10);
+                if (optarg[0] == '\0' || *endptr != '\0' || v < 0) {
+                    cerr << "Invalid value for -i/--interval: " << optarg
+                         << " (must be a non-negative integer)" << endl;
+                    print_help();
+                    return -1;
+                }
+                task.retryInterval = v;
                 break;
+            }
             case 'n': {
                 char *endptr = NULL;
                 long v = strtol(optarg, &endptr, 10);
@@ -221,7 +230,10 @@ int main(int argc, char **argv) {
     }
 
     if (ptr == NULL) {
-        ptr = StrDup(getenv("proxy"));
+        const char *env = getenv("http_proxy");
+        if (env == NULL) env = getenv("HTTP_PROXY");
+        if (env == NULL) env = getenv("proxy");
+        if (env != NULL) ptr = StrDup(env);
     }
     if (ptr) {
         if (url.set_url(ptr) < 0) {

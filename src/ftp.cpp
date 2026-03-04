@@ -115,7 +115,7 @@ int Ftp::ftp_cmd(const char* cmd, const char* args) {
         log("%s", buffer);
     }while(buffer[3] != ' ' || !ISDIGIT(buffer[0]));
 
-    strcpy(stateLine, buffer + 4);
+    snprintf(stateLine, sizeof(stateLine), "%s", buffer + 4);
 
     return atoi(buffer);
 };

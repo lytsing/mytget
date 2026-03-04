@@ -354,14 +354,38 @@ int Downloader::save_temp_file_exit(void) {
     }
 
     fd = fopen(localMg, "r+");
-    fseeko(fd, task.fileSize, SEEK_CUR);
-    fwrite(&threadNum, sizeof(threadNum), 1, fd);
-    for (i = 0; i < threadNum; ++i) {
-        fwrite(&blocks[i].startPoint, sizeof(off_t), 1, fd);
-        fwrite(&blocks[i].downloaded, sizeof(off_t), 1, fd);
-        fwrite(&blocks[i].size, sizeof(off_t), 1, fd);
+    if (fd == NULL) {
+        perror("Cannot save resume data (open temp file failed)");
+        global_downloading = false;
+        pthread_exit((void*)1);
     }
-    fclose(fd);
+    if (fseeko(fd, task.fileSize, SEEK_SET) != 0) {
+        perror("Cannot save resume data (seek failed)");
+        fclose(fd);
+        global_downloading = false;
+        pthread_exit((void*)1);
+    }
+    if (fwrite(&threadNum, sizeof(threadNum), 1, fd) != 1) {
+        perror("Cannot save resume data (write failed)");
+        fclose(fd);
+        global_downloading = false;
+        pthread_exit((void*)1);
+    }
+    for (i = 0; i < threadNum; ++i) {
+        if (fwrite(&blocks[i].startPoint, sizeof(off_t), 1, fd) != 1 ||
+            fwrite(&blocks[i].downloaded, sizeof(off_t), 1, fd) != 1 ||
+            fwrite(&blocks[i].size, sizeof(off_t), 1, fd) != 1) {
+            perror("Cannot save resume data (write failed)");
+            fclose(fd);
+            global_downloading = false;
+            pthread_exit((void*)1);
+        }
+    }
+    if (fclose(fd) != 0) {
+        perror("Cannot save resume data (close failed)");
+        global_downloading = false;
+        pthread_exit((void*)1);
+    }
 
     global_downloading = false;
     pthread_exit(0);
@@ -371,7 +395,7 @@ int Downloader::directory_download(void) {
     char tempfile[17];
     int ret;
 
-    strcpy(tempfile, "/tmp/list.XXXXXX");
+    snprintf(tempfile, sizeof(tempfile), "/tmp/list.XXXXXX");
     ret = mkstemp(tempfile);
     if (ret < 0) {
         return -1;
