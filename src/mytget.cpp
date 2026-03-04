@@ -85,8 +85,20 @@ int main(int argc, char **argv) {
 
     signal(SIGPIPE, SIG_IGN);
 #ifdef HAVE_SSL
+#  if OPENSSL_VERSION_NUMBER < 0x10100000L
     SSL_load_error_strings();
     SSLeay_add_ssl_algorithms();
+#  else
+    /*
+     * OpenSSL 1.1.0+ does its own library init; use the
+     * recommended OPENSSL_init_ssl() entry point instead
+     * of the deprecated SSL_load_error_strings() and
+     * SSLeay_add_ssl_algorithms().
+     */
+    OPENSSL_init_ssl(OPENSSL_INIT_LOAD_SSL_STRINGS |
+                     OPENSSL_INIT_LOAD_CRYPTO_STRINGS,
+                     NULL);
+#  endif
 #endif
 
     while (1) {
