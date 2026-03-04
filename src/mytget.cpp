@@ -172,6 +172,43 @@ int main(int argc, char **argv) {
             }
             case 'v':
                 cout << "Mytget " VERSION << endl;
+                cout << "Features:" << endl;
+                cout << "  Protocols: HTTP";
+#ifdef HAVE_SSL
+                cout << ", HTTPS";
+#endif
+                cout << ", FTP" << endl;
+
+                cout << "  SSL: ";
+#ifdef HAVE_SSL
+                cout << "enabled";
+#else
+                cout << "disabled";
+#endif
+                cout << endl;
+
+                cout << "  Build type: ";
+#ifdef NDEBUG
+                cout << "release";
+#else
+                cout << "debug";
+#endif
+                cout << endl;
+
+                cout << "  C++ standard: ";
+#if __cplusplus >= 202002L
+                cout << "C++20 or later";
+#elif __cplusplus >= 201703L
+                cout << "C++17";
+#elif __cplusplus >= 201402L
+                cout << "C++14";
+#elif __cplusplus >= 201103L
+                cout << "C++11";
+#else
+                cout << "pre-C++11";
+#endif
+                cout << endl;
+
                 return 0;
             case 'x':
                 ptr = StrDup(optarg);
