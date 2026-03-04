@@ -40,7 +40,7 @@ void print_help() {
     cout << "  -b,  --debug          Show the debug message" << endl;
     cout << "  -c,  --count=num      Set the retry count to [num], no limit when \"0\", the default is \"99\"" << endl;
     cout << "  -d,  --directory=dir  Set the local directory to [dir], the default is \".\"" << endl;
-    cout << "  -f,  --file=file      Rename the file to [file]" << endl;
+    cout << "  -o,  --output=FILE    Write output to FILE (like curl -o)" << endl;
     cout << "  -H,  --host=host      Modify `Host: [host]\' header in HTTP request." << endl;
     cout << "  -h,  --help           A brief summary of all the options" << endl;
     cout << "  -i,  --interval=num   Set the ftp retry interval to [num] seconds, the default is \"5\"" << endl;
@@ -56,7 +56,7 @@ const struct option long_options[] = {
     {"debug"     , 0 , NULL , 'b'} ,
     {"count"     , 1 , NULL , 'c'} ,
     {"directory" , 1 , NULL , 'd'} ,
-    {"file"      , 1 , NULL , 'f'} ,
+    {"output"    , 1 , NULL , 'o'} ,
     {"help"      , 0 , NULL , 'h'} ,
     {"interval"  , 1 , NULL , 'i'} ,
     {"number"    , 1 , NULL , 'n'} ,
@@ -68,7 +68,7 @@ const struct option long_options[] = {
     {NULL        , 0 , NULL , 0}
 };
 
-char short_options[] = "bc:d:f:hi:n:r:t:vx:H:";
+char short_options[] = "bc:d:hi:n:o:r:t:vx:H:";
 
 int main(int argc, char **argv) {
     int ret;
@@ -109,7 +109,7 @@ int main(int argc, char **argv) {
             case 'd':
                 task.set_local_dir(optarg);
                 break;
-            case 'f':
+            case 'o':
                 task.set_local_file(optarg);
                 break;
             case 'H':

@@ -64,7 +64,7 @@ Usage
 	  -b,  --debug          Show the debug message
 	  -c,  --count=num      Set the retry count to [num], no limit when "0", the default is "99"
 	  -d,  --directory=dir  Set the local directory to [dir], the default is "."
-	  -f,  --file=file      Rename the file to [file]
+	  -o,  --output=FILE    Write output to FILE (like curl -o)
 	  -H,  --host=host      Modify `Host: [host]' header in HTTP request.
 	  -h,  --help           A brief summary of all the options
 	  -i,  --interval=num   Set the ftp retry interval to [num] seconds, the default is "5"
