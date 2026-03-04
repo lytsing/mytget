@@ -13,5 +13,5 @@ V0.1.0
 2.Supports HTTP-GET proxy
 3.Can resume aborted downloads
 4.Supports directory download
-5.Can accelerator downloading through using muti-connections
+5.Can accelerate downloading through using multi-connections
 6.Supports large file( > 4G )

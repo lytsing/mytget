@@ -12,7 +12,7 @@ Current Features
 * Supports HTTP-GET proxy
 * Resumes the aborted downloads
 * Supports directory download
-* Can accelerates downloading through using multi-connections
+* Can accelerate downloading through using multi-connections
 * Supports large file( > 4G )
 
 
@@ -23,7 +23,7 @@ Install the necessary compile dependencies:
 
 Archlinux:
 
-	sudo yaourt -Syu myget
+	yay -S mytget
 
 CentOS:
 
