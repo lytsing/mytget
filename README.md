@@ -52,6 +52,23 @@ Make sure your cmake version >= 3.10
 	cmake .
 	make && sudo make install
 
+The project version is defined in the top-level `CMakeLists.txt` as `project(mytget VERSION 1.13 LANGUAGES C CXX)` and is used for the `mytget -v` output.
+
+**Build options (for packagers and distros):**
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `CMAKE_BUILD_TYPE` | (empty → Release) | `Release` = optimized, `Debug` = with debug symbols |
+| `HAVE_SSL` | ON | Enable HTTPS (requires OpenSSL) |
+| `MYTGET_DEBUG_LOG` | OFF | Enable compile-time verbose debug log |
+| `MYTGET_STATIC` | OFF | Link statically (adds `-static` for packaging) |
+
+Examples:
+
+	cmake -DCMAKE_BUILD_TYPE=Release .
+	cmake -DCMAKE_BUILD_TYPE=Release -DMYTGET_STATIC=ON .
+	cmake -DHAVE_SSL=OFF .
+
 
 Usage
 ------------

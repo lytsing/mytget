@@ -1,16 +1,19 @@
-cmake_minimum_required(VERSION 3.10)  # 或 3.16、3.22 等更高版本
-project(mytget)
+cmake_minimum_required(VERSION 3.10)
+project(mytget VERSION 1.13 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(PROJECT_MAJOR_VERSION 1)
-set(PROJECT_MINOR_VERSION 1)
-set(PROJECT_PATCH_VERSION 2)
+# Options for packaging and distro integration
+option(MYTGET_DEBUG_LOG "Enable compile-time debug log (verbose build)" OFF)
+option(MYTGET_STATIC "Link statically for packaging (adds -static)" OFF)
 
-set(PROJECT_VERSION ${PROJECT_MAJOR_VERSION}.${PROJECT_MINOR_VERSION}.${PROJECT_PATCH_VERSION})
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wdeprecated-declarations -O0 -ggdb -D_FILE_OFFSET_BITS=64")
+# Base flags; Release/Debug tuning is below
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wdeprecated-declarations -D_FILE_OFFSET_BITS=64")
+if(MYTGET_STATIC)
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
+endif()
 
 INCLUDE (CheckFunctionExists)
 INCLUDE (CheckIncludeFiles)
@@ -62,17 +65,18 @@ if (NOT HAVE_SYS_UN)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNO_SYS_UN")
 endif(NOT HAVE_SYS_UN)
 
-OPTION(HAVE_SSL      "Enable ssl support"      ON) 
-SET(CMAKE_INCLUDE_CURRENT_DIR ON)
-SET(HAVE_SSL ON) 
+option(HAVE_SSL "Enable SSL (HTTPS) support" ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON) 
 
 message("Build Type: ${CMAKE_BUILD_TYPE}")
 message("Std CFLAGS: ${CMAKE_C_FLAGS}")
 message("Dbg CFLAGS: ${CMAKE_C_FLAGS_DEBUG}")
 message("Rel CFLAGS: ${CMAKE_C_FLAGS_RELEASE}")
 
-FIND_PACKAGE (Threads REQUIRED)
-find_package(OpenSSL)
+find_package(Threads REQUIRED)
+if(HAVE_SSL)
+  find_package(OpenSSL)
+endif()
 
 include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}
@@ -82,20 +86,28 @@ set(MYTGET_EXTERNAL_LIBS
 	${CMAKE_THREAD_LIBS_INIT}
 )
 
-if (NOT OPENSSL_FOUND)
-	message("Diabling SSL")
-	set (HAVE_SSL OFF)
-	set (OPENSSL_INCLUDE_DIR "")
-	set (OPENSSL_LIBRARIES "")
-else()
-	add_definitions(-DHAVE_SSL)
-	include_directories( ${OPENSSL_INCLUDE_DIR})
-	list(APPEND MYTGET_EXTERNAL_LIBS ${OPENSSL_LIBRARIES})
+if(HAVE_SSL AND NOT OPENSSL_FOUND)
+  message(WARNING "OpenSSL not found; building without SSL (HTTPS disabled)")
+  set(HAVE_SSL OFF)
+endif()
+if(HAVE_SSL AND OPENSSL_FOUND)
+  add_definitions(-DHAVE_SSL)
+  include_directories(${OPENSSL_INCLUDE_DIR})
+  list(APPEND MYTGET_EXTERNAL_LIBS ${OPENSSL_LIBRARIES})
 endif()
 
 
-if (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-  set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNDEBUG")
-endif (NOT ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+# Release: optimize, no debug; Debug: no NDEBUG, debug symbols
+if(CMAKE_BUILD_TYPE STREQUAL "Release" OR (NOT CMAKE_BUILD_TYPE) OR CMAKE_BUILD_TYPE STREQUAL "")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -DNDEBUG")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -DNDEBUG")
+elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -ggdb")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -ggdb")
+endif()
 
-ADD_SUBDIRECTORY(src)
+if(MYTGET_DEBUG_LOG)
+  add_compile_definitions(MYTGET_DEBUG_LOG)
+endif()
+
+add_subdirectory(src)

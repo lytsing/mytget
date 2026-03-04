@@ -27,15 +27,12 @@
 #include <libgen.h>
 
 #include "mytget.h"
+#include "version.h"
 
 using namespace std;
 
-#ifndef VERSION
-#define VERSION "1.13"
-#endif
-
 void print_help() {
-    cout << "Mytget " VERSION ": A download accelerator for GNU/Linux" << endl;
+    cout << "Mytget " MYTGET_VERSION ": A download accelerator for GNU/Linux" << endl;
     cout << "Usage: mytget [options]... [URL]..." << endl;
     cout << "Options:" << endl;
     cout << "  -A,  --user-agent=UA  Set the user agent [UA]" << endl;
@@ -193,7 +190,7 @@ int main(int argc, char **argv) {
                 break;
             }
             case 'v':
-                cout << "Mytget " VERSION << endl;
+                cout << "Mytget " MYTGET_VERSION << endl;
                 cout << "Features:" << endl;
                 cout << "  Protocols: HTTP";
 #ifdef HAVE_SSL

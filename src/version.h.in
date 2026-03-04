@@ -1,0 +1,4 @@
+#ifndef MYTGET_VERSION_H
+#define MYTGET_VERSION_H
+#define MYTGET_VERSION "@PROJECT_VERSION@"
+#endif
