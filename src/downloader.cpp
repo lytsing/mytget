@@ -279,7 +279,7 @@ int Downloader::self() {
     self = pthread_self();
     int i;
     while (1) {
-        for (i = 0; i < threadNum; ++i) {
+        for (i = 0; i < threadNum; i++) {
             if (blocks[i].pid == self) return i;
         }
         // the parent thread maybe slower than me
@@ -508,6 +508,9 @@ _dd_error:
     return -1;
 };  // end of directory_download
 
+// Add retry counter to handle network fluctuations
+static int g_retry_count = 0;
+
 int Downloader::file_download() {
     int i;
     int ret = 0;
@@ -569,9 +572,18 @@ int Downloader::file_download() {
         ret = init_threads_from_info();
     }
 
+    // Add robust retry mechanism for thread initialization
     if (ret < 0) {
-        cerr << "Init threads failed" << endl;
-        return ret;
+        if (g_retry_count < task.tryCount) {
+            g_retry_count++;
+            cerr << "Thread init failed, retry " << g_retry_count << "/" << task.tryCount << endl;
+            usleep(500000); // 0.5s delay
+            return file_download(); // Recursive retry
+        } else {
+            cerr << "Init threads failed after " << task.tryCount << " retries" << endl;
+            g_retry_count = 0;
+            return ret;
+        }
     }
 
     for (i = 0; i < threadNum; ++i) {
@@ -622,9 +634,18 @@ int Downloader::file_download() {
         // the downloaded maybe bigger than the filesize
         // because the overlay of the data
         if (downloaded < task.fileSize) {
-            cerr << "!!!Some error happened when downloaded" << endl;
-            cerr << "!!!Redownloading is recommended" << endl;
-            save_temp_file_exit();
+            if (g_retry_count < task.tryCount) {
+                g_retry_count++;
+                cerr << "Incomplete download, retry " << g_retry_count << "/" << task.tryCount << endl;
+                unlink(localMg);
+                usleep(1000000); // 1s delay
+                return file_download(); // Recursive retry
+            } else {
+                cerr << "!!!Some error happened when downloaded" << endl;
+                cerr << "!!!Redownloading is recommended" << endl;
+                g_retry_count = 0;
+                save_temp_file_exit();
+            }
         }
 
         truncate(localMg, task.fileSize);
@@ -635,6 +656,7 @@ int Downloader::file_download() {
         return -1;
     }
     global_downloading = false;
+    g_retry_count = 0; // Reset retry counter on success
 
     time = get_current_time() - time;
     convert_time(buf, sizeof(buf), time);
@@ -663,4 +685,3 @@ int Downloader::run() {
 
     return file_download();
 };  // end of run
-
