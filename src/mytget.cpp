@@ -115,9 +115,18 @@ int main(int argc, char **argv) {
             case 'b':
                 global_debug = true;
                 break;
-            case 'c':
-                task.tryCount = atoi(optarg);
+            case 'c': {
+                char *endptr = NULL;
+                long v = strtol(optarg, &endptr, 10);
+                if (optarg[0] == '\0' || *endptr != '\0' || v < 0) {
+                    cerr << "Invalid value for -c/--count: " << optarg
+                         << " (must be a non-negative integer)" << endl;
+                    print_help();
+                    return -1;
+                }
+                task.tryCount = v;
                 break;
+            }
             case 'd':
                 task.set_local_dir(optarg);
                 break;
@@ -134,15 +143,33 @@ int main(int argc, char **argv) {
             case 'i':
                 task.retryInterval = atoi(optarg);
                 break;
-            case 'n':
-                task.threadNum = atoi(optarg);
+            case 'n': {
+                char *endptr = NULL;
+                long v = strtol(optarg, &endptr, 10);
+                if (optarg[0] == '\0' || *endptr != '\0' || v < 0) {
+                    cerr << "Invalid value for -n/--number: " << optarg
+                         << " (must be a non-negative integer)" << endl;
+                    print_help();
+                    return -1;
+                }
+                task.threadNum = v;
                 break;
+            }
             case 'r':
                 task.set_referer(optarg);
                 break;
-            case 't':
-                task.timeout = atoi(optarg);
+            case 't': {
+                char *endptr = NULL;
+                long v = strtol(optarg, &endptr, 10);
+                if (optarg[0] == '\0' || *endptr != '\0' || v < 0) {
+                    cerr << "Invalid value for -t/--timeout: " << optarg
+                         << " (must be a non-negative integer)" << endl;
+                    print_help();
+                    return -1;
+                }
+                task.timeout = v;
                 break;
+            }
             case 'v':
                 cout << "Mytget " VERSION << endl;
                 return 0;
