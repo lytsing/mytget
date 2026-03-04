@@ -489,7 +489,23 @@ int Downloader::file_download() {
         blocks[0].size = task.fileSize;
         blocks[0].bufferFile.open(localMg);
     } else if (file_exist(localMg)) {
-        ret = init_threads_from_mg();
+        int wantThreads = task.threadNum > 0 ? task.threadNum : 1;
+        FILE *fd = fopen(localMg, "r");
+        bool use_mg = false;
+        if (fd && task.fileSize >= 0) {
+            fseeko(fd, task.fileSize, SEEK_SET);
+            int storedNum;
+            if (fread(&storedNum, sizeof(storedNum), 1, fd) == 1 && storedNum == wantThreads) {
+                use_mg = true;
+            }
+            fclose(fd);
+        }
+        if (use_mg) {
+            ret = init_threads_from_mg();
+        } else {
+            unlink(localMg);
+            ret = init_threads_from_info();
+        }
     } else {
         ret = init_threads_from_info();
     }
