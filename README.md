@@ -3,7 +3,7 @@ Mytget
 
 Mytget is a multi-thread downloader accelerator for GNU/Linux.
 
-It forks from http://myget.sourceforge.net/
+It forks from [http://myget.sourceforge.net/](http://myget.sourceforge.net/)
 
 Current Features
 ------------
@@ -73,3 +73,37 @@ Usage
 	  -t,  --timeout=num    Set the connection timeout to [num] seconds, the default is "30"
 	  -v,  --version        Show the version of the mytget and exit
 	  -x,  --proxy=URL      Set the proxy [URL]
+
+
+Usage examples
+------------
+
+Download a file (default: 4 connections, current directory):
+
+	$ mytget https://example.com/file.zip
+
+Save to a specific path (creates parent directories if needed, like curl -o):
+
+	$ mytget -o ~/Downloads/file.zip https://example.com/file.zip
+
+Save to a directory (keeps the original filename):
+
+	$ mytget -d ~/Downloads https://example.com/file.zip
+
+Single-thread download:
+
+	$ mytget -n 1 -o page.html https://www.example.com/
+
+Use a proxy:
+
+	$ mytget -x http://proxy.example.com:8080 -o file.bin https://example.com/file.bin
+
+Resume after interruption (re-run the same command; mytget uses a .mg! temp file):
+
+	$ mytget -o bigfile.iso https://example.com/bigfile.iso
+	# ... interrupt with Ctrl+C, then run again:
+	$ mytget -o bigfile.iso https://example.com/bigfile.iso
+
+Show version and build info:
+
+	$ mytget -v
