@@ -387,19 +387,39 @@ int URL::_parse_path(char* &url) {
 
     ptr = strrchr(url, '/');
 
-    if (ptr != NULL) {
-        if (*(ptr + 1) == '\0') {
-            *ptr = '\0';
-            dir = decode(url);
-        } else {
-            *ptr = '\0';
-            dir = decode(url);
-            if (*(ptr + 1) != '\0') {
-                file = decode(ptr + 1);
+    // For FTP protocol, don't decode the path since % is a valid character
+    // in filenames and should not be treated as URL encoding
+    if (protocol == FTP) {
+        if (ptr != NULL) {
+            if (*(ptr + 1) == '\0') {
+                *ptr = '\0';
+                dir = StrDup(url);
+            } else {
+                *ptr = '\0';
+                dir = StrDup(url);
+                if (*(ptr + 1) != '\0') {
+                    file = StrDup(ptr + 1);
+                }
             }
+        } else if (*url != '\0') {
+            file = StrDup(url);
         }
-    } else if (*url != '\0') {
-        file = decode(url);
+    } else {
+        // For other protocols (HTTP, etc.), decode URL-encoded characters
+        if (ptr != NULL) {
+            if (*(ptr + 1) == '\0') {
+                *ptr = '\0';
+                dir = decode(url);
+            } else {
+                *ptr = '\0';
+                dir = decode(url);
+                if (*(ptr + 1) != '\0') {
+                    file = decode(ptr + 1);
+                }
+            }
+        } else if (*url != '\0') {
+            file = decode(url);
+        }
     }
 
     return 0;
