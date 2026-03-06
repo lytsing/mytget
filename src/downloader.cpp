@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <errno.h>
+#include <unistd.h>
 #include <libgen.h>
 #include <cstring>
 #include <cstdio>
@@ -147,6 +148,10 @@ int Downloader::init_task() {
         } else if (ret == 0) {
             return 0;
         } else {
+            /* Retry after delay to avoid hammering a refusing server */
+            unsigned int delay = (task.retryInterval > 0) ? (unsigned int)task.retryInterval : 1;
+            if (i + 1 < task.tryCount || task.tryCount <= 0)
+                sleep(delay);
             continue;
         }
     }
@@ -303,6 +308,10 @@ int Downloader::download_thread(Downloader *downloader) {
             downloader->blocks[self].state = EXIT;
             return 0;
         } else {
+            /* Retry after delay (e.g. connection refused) */
+            unsigned int delay = (downloader->task.retryInterval > 0) ? (unsigned int)downloader->task.retryInterval : 1;
+            if (i + 1 < downloader->task.tryCount || downloader->task.tryCount <= 0)
+                sleep(delay);
             continue;
         }
     }
